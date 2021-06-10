@@ -13,8 +13,8 @@ public class Coingenerator : MonoBehaviour
     private void Start()
     {
         // make sure that the clouds don't collide with the player
-        cloudGenerateRadius += player.GetComponent<SphereCollider>().radius;
-        maxCloudGenerateRadius += player.GetComponent<SphereCollider>().radius;
+        cloudGenerateRadius += player.GetComponent<CapsuleCollider>().radius;
+        maxCloudGenerateRadius += player.GetComponent<CapsuleCollider>().radius;
         coroutine = GenerateCloudRoutine(2f);
         StartCoroutine(coroutine);
     }
