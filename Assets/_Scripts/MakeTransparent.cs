@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class MakeTransparent : MonoBehaviour
 {
-
-    [SerializeField] private Material transparentMaterial;
-
-    public float closedDistance;
+    public float rayCastOffset = 5f;
 
     public GameObject player;
 
-    void Start() {
+    void Start()
+    {
     }
 
     void FixedUpdate()
@@ -19,10 +17,11 @@ public class MakeTransparent : MonoBehaviour
         RaycastHit hit;
 
         if (Physics.Raycast(transform.position, player.transform.position - transform.position,
-            out hit, Vector3.Distance(transform.position,player.transform.position)+5f)) {
+            out hit, Vector3.Distance(transform.position, player.transform.position) + rayCastOffset))
+        {
 
             GameObject hitTarget = hit.collider.gameObject;
-            
+
             //Debug.Log(hitTarget.transform.root);
             if (hitTarget.transform.root != null)
             {
