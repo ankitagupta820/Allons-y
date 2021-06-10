@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2517835681849337626}
   - component: {fileID: 5862385620929798337}
   - component: {fileID: 6668626660935451169}
+  - component: {fileID: 1431869901890972522}
   m_Layer: 0
   m_Name: Coin2
-  m_TagString: Untagged
+  m_TagString: Deccelerate
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,3 +111,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turnspeed: 90
+--- !u!114 &1431869901890972522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2091248576280703282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc9dc8a514914e64a6a7248063bd6e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
