@@ -7,6 +7,7 @@ TagManager:
   - Accelerate
   - Deccelerate
   - Cloud
+  - Coin
   layers:
   - Default
   - TransparentFX

@@ -40,12 +40,15 @@ public class MakeTransparent : MonoBehaviour
     {
         for (float t = 0f; t < duration; t += Time.deltaTime)
         {
-            Color color = rend.material.color;
-            if (color.a > endAlpha)
+            if (rend != null)
             {
-                color.a = color.a - 0.01f;
-                rend.material.color = color;
-                yield return null;
+                Color color = rend.material.color;
+                if (color.a > endAlpha)
+                {
+                    color.a = color.a - 0.01f;
+                    rend.material.color = color;
+                    yield return null;
+                }
             }
         }
     }

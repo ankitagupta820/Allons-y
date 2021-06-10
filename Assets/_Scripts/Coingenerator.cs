@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Coingenerator : MonoBehaviour
 {
-    public GameObject[] cloud;
+    public GameObject[] coins;
     public GameObject player;
     public float cloudGenerateRadius = 2f;
     public float maxCloudGenerateRadius = 5f;
@@ -42,11 +42,11 @@ public class Coingenerator : MonoBehaviour
             Random.Range(-maxCloudGenerateRadius, -cloudGenerateRadius) + playerLoc.y,
             Random.Range(-cloudGenerateRadius, maxCloudGenerateRadius) + playerLoc.z
             );
-            GameObject cloudType = cloud[Random.Range(0, cloud.Length - 1)];
+            GameObject cloudType = coins[Random.Range(0, coins.Length - 1)];
             GameObject newCloud = Instantiate(cloudType, newCloudLoc, cloudType.transform.rotation);
-            newCloud.transform.localScale = new Vector3(Random.Range(1f, 5f),
-                Random.Range(1f, 5f),
-                Random.Range(1f, 5f));
+            //newCloud.transform.localScale = new Vector3(Random.Range(1f, 5f),
+            //    Random.Range(1f, 5f),
+            //    Random.Range(1f, 5f));
         }
     }
 }

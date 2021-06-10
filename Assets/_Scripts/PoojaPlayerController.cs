@@ -14,12 +14,15 @@ public class PoojaPlayerController : MonoBehaviour
   
     [SerializeField] private float startTime; //To Keep track of time for which acceleration keeps
 
+    private Rigidbody characterBody;
     public Material[] material;
     public int x;
     Renderer rend;
 
     void Start()
     {
+        characterBody = gameObject.GetComponent<Rigidbody>();
+        // Material changes based on accerlation/deceleration
         x = 0;
         rend = GetComponent<Renderer>();
         rend.enabled = true;
@@ -41,6 +44,7 @@ public class PoojaPlayerController : MonoBehaviour
 
         //transform.position += Time.deltaTime * _moveSpeed * Vector3.down;
         //transform.position += Time.deltaTime * _moveSpeed * Vector3.forward;
+        characterBody.AddForce(new Vector3(0, -_moveSpeed * Time.deltaTime , 0)); // Using Gravity
 
 
         if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < 13)
@@ -66,7 +70,6 @@ public class PoojaPlayerController : MonoBehaviour
         rend.sharedMaterial = material[x];
 
 
-
         //if (Input.GetKey(KeyCode.Space))
         //    transform.position = new Vector3(0, 0.5f, 0);
 
@@ -74,13 +77,13 @@ public class PoojaPlayerController : MonoBehaviour
 
     public void setSpeedForAccelerate() {
         startTime = Time.time;
-        _AccSpeed = 1.0f;
+        _AccSpeed = 2.0f;
     }
 
     public void setSpeedForDeAccelerate()
     {
         startTime = Time.time;
-        _AccSpeed = -1.0f;
+        _AccSpeed = -2.0f;
     }
 
 
