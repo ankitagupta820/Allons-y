@@ -44,21 +44,28 @@ public class PoojaPlayerController : MonoBehaviour
 
         //transform.position += Time.deltaTime * _moveSpeed * Vector3.down;
         //transform.position += Time.deltaTime * _moveSpeed * Vector3.forward;
-        characterBody.AddForce(new Vector3(0, -_moveSpeed * Time.deltaTime , 0)); // Using Gravity
+        //characterBody.AddForce(new Vector3(0, -_moveSpeed * Time.deltaTime , 0)); // Using Gravity
 
 
-        if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < 13)
-            transform.position += Time.deltaTime * _moveSpeed * Vector3.right;
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) && transform.position.x < 13)
+            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.right;*/
+            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.right);*/
+            characterBody.AddForce(new Vector3(_moveSpeed * Time.deltaTime, 0, 0));
 
-        if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > -3)
-            transform.position += Time.deltaTime * _moveSpeed * Vector3.left;
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) && transform.position.x > -3)
+            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.left;*/
+            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.left);*/
+            characterBody.AddForce(new Vector3(-_moveSpeed * Time.deltaTime, 0, 0));
 
-        if (Input.GetKey(KeyCode.UpArrow) && transform.position.z < 2)
-            transform.position += Time.deltaTime * _moveSpeed * Vector3.forward;
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) && transform.position.z < 2)
+            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.forward;*/
+            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.forward);*/
+            characterBody.AddForce(new Vector3(0, 0 ,_moveSpeed * Time.deltaTime));
 
-        if (Input.GetKey(KeyCode.DownArrow) && transform.position.z > -10)
-            transform.position += Time.deltaTime * _moveSpeed * Vector3.back;
-
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) && transform.position.z > -10)
+            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.back;*/
+            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.back);*/
+            characterBody.AddForce(new Vector3(0, 0 ,-_moveSpeed * Time.deltaTime));
 
         if (_moveSpeed > _NormVelocity)
             x = 2;
