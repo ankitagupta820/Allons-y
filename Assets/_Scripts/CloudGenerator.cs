@@ -6,15 +6,10 @@ public class CloudGenerator : MonoBehaviour
 {
     public GameObject[] cloud;
     public GameObject player;
-    public GameObject mainCamera;
-    /*   public float cloudGenerateRadius = 5f;
-       public float maxCloudGenerateRadius = 10f;*/
-    public float xBoundaryOffsetLow = 1f;
-    public float xBoundaryOffsetHigh = 2f;
-    public float yBoundaryOffsetLow = -120f;
-    public float yBoundaryOffsetHigh = -80f;
-    public float zBoundaryOffsetLow = -1f;
-    public float zBoundaryOffsetHigh = -2f;
+    public GameObject LeftUpper;
+    public GameObject RightUpper;
+    public GameObject LeftLower;
+    public GameObject RightLower;
     public float interval = 3f;
     private IEnumerator coroutine;
 
@@ -44,22 +39,11 @@ public class CloudGenerator : MonoBehaviour
     private void GenerateCloud(int quantity)
     {
         Vector3 playerLoc = player.transform.position;
-        Vector3 cameraLoc = mainCamera.transform.position;
         for (int i=0; i < quantity; i++)
         {
-            float randomYDistance = Random.Range(yBoundaryOffsetLow, yBoundaryOffsetHigh);
-            /*float randomXDistance = (cameraLoc.y - playerLoc.y) randomYDistance*/
-            float XLowDis = (xBoundaryOffsetLow / (cameraLoc.y - playerLoc.y)) * (cameraLoc.y - playerLoc.y + randomYDistance);
-            float XHighDis = (xBoundaryOffsetHigh / (cameraLoc.y - playerLoc.y)) * (cameraLoc.y - playerLoc.y + randomYDistance);
-            float ZLowDis = (zBoundaryOffsetLow / (cameraLoc.y - playerLoc.y)) * (cameraLoc.y - playerLoc.y + randomYDistance);
-            float ZHighDis = (zBoundaryOffsetHigh / (cameraLoc.y - playerLoc.y)) * (cameraLoc.y - playerLoc.y + randomYDistance);
-
-
-
-
-            Vector3 newCloudLoc = new Vector3(Random.Range(XLowDis, XHighDis),
-            randomYDistance + playerLoc.y,
-            Random.Range(ZLowDis, ZHighDis)
+            Vector3 newCloudLoc = new Vector3(Random.Range(LeftUpper.transform.position.x, RightUpper.transform.position.x),
+            Random.Range(-120f, -80f) + playerLoc.y,
+            Random.Range(LeftLower.transform.position.z, RightLower.transform.position.z)
             );
             GameObject cloudType = cloud[Random.Range(0, cloud.Length - 1)];
             GameObject newCloud = Instantiate(cloudType, newCloudLoc, cloudType.transform.rotation);

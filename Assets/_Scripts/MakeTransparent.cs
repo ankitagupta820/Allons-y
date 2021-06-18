@@ -46,7 +46,9 @@ public class MakeTransparent : MonoBehaviour
                 if (color.a > endAlpha)
                 {
                     color.a = color.a - 0.01f;
-                    rend.material.color = color;
+                    rend.material.SetColor("_BaseColor", color);
+                    
+                    /*rend.material.color = color;*/
                     yield return null;
                 }
             }

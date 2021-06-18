@@ -14,6 +14,8 @@ public class PoojaPlayerController : MonoBehaviour
   
     [SerializeField] private float startTime; //To Keep track of time for which acceleration keeps
 
+    public float glideTolerance = .5f; // amount of time during which player can press glide
+
     private Rigidbody characterBody;
     public Material[] material;
     public int x;
@@ -45,6 +47,22 @@ public class PoojaPlayerController : MonoBehaviour
         //transform.position += Time.deltaTime * _moveSpeed * Vector3.down;
         //transform.position += Time.deltaTime * _moveSpeed * Vector3.forward;
         //characterBody.AddForce(new Vector3(0, -_moveSpeed * Time.deltaTime , 0)); // Using Gravity
+
+        // This would cast rays only against colliders in layer 8 .
+        var layerMask8 = 1 << 8;
+
+        RaycastHit hit;
+
+        // cast a ray to the right of the player object
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 30, layerMask8))
+        {
+
+            // orient the Moving Object's Left direction to Match the Normals on his Right
+            var RunnerRotation = Quaternion.FromToRotation(Vector3.left, hit.normal);
+
+            //Smooth rotation
+            transform.rotation = Quaternion.Slerp(transform.rotation, RunnerRotation, Time.deltaTime * 10);
+        }
 
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) && transform.position.x < 13)
@@ -93,5 +111,9 @@ public class PoojaPlayerController : MonoBehaviour
         _AccSpeed = -2.0f;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
 
 }

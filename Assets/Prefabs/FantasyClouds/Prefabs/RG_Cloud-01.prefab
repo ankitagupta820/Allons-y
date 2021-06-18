@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9002690830630528465}
   - component: {fileID: 9002690830629234161}
   - component: {fileID: 9002690830628235057}
+  - component: {fileID: 2183860808340232142}
   m_Layer: 0
   m_Name: RG_Cloud-01
   m_TagString: Untagged
@@ -81,3 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &2183860808340232142
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9002690830630238705}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 14.702541, y: 9.591258, z: 39.443085}
+  m_Center: {x: -0.0000014305115, y: -0.14402628, z: 0.000002861023}
