@@ -9,9 +9,12 @@ public class ScoreManager : MonoBehaviour
 
     public static ScoreManager Instance { get { return _instance; } }
 
-    public Rigidbody playerRB;
+    public GameObject player;
+    private Vector3 initialPos;
+    private Rigidbody playerRB;
     public GameObject Score;
     public GameObject Coinalert;
+    public GameObject Dis;
     public GameObject Speed;
     private float theScore = 0;
 
@@ -30,17 +33,24 @@ public class ScoreManager : MonoBehaviour
 
     void Start()
     {
-        
+        playerRB = player.GetComponent<Rigidbody>();
+        initialPos = player.transform.position;
     }
 
     void Update()
     {
         CalcSpeed();
+        CalcDis();
     }
 
     private void CalcSpeed()
     {
         Speed.GetComponent<Text>().text = playerRB.velocity.magnitude.ToString("F0");
+    }
+
+    private void CalcDis()
+    {
+        Dis.GetComponent<Text>().text = Vector3.Distance(initialPos,player.transform.position).ToString("F0");
     }
 
     public void AddScore(int score)

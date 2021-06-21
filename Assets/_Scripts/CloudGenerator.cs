@@ -6,16 +6,19 @@ public class CloudGenerator : MonoBehaviour
 {
     public GameObject[] cloud;
     public GameObject player;
-    public float cloudGenerateRadius = 5f;
-    public float maxCloudGenerateRadius = 10f;
+    public GameObject LeftUpper;
+    public GameObject RightUpper;
+    public GameObject LeftLower;
+    public GameObject RightLower;
+    public float interval = 3f;
     private IEnumerator coroutine;
 
     private void Start()
     {
         // make sure that the clouds don't collide with the player
-        cloudGenerateRadius += player.GetComponent<SphereCollider>().radius;
-        maxCloudGenerateRadius += player.GetComponent<SphereCollider>().radius;
-        coroutine = GenerateCloudRoutine(2f);
+      /*  cloudGenerateRadius += player.GetComponent<CapsuleCollider>().radius;
+        maxCloudGenerateRadius += player.GetComponent<CapsuleCollider>().radius;*/
+        coroutine = GenerateCloudRoutine(interval);
         StartCoroutine(coroutine);
     }
 
@@ -28,7 +31,7 @@ public class CloudGenerator : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(waitTime);
-            GenerateCloud(2);
+            GenerateCloud(1);
         }
     }
 
@@ -38,15 +41,17 @@ public class CloudGenerator : MonoBehaviour
         Vector3 playerLoc = player.transform.position;
         for (int i=0; i < quantity; i++)
         {
-            Vector3 newCloudLoc = new Vector3(Random.Range(-cloudGenerateRadius, maxCloudGenerateRadius) + playerLoc.x,
-            Random.Range(-maxCloudGenerateRadius, -cloudGenerateRadius) + playerLoc.y,
-            Random.Range(-cloudGenerateRadius, maxCloudGenerateRadius) + playerLoc.z
+            Vector3 newCloudLoc = new Vector3(Random.Range(LeftUpper.transform.position.x, RightUpper.transform.position.x),
+            Random.Range(-120f, -80f) + playerLoc.y,
+            Random.Range(LeftLower.transform.position.z, RightLower.transform.position.z)
             );
             GameObject cloudType = cloud[Random.Range(0, cloud.Length - 1)];
             GameObject newCloud = Instantiate(cloudType, newCloudLoc, cloudType.transform.rotation);
-            newCloud.transform.localScale = new Vector3(Random.Range(1f, 5f),
-                Random.Range(1f, 5f),
-                Random.Range(1f, 5f));
+            float randomScale = Random.Range(.3f, 1f);
+            newCloud.transform.localScale = new Vector3(randomScale,
+                randomScale,
+                randomScale);
+            newCloud.transform.Rotate(Vector3.up, Random.Range(0f, 180f), Space.World);
         }
     }
 }

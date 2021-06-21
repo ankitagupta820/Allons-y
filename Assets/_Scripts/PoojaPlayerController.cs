@@ -14,6 +14,8 @@ public class PoojaPlayerController : MonoBehaviour
   
     [SerializeField] private float startTime; //To Keep track of time for which acceleration keeps
 
+    public float glideTolerance = .5f; // amount of time during which player can press glide
+
     private Rigidbody characterBody;
     public Material[] material;
     public int x;
@@ -44,21 +46,44 @@ public class PoojaPlayerController : MonoBehaviour
 
         //transform.position += Time.deltaTime * _moveSpeed * Vector3.down;
         //transform.position += Time.deltaTime * _moveSpeed * Vector3.forward;
-        characterBody.AddForce(new Vector3(0, -_moveSpeed * Time.deltaTime , 0)); // Using Gravity
+        //characterBody.AddForce(new Vector3(0, -_moveSpeed * Time.deltaTime , 0)); // Using Gravity
+
+        // This would cast rays only against colliders in layer 8 .
+        var layerMask8 = 1 << 8;
+
+        RaycastHit hit;
+
+        // cast a ray to the right of the player object
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 30, layerMask8))
+        {
+
+            // orient the Moving Object's Left direction to Match the Normals on his Right
+            var RunnerRotation = Quaternion.FromToRotation(Vector3.left, hit.normal);
+
+            //Smooth rotation
+            transform.rotation = Quaternion.Slerp(transform.rotation, RunnerRotation, Time.deltaTime * 10);
+        }
 
 
-        if (Input.GetKey(KeyCode.RightArrow) && transform.position.x < 13)
-            transform.position += Time.deltaTime * _moveSpeed * Vector3.right;
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) && transform.position.x < 13)
+            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.right;*/
+            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.right);*/
+            characterBody.AddForce(new Vector3(_moveSpeed * Time.deltaTime, 0, 0));
 
-        if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x > -3)
-            transform.position += Time.deltaTime * _moveSpeed * Vector3.left;
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) && transform.position.x > -3)
+            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.left;*/
+            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.left);*/
+            characterBody.AddForce(new Vector3(-_moveSpeed * Time.deltaTime, 0, 0));
 
-        if (Input.GetKey(KeyCode.UpArrow) && transform.position.z < 2)
-            transform.position += Time.deltaTime * _moveSpeed * Vector3.forward;
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) && transform.position.z < 2)
+            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.forward;*/
+            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.forward);*/
+            characterBody.AddForce(new Vector3(0, 0 ,_moveSpeed * Time.deltaTime));
 
-        if (Input.GetKey(KeyCode.DownArrow) && transform.position.z > -10)
-            transform.position += Time.deltaTime * _moveSpeed * Vector3.back;
-
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) && transform.position.z > -10)
+            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.back;*/
+            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.back);*/
+            characterBody.AddForce(new Vector3(0, 0 ,-_moveSpeed * Time.deltaTime));
 
         if (_moveSpeed > _NormVelocity)
             x = 2;
@@ -86,5 +111,9 @@ public class PoojaPlayerController : MonoBehaviour
         _AccSpeed = -2.0f;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+    }
 
 }
