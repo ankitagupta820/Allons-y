@@ -40,6 +40,11 @@ public class ObjectGenerator : MonoBehaviour
     public float maxRotate = 180f;
 
     private IEnumerator coroutine;
+    //object pooling to optimize runtime smoothness
+    [SerializeField] private List<GameObject> pooledObjects;
+    [SerializeField] private GameObject objectToPool;
+    [SerializeField] private int amountToPool;
+
 
     private void Reset()
     {
@@ -50,11 +55,23 @@ public class ObjectGenerator : MonoBehaviour
         RightLower = GameObject.Find("RightLower");
     }
 
+    private void Awake()
+    {
+    }
+
     private void Start()
     {
-        // make sure that the clouds don't collide with the player
-        /*  cloudGenerateRadius += player.GetComponent<CapsuleCollider>().radius;
-          maxCloudGenerateRadius += player.GetComponent<CapsuleCollider>().radius;*/
+        // pre-instantiate object pool
+        pooledObjects = new List<GameObject>();
+        GameObject temp;
+        for (int i = 0; i < amountToPool; i++)
+        {
+            temp = Instantiate(objectToPool);
+            temp.SetActive(false);
+            pooledObjects.Add(temp);
+        }
+
+        // start generating object once game starts
         coroutine = GeneratorRoutine(interval);
         StartCoroutine(coroutine);
     }
@@ -99,28 +116,16 @@ public class ObjectGenerator : MonoBehaviour
             newCloud.transform.Rotate(rotateAxis, Random.Range(minRotate, maxRotate), Space.World);
         }
     }
+
+    public GameObject GetPooledObject()
+    {
+        for (int i = 0; i < amountToPool; i++)
+        {
+            if (!pooledObjects[i].activeInHierarchy)
+            {
+                return pooledObjects[i];
+            }
+        }
+        return null;
+    }
 }
-
-//[CustomEditor(typeof(ObjectGenerator))]
-//public class ObjectGeneratorEditor:Editor
-//{
-//    public override void OnInspectorGUI()
-//    {
-//        var objectGenerator = target as ObjectGenerator;
-//        objectGenerator._NumofBonds = EditorGUILayout.IntField("Number of Bounds", objectGenerator._NumofBonds);
-
-//        using (var group = new EditorGUILayout.FadeGroupScope(System.Convert.ToSingle(objectGenerator._NumofBonds>0)))
-//        {
-//            if (group.visible == true)
-//            {
-//                EditorGUI.indentLevel++;
-//                objectGenerator.LeftUpper = (GameObject)EditorGUILayout.ObjectField("LeftUpper", objectGenerator.LeftUpper, typeof(GameObject), true);
-//                objectGenerator.RightUpper = (GameObject)EditorGUILayout.ObjectField("RightUpper", objectGenerator.RightUpper, typeof(GameObject), true);
-//                objectGenerator.LeftLower = (GameObject)EditorGUILayout.ObjectField("LeftLower", objectGenerator.LeftLower, typeof(GameObject), true);
-//                objectGenerator.RightLower = (GameObject)EditorGUILayout.ObjectField("RightLower", objectGenerator.RightLower, typeof(GameObject), true);
-
-//                EditorGUI.indentLevel--;
-//            }
-//        }
-//    }
-//}
