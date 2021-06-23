@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.94965744, g: 0.23085779, b: 0.09409149, a: 1}
+  m_IndirectSpecularColor: {r: 0.9472621, g: 0.23048092, b: 0.0940017, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2343,7 +2343,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1380458636}
-  - component: {fileID: 1380458635}
+  - component: {fileID: 1380458637}
   m_Layer: 0
   m_Name: CloudGenerator
   m_TagString: Untagged
@@ -2351,28 +2351,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1380458635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1380458634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94bfb8533a77b4c4cbf1636e9f1f7c1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cloud:
-  - {fileID: 2967853152552425477, guid: c1af80413d412f8448208987fb7e3276, type: 3}
-  - {fileID: 299010028180027027, guid: 8fc5540c944fe26418c09b8b1d9b38f4, type: 3}
-  - {fileID: 4146994988159548278, guid: cac60963a75b3b840b465eacc4c3b9db, type: 3}
-  player: {fileID: 1671636043}
-  LeftUpper: {fileID: 2028249168}
-  RightUpper: {fileID: 347560045}
-  LeftLower: {fileID: 660856527}
-  RightLower: {fileID: 874167644}
-  interval: 3
 --- !u!4 &1380458636
 Transform:
   m_ObjectHideFlags: 0
@@ -2387,6 +2365,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1380458637
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1380458634}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b8223c6c593804cbc97c19c283032a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 2967853152552425477, guid: c1af80413d412f8448208987fb7e3276, type: 3}
+  - {fileID: 299010028180027027, guid: 8fc5540c944fe26418c09b8b1d9b38f4, type: 3}
+  - {fileID: 4146994988159548278, guid: cac60963a75b3b840b465eacc4c3b9db, type: 3}
+  player: {fileID: 1671636043}
+  LeftUpper: {fileID: 2028249168}
+  RightUpper: {fileID: 347560045}
+  LeftLower: {fileID: 660856527}
+  RightLower: {fileID: 874167644}
+  interval: 3
 --- !u!1 &1491051920
 GameObject:
   m_ObjectHideFlags: 0
