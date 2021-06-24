@@ -25,7 +25,6 @@ public class ObjectGenerator : MonoBehaviour
         " choose between -inf to inf")]
     public float maxVerticalDistance = -80f;
 
-
     [Tooltip("Random scale down, choose between 0 to inf")]
     public float minScale = 0.3f;
     [Tooltip("Random scale up, choose between 0 to inf")]
@@ -39,11 +38,16 @@ public class ObjectGenerator : MonoBehaviour
     [Tooltip("Maximum rotate degrees, choose between 0 to 360")]
     public float maxRotate = 180f;
 
-    private IEnumerator coroutine;
-    //object pooling to optimize runtime smoothness
-    [SerializeField] private Hashtable pooledObjectsHash; // {prefabID(assigned at start),List<GameObject>pooledObjects}
-    [SerializeField] private int amountToPool = 5;
+    [Header("Object Deactivate Setting")]
+    [Tooltip("Distance between object to player before destroying(above player), choose between 0 to inf")]
+    public float deActivateDistance = 10f;
 
+    //object pooling to optimize runtime smoothness
+    [Header("Object Pooling Setting")]
+    [Tooltip("How many instance of each prefab to pre-initiate, choose between 0 to inf")]
+    public int amountToPool = 5;
+    private IEnumerator coroutine;
+    private List<List<GameObject>> pooledObjectsHash;
 
     private void Reset()
     {
@@ -61,13 +65,13 @@ public class ObjectGenerator : MonoBehaviour
     private void Start()
     {
         // pre-instantiate object pool
-        pooledObjectsHash = new Hashtable();
+        pooledObjectsHash = new List<List<GameObject>>();
 
         GameObject temp;
-        int objectIdentityID = 0;
         List<GameObject> pooledObjects = new List<GameObject>();
-        foreach(GameObject objectToPool in objects)
+        for (int objIndex = 0; objIndex < objects.Length; objIndex++)
         {
+            GameObject objectToPool = objects[objIndex];
             for (int i = 0; i < amountToPool; i++)
             {
                 temp = Instantiate(objectToPool);
@@ -75,8 +79,8 @@ public class ObjectGenerator : MonoBehaviour
                 pooledObjects.Add(temp);
                 
             }
-            pooledObjectsHash.Add(objectIdentityID, pooledObjects);
-            objectIdentityID++;
+            pooledObjectsHash.Insert(objIndex, pooledObjects);
+            pooledObjects = new List<GameObject>();
         }
 
         // start generating object once game starts
@@ -103,34 +107,48 @@ public class ObjectGenerator : MonoBehaviour
         Vector3 playerLoc = player.transform.position;
         for (int i = 0; i < quantity; i++)
         {
-            Vector3 newObjLoc = new Vector3(Random.Range(LeftUpper.transform.position.x, RightUpper.transform.position.x),
-            Random.Range(minVerticalDistance, maxVerticalDistance) + playerLoc.y,
-            Random.Range(LeftLower.transform.position.z, RightLower.transform.position.z)
-            );
-            GameObject objType = objects[Random.Range(0, objects.Length - 1)];
+            
+            int objType = Random.Range(0, objects.Length);
             //GameObject newObj = Instantiate(objType, newObjLoc, objType.transform.rotation);
-            GameObject newObj = GetPooledObject();
+            Debug.Log(objType);
+            // If object is in pooled object, simply reuse them
+            GameObject newObj = GetPooledObject(objType);
             if (newObj != null)
             {
+                // Randomly generate object position
+                Vector3 newObjLoc = new Vector3(Random.Range(LeftUpper.transform.position.x, RightUpper.transform.position.x),
+                Random.Range(minVerticalDistance, maxVerticalDistance) + playerLoc.y,
+                Random.Range(LeftLower.transform.position.z, RightLower.transform.position.z)
+                );
+                newObj.transform.position = newObjLoc;
+
+                // Randomly generate object scale
                 if (minScale < 0) minScale = 0;
                 if (maxScale < 0) maxScale = 0;
                 float randomScale = Random.Range(minScale, maxScale);
-                newObj.transform.localScale = new Vector3(randomScale,
-                    randomScale,
-                    randomScale);
+                newObj.transform.localScale = new Vector3(randomScale,randomScale,randomScale);
 
+                // Randomly generate object rotation
                 Vector3 rotateAxis = new Vector3(System.Convert.ToSingle(rotateX),
                     System.Convert.ToSingle(rotateY),
                     System.Convert.ToSingle(rotateZ));
                 newObj.transform.Rotate(rotateAxis, Random.Range(minRotate, maxRotate), Space.World);
+                newObj.SetActive(true); //need to be set inactive once not in use
+                // Set deactivate distance for the object, so object automatically deactivate after certain distance from player
+                newObj.AddComponent<DeactivateObj>();
+                DeactivateObj deactivateObj = newObj.GetComponent<DeactivateObj>();
+                deactivateObj.player = player;
+                deactivateObj.deActivateDis = deActivateDistance;
             }
         }
     }
 
-    public GameObject GetPooledObject()
+    public GameObject GetPooledObject(int objType)
     {
         for(int i = 0; i < amountToPool; i++)
         {
+            Debug.Log(pooledObjectsHash[objType]);
+            List <GameObject> pooledObjects = pooledObjectsHash[objType];
             if (!pooledObjects[i].activeInHierarchy)
             {
                 return pooledObjects[i];
