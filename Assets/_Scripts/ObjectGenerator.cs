@@ -41,9 +41,8 @@ public class ObjectGenerator : MonoBehaviour
 
     private IEnumerator coroutine;
     //object pooling to optimize runtime smoothness
-    [SerializeField] private List<GameObject> pooledObjects;
-    [SerializeField] private GameObject objectToPool;
-    [SerializeField] private int amountToPool;
+    [SerializeField] private Hashtable pooledObjectsHash; // {prefabID(assigned at start),List<GameObject>pooledObjects}
+    [SerializeField] private int amountToPool = 5;
 
 
     private void Reset()
@@ -62,13 +61,22 @@ public class ObjectGenerator : MonoBehaviour
     private void Start()
     {
         // pre-instantiate object pool
-        pooledObjects = new List<GameObject>();
+        pooledObjectsHash = new Hashtable();
+
         GameObject temp;
-        for (int i = 0; i < amountToPool; i++)
+        int objectIdentityID = 0;
+        List<GameObject> pooledObjects = new List<GameObject>();
+        foreach(GameObject objectToPool in objects)
         {
-            temp = Instantiate(objectToPool);
-            temp.SetActive(false);
-            pooledObjects.Add(temp);
+            for (int i = 0; i < amountToPool; i++)
+            {
+                temp = Instantiate(objectToPool);
+                temp.SetActive(false);
+                pooledObjects.Add(temp);
+                
+            }
+            pooledObjectsHash.Add(objectIdentityID, pooledObjects);
+            objectIdentityID++;
         }
 
         // start generating object once game starts
@@ -100,26 +108,28 @@ public class ObjectGenerator : MonoBehaviour
             Random.Range(LeftLower.transform.position.z, RightLower.transform.position.z)
             );
             GameObject objType = objects[Random.Range(0, objects.Length - 1)];
-            GameObject newCloud = Instantiate(objType, newObjLoc, objType.transform.rotation);
+            //GameObject newObj = Instantiate(objType, newObjLoc, objType.transform.rotation);
+            GameObject newObj = GetPooledObject();
+            if (newObj != null)
+            {
+                if (minScale < 0) minScale = 0;
+                if (maxScale < 0) maxScale = 0;
+                float randomScale = Random.Range(minScale, maxScale);
+                newObj.transform.localScale = new Vector3(randomScale,
+                    randomScale,
+                    randomScale);
 
-
-            if (minScale < 0) minScale = 0;
-            if (maxScale < 0) maxScale = 0;
-            float randomScale = Random.Range(minScale, maxScale);
-            newCloud.transform.localScale = new Vector3(randomScale,
-                randomScale,
-                randomScale);
-
-            Vector3 rotateAxis = new Vector3(System.Convert.ToSingle(rotateX),
-                System.Convert.ToSingle(rotateY),
-                System.Convert.ToSingle(rotateZ));
-            newCloud.transform.Rotate(rotateAxis, Random.Range(minRotate, maxRotate), Space.World);
+                Vector3 rotateAxis = new Vector3(System.Convert.ToSingle(rotateX),
+                    System.Convert.ToSingle(rotateY),
+                    System.Convert.ToSingle(rotateZ));
+                newObj.transform.Rotate(rotateAxis, Random.Range(minRotate, maxRotate), Space.World);
+            }
         }
     }
 
     public GameObject GetPooledObject()
     {
-        for (int i = 0; i < amountToPool; i++)
+        for(int i = 0; i < amountToPool; i++)
         {
             if (!pooledObjects[i].activeInHierarchy)
             {

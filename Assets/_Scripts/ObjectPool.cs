@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public static ObjectPool SharedInstance;
+    public List<GameObject> pooledObjects;
+    public GameObject objectToPool;
+    public int amountToPool;
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        SharedInstance = this;
+    }
+    private void Start()
+    {
+        // pre-instantiate object pool
+        pooledObjects = new List<GameObject>();
+        GameObject temp;
+        for (int i = 0; i < amountToPool; i++)
+        {
+            temp = Instantiate(objectToPool);
+            temp.SetActive(false);
+            pooledObjects.Add(temp);
+        }
+    }
+    public GameObject GetPooledObject()
+    {
+        for(int i = 0; i < amountToPool; i++)
+        {
+            if (!pooledObjects[i].activeInHierarchy)
+            {
+                return pooledObjects[i];
+            }
+        }
+        return null;
     }
 }

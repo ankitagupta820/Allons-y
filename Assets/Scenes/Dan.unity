@@ -2384,7 +2384,6 @@ MonoBehaviour:
   minRotate: 0
   maxRotate: 180
   pooledObjects: []
-  objectToPool: {fileID: 0}
   amountToPool: 0
 --- !u!4 &1380458636
 Transform:
