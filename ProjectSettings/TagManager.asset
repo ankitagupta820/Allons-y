@@ -8,6 +8,9 @@ TagManager:
   - Deccelerate
   - Cloud
   - Coin
+  - RedEnabler
+  - YellowEnabler
+  - SearchItemRed
   layers:
   - Default
   - TransparentFX
