@@ -1,6 +1,35 @@
 
 # CSCI526
 
+---------- 06/25/2021 Updated ----------
+
+Trail in "Dan-transparent boundary" scene
+
+Trail (Particle version) in "Dan" scene
+
+Boundary in "Dan" scene
+
+
+Setup for trails:
+
+(1) Create a new material "Smoke" OR just copy it
+
+    (a) Change "Shader" to "Legacy Shaders/Particles/Additive (Soft)"
+    
+    (b) Drag "/Pictures/smoke.jpg" to "Texture"
+    
+    ![Screen Shot 2021-06-25 at 02 22 33](https://user-images.githubusercontent.com/60083841/123402047-33efe780-d55c-11eb-9fe2-7d9ce7a5f391.png)
+
+
+(2) In "Player" game object, add a component "Trail Renderer" OR just "copy component" then "paste component values"
+  
+    Settings in screenshot below. You can add points or drag the points to make it more realistic.
+    
+    ![Screen Shot 2021-06-25 at 02 24 40](https://user-images.githubusercontent.com/60083841/123402489-a365d700-d55c-11eb-9827-bb2e700b4a5d.png)
+
+
+
+
 ---------- 06/10/2021 Updated ----------
 
 
