@@ -53,17 +53,17 @@ public class ScoreManager : MonoBehaviour
         Dis.GetComponent<Text>().text = Vector3.Distance(initialPos,player.transform.position).ToString("F0");
     }
 
-    public void AddScore(int score)
+    public void AddScore(int score, string tagValue)
     {
         theScore += score;
         Score.GetComponent<Text>().text = theScore.ToString("F0");
-        StartCoroutine(ShowAlert());
+        StartCoroutine(ShowAlert(tagValue));
     }
 
-    private IEnumerator ShowAlert()
+    private IEnumerator ShowAlert(string tagValue)
     {
-        Coinalert.GetComponent<Text>().text = "COIN COLLECTED!";
-        yield return new WaitForSeconds(.5f);
+        Coinalert.GetComponent<Text>().text = tagValue + " COLLECTED!";
+        yield return new WaitForSeconds(3f);
         Coinalert.GetComponent<Text>().text = "";
     }
 }

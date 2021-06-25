@@ -19,7 +19,19 @@ public class PoojaPlayerController : MonoBehaviour
     private Rigidbody characterBody;
     public Material[] material;
     public int x;
-    Renderer rend;
+    public Renderer rend;
+
+    public string currentEnabler = "Pooja";
+    public enum Enablers { Red,  Yellow};
+
+    public void setCurrentEnabler(string value) {
+        this.currentEnabler = value;
+    }
+
+    public string getCurrentEnabler()
+    {
+        return this.currentEnabler;
+    }
 
     void Start()
     {
@@ -85,18 +97,31 @@ public class PoojaPlayerController : MonoBehaviour
             /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.back);*/
             characterBody.AddForce(new Vector3(0, 0 ,-_moveSpeed * Time.deltaTime));
 
-        if (_moveSpeed > _NormVelocity)
-            x = 2;
-        else if (_moveSpeed < _NormVelocity)
-            x = 1;
-        else
-            x = 0;
+        //if (_moveSpeed > _NormVelocity)
+        //    x = 2;
+        //else if (_moveSpeed < _NormVelocity)
+        //    x = 1;
+        //else
+        //    x = 0;
 
-        rend.sharedMaterial = material[x];
+        //rend.sharedMaterial = material[x];
 
 
         //if (Input.GetKey(KeyCode.Space))
         //    transform.position = new Vector3(0, 0.5f, 0);
+
+        switch (currentEnabler)
+        {
+            case "Red":
+                rend.sharedMaterial = material[1];
+                break;
+            case "Yellow":
+                rend.sharedMaterial = material[2];
+                break;
+            default:
+                break;
+
+        }
 
     }
 
