@@ -13,6 +13,8 @@ public class ScoreManager : MonoBehaviour
     private Vector3 initialPos;
     private Rigidbody playerRB;
     public GameObject Score;
+    public GameObject Red_Collectible;
+    public GameObject Yellow_collectible;
     public GameObject Coinalert;
     public GameObject Dis;
     public GameObject Speed;
@@ -50,7 +52,7 @@ public class ScoreManager : MonoBehaviour
 
     private void CalcDis()
     {
-        Dis.GetComponent<Text>().text = Vector3.Distance(initialPos,player.transform.position).ToString("F0");
+        Dis.GetComponent<Text>().text = Vector3.Distance(initialPos, player.transform.position).ToString("F0");
     }
 
     public void AddScore(int score, string tagValue)
@@ -58,6 +60,8 @@ public class ScoreManager : MonoBehaviour
         theScore += score;
         Score.GetComponent<Text>().text = theScore.ToString("F0");
         StartCoroutine(ShowAlert(tagValue));
+        Red_Collectible.GetComponent<Text>().text = theScore.ToString("F0");
+        Yellow_collectible.GetComponent<Text>().text = theScore.ToString("F0");
     }
 
     private IEnumerator ShowAlert(string tagValue)
