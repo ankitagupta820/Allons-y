@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.9472621, g: 0.23048092, b: 0.0940017, a: 1}
+  m_IndirectSpecularColor: {r: 0.94965744, g: 0.23085779, b: 0.09409149, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -155,6 +155,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1671636043}
   Score: {fileID: 1688140166}
+  Red_Collectible: {fileID: 0}
+  Yellow_collectible: {fileID: 0}
   Coinalert: {fileID: 5661685332609864929}
   Dis: {fileID: 1618972366}
   Speed: {fileID: 709992825}
@@ -2383,7 +2385,7 @@ MonoBehaviour:
   rotateZ: 0
   minRotate: 0
   maxRotate: 180
-  pooledObjects: []
+  deActivateDistance: 10
   amountToPool: 0
 --- !u!4 &1380458636
 Transform:
@@ -3063,6 +3065,8 @@ MonoBehaviour:
   - {fileID: 2100000, guid: d4914ced7873342e6bea5ea0282275ab, type: 2}
   - {fileID: 2100000, guid: 935fe6215deb5421aafbd0243cf9cdde, type: 2}
   x: 0
+  rend: {fileID: 0}
+  currentEnabler: Pooja
 --- !u!1 &1688140166
 GameObject:
   m_ObjectHideFlags: 0
