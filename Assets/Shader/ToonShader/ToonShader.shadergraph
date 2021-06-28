@@ -198,6 +198,9 @@
     "m_StickyNoteDatas": [
         {
             "m_Id": "2e57d89f4d954e50bcacb71b08787bbe"
+        },
+        {
+            "m_Id": "858fa865962e471981dd5351a9dafbf0"
         }
     ],
     "m_Edges": [
@@ -4350,6 +4353,26 @@
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
+    }
+}
+
+{
+    "m_SGVersion": 0,
+    "m_Type": "UnityEditor.ShaderGraph.StickyNoteData",
+    "m_ObjectId": "858fa865962e471981dd5351a9dafbf0",
+    "m_Title": "Color Shift",
+    "m_Content": "",
+    "m_TextSize": 0,
+    "m_Theme": 0,
+    "m_Position": {
+        "serializedVersion": "2",
+        "x": -448.0,
+        "y": -381.0,
+        "width": 200.0,
+        "height": 100.0
+    },
+    "m_Group": {
+        "m_Id": ""
     }
 }
 
