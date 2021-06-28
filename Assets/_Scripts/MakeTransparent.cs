@@ -23,7 +23,7 @@ public class MakeTransparent : MonoBehaviour
             GameObject hitTarget = hit.collider.gameObject;
 
             //Debug.Log(hitTarget.transform.root);
-            if (hitTarget.transform.root != null)
+            if (hitTarget.transform.root != null && hitTarget.GetComponent<NotBlockingCamera>() == null)
             {
                 // If the hit Target is a composite object
                 Renderer[] childRenderers = hitTarget.transform.root.GetComponentsInChildren<Renderer>();
