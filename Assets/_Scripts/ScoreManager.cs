@@ -60,8 +60,8 @@ public class ScoreManager : MonoBehaviour
         theScore += score;
         Score.GetComponent<Text>().text = theScore.ToString("F0");
         StartCoroutine(ShowAlert(tagValue));
-        Red_Collectible.GetComponent<Text>().text = theScore.ToString("F0");
-        Yellow_collectible.GetComponent<Text>().text = theScore.ToString("F0");
+        //Red_Collectible.GetComponent<Text>().text = theScore.ToString("F0");
+        //Yellow_collectible.GetComponent<Text>().text = theScore.ToString("F0");
     }
 
     private IEnumerator ShowAlert(string tagValue)

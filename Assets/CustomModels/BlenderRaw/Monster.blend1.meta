@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Assets/CustomModels/BlenderRaw/Monster.blend1.meta
 guid: d1c4dc66b3bae6d4bbe6ac66ad1d0082
+=======
+guid: 596ca2cb92fb245618f6649325dd706d
+>>>>>>> a8fc8f30c2d394b2f760e0dd37d1dde44f78f3e6:Assets/Scenes/Dan Test/Main 1.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 

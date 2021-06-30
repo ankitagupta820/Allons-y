@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PoojaPlayerController : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class PoojaPlayerController : MonoBehaviour
   
     [SerializeField] private float startTime; //To Keep track of time for which acceleration keeps
 
+    [SerializeField] public Queue<Image> collectedEnablers = new Queue<Image>();
+
     public float glideTolerance = .5f; // amount of time during which player can press glide
 
     private Rigidbody characterBody;
@@ -22,7 +25,7 @@ public class PoojaPlayerController : MonoBehaviour
     public Renderer rend;
 
     public string currentEnabler = "Pooja";
-    public enum Enablers { Red,  Yellow};
+    public enum Enablers { Red,  Yellow, Blue, Green, Sky};
 
     public void setCurrentEnabler(string value) {
         this.currentEnabler = value;
@@ -138,7 +141,12 @@ public class PoojaPlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("Target") || collision.gameObject.CompareTag("Boundary"))
+        {
+            ParticleSystem dust = gameObject.GetComponentInChildren<ParticleSystem>();
+            // INVALID when there is more than one particle system in children of "Player"
+            dust.Play();
+        }
     }
 
 }

@@ -11,7 +11,18 @@ TagManager:
   - RedEnabler
   - YellowEnabler
   - SearchItemRed
+<<<<<<< HEAD
   - Enemy
+=======
+  - BlueEnabler
+  - GreenEnabler
+  - SkyEnabler
+  - YellowEnablerImageUI
+  - RedEnablerImageUI
+  - BlueEnablerImageUI
+  - GreenEnablerImageUI
+  - SkyEnablerImageUI
+>>>>>>> a8fc8f30c2d394b2f760e0dd37d1dde44f78f3e6
   layers:
   - Default
   - TransparentFX
