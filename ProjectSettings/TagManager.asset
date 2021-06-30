@@ -11,9 +11,7 @@ TagManager:
   - RedEnabler
   - YellowEnabler
   - SearchItemRed
-<<<<<<< HEAD
   - Enemy
-=======
   - BlueEnabler
   - GreenEnabler
   - SkyEnabler
@@ -22,7 +20,8 @@ TagManager:
   - BlueEnablerImageUI
   - GreenEnablerImageUI
   - SkyEnablerImageUI
->>>>>>> a8fc8f30c2d394b2f760e0dd37d1dde44f78f3e6
+  - Balloon
+  - BalloonCapsule
   layers:
   - Default
   - TransparentFX

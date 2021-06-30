@@ -16,6 +16,7 @@ public class PoojaPlayerController : MonoBehaviour
     [SerializeField] private float startTime; //To Keep track of time for which acceleration keeps
 
     [SerializeField] public Queue<Image> collectedEnablers = new Queue<Image>();
+    [SerializeField] public int currentEnablerIndex = -1;
 
     public float glideTolerance = .5f; // amount of time during which player can press glide
 
@@ -39,11 +40,25 @@ public class PoojaPlayerController : MonoBehaviour
     void Start()
     {
         characterBody = gameObject.GetComponent<Rigidbody>();
-        // Material changes based on accerlation/deceleration
+        // Material changes based on enabler collections
         x = 0;
-        rend = GetComponent<Renderer>();
-        rend.enabled = true;
-        rend.sharedMaterial = material[x];
+        Transform t = this.transform;
+        foreach (Transform tr in t)
+        {
+            if (tr.tag == "Balloon")
+            {
+
+                //rend = tr.GetComponent<Renderer>();
+                rend = tr.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+                rend.enabled = true;
+                rend.sharedMaterial = material[x];
+            }
+        }
+
+
+        //rend = GetComponent<Renderer>();
+        //rend.enabled = true;
+        //rend.sharedMaterial = material[x];
     }
 
     void Update()
@@ -112,17 +127,46 @@ public class PoojaPlayerController : MonoBehaviour
 
         //if (Input.GetKey(KeyCode.Space))
         //    transform.position = new Vector3(0, 0.5f, 0);
-
-        switch (currentEnabler)
+        // Material changes based on enabler collections
+        if (Input.GetKey(KeyCode.Space))
         {
-            case "Red":
-                rend.sharedMaterial = material[1];
-                break;
-            case "Yellow":
-                rend.sharedMaterial = material[2];
-                break;
-            default:
-                break;
+
+            currentEnablerIndex++;
+            if (currentEnablerIndex > collectedEnablers.Count)
+            {
+                currentEnablerIndex = 0;
+            }
+            int count = -1;
+            foreach (Image value in collectedEnablers)
+            {
+                count++;
+                if (count == currentEnablerIndex)
+                {
+                    currentEnabler = value.tag;
+                    break;
+                }
+            }
+            switch (currentEnabler)
+            {
+                case "RedEnablerImageUI":
+                    rend.sharedMaterial = material[1];
+                    break;
+                case "YellowEnablerImageUI":
+                    rend.sharedMaterial = material[2];
+                    break;
+                case "BlueEnablerImageUI":
+                    rend.sharedMaterial = material[3];
+                    break;
+                case "GreenEnablerImageUI":
+                    rend.sharedMaterial = material[4];
+                    break;
+                case "SkyEnablerImageUI":
+                    rend.sharedMaterial = material[5];
+                    break;
+                default:
+                    break;
+
+            }
 
         }
 
