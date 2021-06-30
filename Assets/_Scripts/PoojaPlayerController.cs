@@ -141,7 +141,11 @@ public class PoojaPlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("Target") || collision.gameObject.CompareTag("Boundary"))
+        {
+            ParticleSystem dust = gameObject.GetComponentInChildren<ParticleSystem>();
+            dust.Play();
+        }
     }
 
 }
