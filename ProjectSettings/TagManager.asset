@@ -11,6 +11,7 @@ TagManager:
   - RedEnabler
   - YellowEnabler
   - SearchItemRed
+  - Enemy
   layers:
   - Default
   - TransparentFX

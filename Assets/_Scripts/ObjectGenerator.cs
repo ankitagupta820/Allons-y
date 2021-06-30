@@ -110,7 +110,6 @@ public class ObjectGenerator : MonoBehaviour
             
             int objType = Random.Range(0, objects.Length);
             //GameObject newObj = Instantiate(objType, newObjLoc, objType.transform.rotation);
-            Debug.Log(objType);
             // If object is in pooled object, simply reuse them
             GameObject newObj = GetPooledObject(objType);
             if (newObj != null)
@@ -147,7 +146,6 @@ public class ObjectGenerator : MonoBehaviour
     {
         for(int i = 0; i < amountToPool; i++)
         {
-            Debug.Log(pooledObjectsHash[objType]);
             List <GameObject> pooledObjects = pooledObjectsHash[objType];
             if (!pooledObjects[i].activeInHierarchy)
             {
