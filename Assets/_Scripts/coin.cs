@@ -6,18 +6,34 @@ public class coin : MonoBehaviour
 {
     public float turnspeed = 90f;
     public int value = 10;
-    // Start is called before the first frame update
+
+    ParticleSystem fracture;
+
+    private void Start()
+    {
+        fracture = GetComponent<ParticleSystem>();
+        // Debug.Log(fracture);
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             ScoreManager.Instance.AddScore(value);
+            fracture.Play();
         }
-        Destroy(gameObject);
+        
+        gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+        Invoke("Destroy", 3f);
     }
 
     private void Update()
     {
         transform.Rotate(0, 0, turnspeed * Time.deltaTime);
+    }
+
+    private void DestroyItem()
+    {
+        Destroy(gameObject);
     }
 }

@@ -8,6 +8,8 @@ TagManager:
   - Deccelerate
   - Cloud
   - Coin
+  - Target
+  - Boundary
   layers:
   - Default
   - TransparentFX
