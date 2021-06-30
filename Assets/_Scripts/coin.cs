@@ -18,6 +18,7 @@ public class coin : MonoBehaviour
             PoojaPlayerController poojaPlayerScript = playerGO.GetComponent<PoojaPlayerController>();
 
             shatter();
+            gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
 
             switch (gameObject.tag) {
 
@@ -37,6 +38,7 @@ public class coin : MonoBehaviour
                     }
 
                     // Destroy(gameObject);
+                    Invoke("DestroyObject", 3f);
                     break;
                 case "RedEnabler":
                     poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Red.ToString());
@@ -52,6 +54,7 @@ public class coin : MonoBehaviour
                         addImage("RedEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
                     // Destroy(gameObject);
+                    Invoke("DestroyObject", 3f);
                     break;
                 case "BlueEnabler":
                     poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Blue.ToString());
@@ -66,7 +69,8 @@ public class coin : MonoBehaviour
                     {
                         addImage("BlueEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
-                    Destroy(gameObject);
+                    // Destroy(gameObject);
+                    Invoke("DestroyObject", 3f);
                     break;
                 case "GreenEnabler":
                     poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Green.ToString());
@@ -81,7 +85,8 @@ public class coin : MonoBehaviour
                     {
                         addImage("GreenEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
-                    Destroy(gameObject);
+                    // Destroy(gameObject);
+                    Invoke("DestroyObject", 3f);
                     break;
                 case "SkyEnabler":
                     poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Sky.ToString());
@@ -96,7 +101,8 @@ public class coin : MonoBehaviour
                     {
                         addImage("SkyEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
-                    Destroy(gameObject);
+                    // Destroy(gameObject);
+                    Invoke("DestroyObject", 3f);
                     break;
                 case "SearchItemRed":
                     if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Yellow.ToString())
@@ -105,12 +111,13 @@ public class coin : MonoBehaviour
                         poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[0];
                         //ScoreManager.Instance.AddScore(value, "Search Item "+ gameObject.tag);
                         ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Yellow.ToString());
-                        
-
-                    //ScoreManager.Instance.AddScore(value, "Current Value " + poojaPlayerScript.currentEnabler + " To String value " + PoojaPlayerController.Enablers.Yellow.ToString());
 
 
-                        Destroy(gameObject);
+                        //ScoreManager.Instance.AddScore(value, "Current Value " + poojaPlayerScript.currentEnabler + " To String value " + PoojaPlayerController.Enablers.Yellow.ToString());
+
+
+                        // Destroy(gameObject);
+                        Invoke("DestroyObject", 3f);
                     }
                     else {
                         ScoreManager.Instance.AddScore(0, "Cannot be");
@@ -123,7 +130,7 @@ public class coin : MonoBehaviour
 
             }
 
-            
+
         }
         
     }
@@ -172,6 +179,13 @@ public class coin : MonoBehaviour
 
     }
 
+    private void DestroyObject()
+    {
+        Destroy(gameObject);
+    }
+
+
+    // shatter effect
     private void shatter()
     {
         ParticleSystem fracture = GetComponent<ParticleSystem>();
