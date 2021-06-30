@@ -19,6 +19,8 @@ TagManager:
   - BlueEnablerImageUI
   - GreenEnablerImageUI
   - SkyEnablerImageUI
+  - Balloon
+  - BalloonCapsule
   layers:
   - Default
   - TransparentFX

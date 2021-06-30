@@ -23,8 +23,8 @@ public class coin : MonoBehaviour
             switch (gameObject.tag) {
 
                 case "YellowEnabler":
-                    poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Yellow.ToString());
-                    poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[2];
+                    //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Yellow.ToString());
+                    //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[2];
                     ScoreManager.Instance.AddScore(value, gameObject.tag);
 
                     //Search for Image in Queue
@@ -41,8 +41,8 @@ public class coin : MonoBehaviour
                     Invoke("DestroyObject", 3f);
                     break;
                 case "RedEnabler":
-                    poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Red.ToString());
-                    poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
+                    //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Red.ToString());
+                    //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
                     ScoreManager.Instance.AddScore(value, gameObject.tag);
                     //Search for Image in Queue
                     alreadyPresent = false;
@@ -57,8 +57,8 @@ public class coin : MonoBehaviour
                     Invoke("DestroyObject", 3f);
                     break;
                 case "BlueEnabler":
-                    poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Blue.ToString());
-                    poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
+                    //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Blue.ToString());
+                    //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
                     ScoreManager.Instance.AddScore(value, gameObject.tag);
                     //Search for Image in Queue
                     alreadyPresent = false;
@@ -73,8 +73,8 @@ public class coin : MonoBehaviour
                     Invoke("DestroyObject", 3f);
                     break;
                 case "GreenEnabler":
-                    poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Green.ToString());
-                    poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
+                    //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Green.ToString());
+                    //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
                     ScoreManager.Instance.AddScore(value, gameObject.tag);
                     //Search for Image in Queue
                     alreadyPresent = false;
@@ -89,8 +89,8 @@ public class coin : MonoBehaviour
                     Invoke("DestroyObject", 3f);
                     break;
                 case "SkyEnabler":
-                    poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Sky.ToString());
-                    poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
+                    //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Sky.ToString());
+                    //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
                     ScoreManager.Instance.AddScore(value, gameObject.tag);
                     //Search for Image in Queue
                     alreadyPresent = false;
@@ -105,10 +105,10 @@ public class coin : MonoBehaviour
                     Invoke("DestroyObject", 3f);
                     break;
                 case "SearchItemRed":
-                    if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Yellow.ToString())
+                    if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Yellow.ToString() + "EnablerImageUI")
                     {
-                        poojaPlayerScript.setCurrentEnabler("");
-                        poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[0];
+                        //poojaPlayerScript.setCurrentEnabler("");
+                        //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[0];
                         //ScoreManager.Instance.AddScore(value, "Search Item "+ gameObject.tag);
                         ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Yellow.ToString());
 
@@ -166,7 +166,8 @@ public class coin : MonoBehaviour
             if (collectedEnablers.Count == 4) {
                 Image extraImage = collectedEnablers.Dequeue();
                 extraImage.enabled = false;
-                extraImage.transform.position = new Vector3(854, 0, 0);
+                //extraImage.transform.position = new Vector3(854, 0, 0);
+                extraImage.transform.position += Time.deltaTime * 6500 * -3 * Vector3.down;
             }
             foreach (Image value in collectedEnablers)
             {
