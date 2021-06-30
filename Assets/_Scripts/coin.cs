@@ -16,7 +16,9 @@ public class coin : MonoBehaviour
         {
             
             PoojaPlayerController poojaPlayerScript = playerGO.GetComponent<PoojaPlayerController>();
-            
+
+            shatter();
+
             switch (gameObject.tag) {
 
                 case "YellowEnabler":
@@ -34,7 +36,7 @@ public class coin : MonoBehaviour
                         addImage("YellowEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
 
-                    Destroy(gameObject);
+                    // Destroy(gameObject);
                     break;
                 case "RedEnabler":
                     poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Red.ToString());
@@ -49,7 +51,7 @@ public class coin : MonoBehaviour
                     {
                         addImage("RedEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
-                    Destroy(gameObject);
+                    // Destroy(gameObject);
                     break;
                 case "BlueEnabler":
                     poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Blue.ToString());
@@ -168,5 +170,11 @@ public class coin : MonoBehaviour
             
         }
 
+    }
+
+    private void shatter()
+    {
+        ParticleSystem fracture = GetComponent<ParticleSystem>();
+        fracture.Play();
     }
 }

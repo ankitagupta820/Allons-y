@@ -144,6 +144,7 @@ public class PoojaPlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Target") || collision.gameObject.CompareTag("Boundary"))
         {
             ParticleSystem dust = gameObject.GetComponentInChildren<ParticleSystem>();
+            // INVALID when there is more than one particle system in children of "Player"
             dust.Play();
         }
     }
