@@ -22,10 +22,10 @@ public class LevelGenerator : MonoBehaviour
     private int amount = 1;
     [Tooltip("Random vertical distance between min vertical distance and max vertical distance," +
         " choose between -inf to inf")]
-    public float minVerticalDistance = -20f;
+    private float minVerticalDistance = -100f;
     [Tooltip("Random vertical distance between min vertical distance and max vertical distance," +
         " choose between -inf to inf")]
-    public float maxVerticalDistance = -5f;
+    private float maxVerticalDistance = -200f;
 
     [Tooltip("Random scale down, choose between 0 to inf")]
     public float minScale = 0.3f;
@@ -74,10 +74,34 @@ public class LevelGenerator : MonoBehaviour
         for (int objIndex = 0; objIndex < objects.Length; objIndex++)
         {
             GameObject objectToPool = objects[objIndex];
+            Debug.Log("******************************************************");
+            Debug.Log(objIndex + " is " + objectToPool.tag);
+            Debug.Log("******************************************************");
             for (int i = 0; i < amountToPool; i++)
             {
                 temp = Instantiate(objectToPool);
                 temp.SetActive(false);
+                Transform t = temp.transform;
+                foreach (Transform tr in t)
+                {
+                    MeshRenderer mr = tr.GetComponent<MeshRenderer>();
+                    if (mr == null)
+                    {
+                        Debug.Log("MeshRenderer is absent");
+                    }
+                    else {
+                        Debug.Log("MeshRenderer is present "+mr.materials[0]);
+                    }
+                    //if (tr.tag == "Balloon")
+                    //{
+
+                    //    //rend = tr.GetComponent<Renderer>();
+                    //    rend = tr.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+                    //    rend.enabled = false;
+                    //    rend.sharedMaterial = material[x];
+                    //}
+                }
+
                 pooledObjects.Add(temp);
 
             }
@@ -116,24 +140,27 @@ public class LevelGenerator : MonoBehaviour
             GameObject newObj = GetPooledObject(objType);
             if (newObj != null)
             {
-                if (locateBasedOnPrevObj && prevGeneratedObj != null)
-                {
+                //if (locateBasedOnPrevObj && prevGeneratedObj != null)
+                //{
+                //    // Randomly generate object position
+                //    Vector3 newObjLoc = new Vector3(newObj.transform.position.x,
+                //    Random.Range(minVerticalDistance, maxVerticalDistance) + prevGeneratedObj.transform.position.y,
+                //    newObj.transform.position.z
+                //    );
+                //    newObj.transform.position = newObjLoc;
+                //}
+                //else
+                //{
+
+                float rangeVal = Random.Range(minVerticalDistance, maxVerticalDistance);
+                    float temp = rangeVal + playerLoc.y;
                     // Randomly generate object position
                     Vector3 newObjLoc = new Vector3(newObj.transform.position.x,
-                    Random.Range(minVerticalDistance, maxVerticalDistance) + prevGeneratedObj.transform.position.y,
+                    temp,
                     newObj.transform.position.z
                     );
                     newObj.transform.position = newObjLoc;
-                }
-                else
-                {
-                    // Randomly generate object position
-                    Vector3 newObjLoc = new Vector3(newObj.transform.position.x,
-                    Random.Range(minVerticalDistance, maxVerticalDistance) + playerLoc.y,
-                    newObj.transform.position.z
-                    );
-                    newObj.transform.position = newObjLoc;
-                }
+                //}
 
                 // Randomly generate object scale
                 //if (minScale < 0) minScale = 0;
@@ -147,6 +174,12 @@ public class LevelGenerator : MonoBehaviour
                 //    System.Convert.ToSingle(rotateZ));
                 //newObj.transform.Rotate(rotateAxis, Random.Range(minRotate, maxRotate), Space.World);
                 newObj.SetActive(true); //need to be set inactive once not in use
+                Debug.Log("Player Y " + playerLoc.y);
+                Debug.Log("Object Y " + temp);
+                Debug.Log("Range Value " + rangeVal);
+                Debug.Log("minVerticalDistance " + minVerticalDistance);
+                Debug.Log("maxVerticalDistance " + maxVerticalDistance);
+
                 // Set deactivate distance for the object, so object automatically deactivate after certain distance from player
                 if (newObj.GetComponent<DeactivateLevel>() == null)
                 {
@@ -163,16 +196,23 @@ public class LevelGenerator : MonoBehaviour
 
     public GameObject GetPooledObject(int objType)
     {
-        Debug.Log("Called");
+        //Debug.Log("Called");
         for (int i = 0; i < amountToPool; i++)
         {
             List<GameObject> pooledObjects = pooledObjectsHash[objType];
             Debug.Log(pooledObjects.Count);
-            if (!pooledObjects[i].activeInHierarchy)
+            if (pooledObjects[i] == null)
             {
-                Debug.Log(i);
-                return pooledObjects[i];
+                Debug.Log("Object "+i+" of type "+objType+" is destroyed");
             }
+            else {
+                if (!pooledObjects[i].activeInHierarchy)
+                {
+                    //Debug.Log(i);
+                    return pooledObjects[i];
+                }
+            }
+            
         }
         return null;
     }
