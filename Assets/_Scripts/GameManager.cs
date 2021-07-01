@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 public class GameManager : MonoBehaviour
 {
     private static GameManager _instance;
@@ -9,7 +10,9 @@ public class GameManager : MonoBehaviour
     public GameObject deathMenuUI;
     public GameObject winMenuUI;
     public static bool GamePaused = false;
-    
+    public static int _deathCount = 0;
+    public static int _winCount = 0;
+
     // Singleton Pattern
     private void Awake()
     {
@@ -38,15 +41,19 @@ public class GameManager : MonoBehaviour
         deathMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;
+        _deathCount += 1;
+        ScoreManager.Instance.SendAnalytics();
+        LevelGenerator.Instance.SendEAnalytics();
     }
 
     public void PlayerWin() {
         winMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;
-
+        _winCount += 1;
+        ScoreManager.Instance.SendAnalytics();
+        LevelGenerator.Instance.SendEAnalytics();
     }
-
 
     public void Resume()
     {
@@ -71,5 +78,14 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Quitting....");
         Application.Quit();
+    }
+
+    void OnDestroy()
+    {
+        Debug.Log(Analytics.CustomEvent("Death_Win_Stats", new Dictionary<string, object>
+            {
+                {"Death_By_Monster", _deathCount},
+                {"Number_of_Wins", _winCount}
+            }));
     }
 }

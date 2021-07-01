@@ -44,4 +44,5 @@ public class MonsterController : MonoBehaviour
             GameManager.Instance.PlayerDeath();
         }
     }
+
 }

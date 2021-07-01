@@ -74,7 +74,12 @@ public class ScoreManager : MonoBehaviour
 
     void OnDestroy()
     {
-        Analytics.CustomEvent("PlayerStats", new Dictionary<string, object>
+        SendAnalytics();
+    }
+
+    public void SendAnalytics()
+    {
+        Debug.Log(Analytics.CustomEvent("PlayerStats", new Dictionary<string, object>
           {
             { "Score", _scoreF},
             { "Distance", _dis},
@@ -82,7 +87,7 @@ public class ScoreManager : MonoBehaviour
             { "Time_Elapsed", timerString},
             {"Number_of_Collectables", countCollectibles}
 
-          });
+          }));
     }
 
     private void CalcSpeed()
