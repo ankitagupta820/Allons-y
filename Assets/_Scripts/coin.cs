@@ -17,7 +17,7 @@ public class coin : MonoBehaviour
             
             PoojaPlayerController poojaPlayerScript = playerGO.GetComponent<PoojaPlayerController>();
 
-            shatter();
+            // shatter();
             gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
 
             switch (gameObject.tag) {
@@ -37,6 +37,7 @@ public class coin : MonoBehaviour
                         addImage("YellowEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
 
+                    shatter();
                     // Destroy(gameObject);
                     Invoke("DestroyObject", 3f);
                     break;
@@ -53,6 +54,8 @@ public class coin : MonoBehaviour
                     {
                         addImage("RedEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
+
+                    shatter();
                     // Destroy(gameObject);
                     Invoke("DestroyObject", 3f);
                     break;
@@ -69,6 +72,8 @@ public class coin : MonoBehaviour
                     {
                         addImage("BlueEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
+
+                    shatter();
                     // Destroy(gameObject);
                     Invoke("DestroyObject", 3f);
                     break;
@@ -85,6 +90,8 @@ public class coin : MonoBehaviour
                     {
                         addImage("GreenEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
+
+                    shatter();
                     // Destroy(gameObject);
                     Invoke("DestroyObject", 3f);
                     break;
@@ -101,6 +108,8 @@ public class coin : MonoBehaviour
                     {
                         addImage("SkyEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
+
+                    shatter();
                     // Destroy(gameObject);
                     Invoke("DestroyObject", 3f);
                     break;
@@ -116,6 +125,7 @@ public class coin : MonoBehaviour
                         //ScoreManager.Instance.AddScore(value, "Current Value " + poojaPlayerScript.currentEnabler + " To String value " + PoojaPlayerController.Enablers.Yellow.ToString());
 
 
+                        displayCircle(playerGO);
                         // Destroy(gameObject);
                         Invoke("DestroyObject", 3f);
                     }
@@ -128,6 +138,8 @@ public class coin : MonoBehaviour
                     {
 
                         ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Red.ToString());
+
+                        displayCircle(playerGO);
                         Invoke("DestroyObject", 3f);
                     }
                     else
@@ -140,6 +152,8 @@ public class coin : MonoBehaviour
                     {
 
                         ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Blue.ToString());
+
+                        displayCircle(playerGO);
                         Invoke("DestroyObject", 3f);
                     }
                     else
@@ -152,6 +166,8 @@ public class coin : MonoBehaviour
                     {
 
                         ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Green.ToString());
+
+                        displayCircle(playerGO);
                         Invoke("DestroyObject", 3f);
                     }
                     else
@@ -164,6 +180,8 @@ public class coin : MonoBehaviour
                     {
 
                         ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Sky.ToString());
+
+                        displayCircle(playerGO);
                         Invoke("DestroyObject", 3f);
                     }
                     else
@@ -242,5 +260,14 @@ public class coin : MonoBehaviour
             fracture.Play();
         }
        
+    }
+
+    private void displayCircle(GameObject playerGO)
+    {
+        ParticleSystem[] particles = playerGO.GetComponentsInChildren<ParticleSystem>();
+        if (particles.Length > 1)
+        {
+            particles[1].Play();
+        }
     }
 }
