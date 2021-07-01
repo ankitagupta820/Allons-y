@@ -67,11 +67,11 @@ public class PoojaPlayerController : MonoBehaviour
             if (_moveSpeed != _NormVelocity && Time.time - startTime > 20)
                 _moveSpeed = _NormVelocity;
         }
+
+        //////////////Use ray casting to find object which are glidable//////////////////////
         // This would cast rays only against colliders in layer 8 .
         var layerMask8 = 1 << 8;
-
         RaycastHit hit;
-
         // cast a ray to the right of the player object
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.right), out hit, 30, layerMask8))
         {
@@ -82,8 +82,8 @@ public class PoojaPlayerController : MonoBehaviour
             //Smooth rotation
             transform.rotation = Quaternion.Slerp(transform.rotation, RunnerRotation, Time.deltaTime * 10);
         }
-
-
+        //////////////////////////////////////////////////////////////////////////////////////
+      
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) && transform.position.x < 13)
             characterBody.AddForce(new Vector3(_moveSpeed * Time.deltaTime, 0, 0));
 
