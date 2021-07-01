@@ -22,6 +22,9 @@ TagManager:
   - SkyEnablerImageUI
   - Balloon
   - BalloonCapsule
+  - Boundary
+  - Target
+  - PlayerPlane
   layers:
   - Default
   - TransparentFX

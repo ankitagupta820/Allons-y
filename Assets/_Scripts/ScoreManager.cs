@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Analytics;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -13,8 +14,8 @@ public class ScoreManager : MonoBehaviour
     private Vector3 initialPos;
     private Rigidbody playerRB;
     public GameObject Score;
-    public GameObject Red_Collectible;
-    public GameObject Yellow_collectible;
+/*    public GameObject Red_Collectible;
+    public GameObject Yellow_collectible;*/
     public GameObject Coinalert;
     public GameObject Dis;
     public GameObject Speed;
@@ -43,6 +44,16 @@ public class ScoreManager : MonoBehaviour
     {
         CalcSpeed();
         CalcDis();
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log(Analytics.CustomEvent("PlayerStatsDan", new Dictionary<string, object>
+        {
+            {
+                "Score", theScore
+            }
+        }));
     }
 
     private void CalcSpeed()

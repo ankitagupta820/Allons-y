@@ -134,10 +134,14 @@ public class ObjectGenerator : MonoBehaviour
                 newObj.transform.Rotate(rotateAxis, Random.Range(minRotate, maxRotate), Space.World);
                 newObj.SetActive(true); //need to be set inactive once not in use
                 // Set deactivate distance for the object, so object automatically deactivate after certain distance from player
-                newObj.AddComponent<DeactivateObj>();
-                DeactivateObj deactivateObj = newObj.GetComponent<DeactivateObj>();
-                deactivateObj.player = player;
-                deactivateObj.deActivateDis = deActivateDistance;
+                if (newObj.GetComponent<DeactivateObj>() == null)
+                {
+                    newObj.AddComponent<DeactivateObj>();
+                    DeactivateObj deactivateObj = newObj.GetComponent<DeactivateObj>();
+                    deactivateObj.player = player;
+                    deactivateObj.deActivateDis = deActivateDistance;
+                }
+                
             }
         }
     }
