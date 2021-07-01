@@ -17,8 +17,6 @@ public class coin : MonoBehaviour
             
             PoojaPlayerController poojaPlayerScript = playerGO.GetComponent<PoojaPlayerController>();
 
-            // shatter();
-            gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
 
             switch (gameObject.tag) {
 
@@ -37,7 +35,7 @@ public class coin : MonoBehaviour
                         addImage("YellowEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
 
-                    shatter();
+                    enableSpecialEffect();
                     // Destroy(gameObject);
                     Invoke("DisableObject", 3f);
                     break;
@@ -55,7 +53,7 @@ public class coin : MonoBehaviour
                         addImage("RedEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
 
-                    shatter();
+                    enableSpecialEffect();
                     // Destroy(gameObject);
                     Invoke("DisableObject", 3f);
                     break;
@@ -73,7 +71,7 @@ public class coin : MonoBehaviour
                         addImage("BlueEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
 
-                    shatter();
+                    enableSpecialEffect();
                     // Destroy(gameObject);
                     Invoke("DisableObject", 3f);
                     break;
@@ -91,7 +89,7 @@ public class coin : MonoBehaviour
                         addImage("GreenEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
 
-                    shatter();
+                    enableSpecialEffect();
                     // Destroy(gameObject);
                     Invoke("DisableObject", 3f);
                     break;
@@ -109,7 +107,7 @@ public class coin : MonoBehaviour
                         addImage("SkyEnablerImageUI", poojaPlayerScript.collectedEnablers);
                     }
 
-                    shatter();
+                    enableSpecialEffect();
                     // Destroy(gameObject);
                     Invoke("DisableObject", 3f);
                     break;
@@ -124,12 +122,11 @@ public class coin : MonoBehaviour
 
                         //ScoreManager.Instance.AddScore(value, "Current Value " + poojaPlayerScript.currentEnabler + " To String value " + PoojaPlayerController.Enablers.Yellow.ToString());
 
-
-                        displayCircle(playerGO);
                         // Destroy(gameObject);
                         
                         if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Yellow.ToString())) {
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Yellow.ToString());
+                            enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
                         }
                     }
@@ -144,7 +141,7 @@ public class coin : MonoBehaviour
                         if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Red.ToString()))
                         {
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Red.ToString());
-                            displayCircle(playerGO);
+                            enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
                         }
                     }
@@ -159,7 +156,7 @@ public class coin : MonoBehaviour
                         if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Blue.ToString()))
                         {
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Blue.ToString());
-                            displayCircle(playerGO);
+                            enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
                         }
                     }
@@ -175,7 +172,7 @@ public class coin : MonoBehaviour
                         if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Green.ToString()))
                         {
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Green.ToString());
-                            displayCircle(playerGO);
+                            enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
                         }
                     }
@@ -190,7 +187,7 @@ public class coin : MonoBehaviour
                         if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Sky.ToString()))
                         {
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Sky.ToString());
-                            displayCircle(playerGO);
+                            enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
                         }
                     }
@@ -295,14 +292,26 @@ public class coin : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    // shatter effect
+    private void enableSpecialEffect()
+    {
+        makeInvisible();
+        playSound();
+        shatter();
+    }
+
+    private void enableSpecialEffect(GameObject playerGO)
+    {
+        makeInvisible();
+        playSound();
+        displayCircle(playerGO);
+    }
+
     private void shatter()
     {
         if (GetComponent<ParticleSystem>() != null) {
             ParticleSystem fracture = GetComponent<ParticleSystem>();
             fracture.Play();
         }
-       
     }
 
     private void displayCircle(GameObject playerGO)
@@ -311,6 +320,20 @@ public class coin : MonoBehaviour
         if (particles.Length > 1)
         {
             particles[1].Play();
+        }
+    }
+
+    private void makeInvisible()
+    {
+        gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+    }
+
+    private void playSound()
+    {
+        AudioSource sound = gameObject.GetComponent<AudioSource>();
+        if (sound != null)
+        {
+            sound.Play();
         }
     }
 }
