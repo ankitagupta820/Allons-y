@@ -3956,10 +3956,19 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 171457335, guid: 428c8c17c790f7048946a9b81f944857, type: 3}
+      propertyPath: m_Alpha
+      value: 0.95
+      objectReference: {fileID: 0}
     - target: {fileID: 8429732958611724196, guid: 428c8c17c790f7048946a9b81f944857,
         type: 3}
       propertyPath: m_Name
       value: DeathMenuCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 8429732958611724200, guid: 428c8c17c790f7048946a9b81f944857,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 8429732958611724201, guid: 428c8c17c790f7048946a9b81f944857,
         type: 3}
@@ -4464,7 +4473,7 @@ PrefabInstance:
         type: 3}
       propertyPath: objects.Array.data[0]
       value: 
-      objectReference: {fileID: 8650214923140180712, guid: 2e83b6cab9feb2644b3b0728ea542f4e,
+      objectReference: {fileID: 9056167510916021961, guid: 2e83b6cab9feb2644b3b0728ea542f4e,
         type: 3}
     - target: {fileID: 7317098028900791331, guid: 123776d6bac1d8e4b9d7a6cd262aa651,
         type: 3}
