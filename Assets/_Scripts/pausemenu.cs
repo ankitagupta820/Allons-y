@@ -52,7 +52,7 @@ public class pausemenu : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        
+        restartCount += 1;
     }
 
     public void QuitGame()
@@ -62,11 +62,10 @@ public class pausemenu : MonoBehaviour
     }
     private void OnDestroy()
     {
-        /////////
         Analytics.CustomEvent("MenuStats", new Dictionary<string, object>
             {
-                {"PauseCount", pauseCount}
-
+                {"PauseCount", pauseCount},
+                {"RestartCount", restartCount}
             });
     }
 
