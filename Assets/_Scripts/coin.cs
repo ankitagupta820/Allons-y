@@ -39,7 +39,6 @@ public class coin : MonoBehaviour
 
                     shatter();
                     // Destroy(gameObject);
-                    Invoke("DestroyObject", 3f);
                     Invoke("DisableObject", 3f);
                     break;
                 case "RedEnabler":
