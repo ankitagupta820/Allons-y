@@ -36,6 +36,11 @@ public class MonsterController : MonoBehaviour
         Debug.Log(other.transform.gameObject.name);
         if (other.transform.gameObject.tag == "Player")
         {
+            AudioSource deathSound = GetComponent<AudioSource>();
+            if (deathSound != null)
+            {
+                deathSound.Play();
+            }
             GameManager.Instance.PlayerDeath();
         }
     }
