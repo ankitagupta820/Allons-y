@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     public static GameManager Instance { get { return _instance; } }
     public GameObject deathMenuUI;
+    public GameObject winMenuUI;
     public static bool GamePaused = false;
     // Singleton Pattern
     private void Awake()
@@ -36,6 +37,13 @@ public class GameManager : MonoBehaviour
         deathMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;
+    }
+
+    public void PlayerWin() {
+        winMenuUI.SetActive(true);
+        Time.timeScale = 0f;
+        GamePaused = true;
+
     }
 
 

@@ -128,6 +128,10 @@ public class coin : MonoBehaviour
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Yellow.ToString());
                             enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
+                            if (checkIfLevelCompleted())
+                            {
+                                GameManager.Instance.PlayerWin();
+                            }
                         }
                     }
                     else {
@@ -143,6 +147,10 @@ public class coin : MonoBehaviour
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Red.ToString());
                             enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
+                            if (checkIfLevelCompleted())
+                            {
+                                GameManager.Instance.PlayerWin();
+                            }
                         }
                     }
                     else
@@ -158,6 +166,10 @@ public class coin : MonoBehaviour
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Blue.ToString());
                             enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
+                            if (checkIfLevelCompleted())
+                            {
+                                GameManager.Instance.PlayerWin();
+                            }
                         }
                     }
                     else
@@ -174,6 +186,10 @@ public class coin : MonoBehaviour
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Green.ToString());
                             enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
+                            if (checkIfLevelCompleted()) 
+                            {
+                                GameManager.Instance.PlayerWin();
+                            }
                         }
                     }
                     else
@@ -189,6 +205,10 @@ public class coin : MonoBehaviour
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Sky.ToString());
                             enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
+                            if (checkIfLevelCompleted())
+                            {
+                                GameManager.Instance.PlayerWin();
+                            }
                         }
                     }
                     else
@@ -270,16 +290,49 @@ public class coin : MonoBehaviour
                 //Text text = tr.transform.GetChild(0).gameObject.GetComponent<Text>();
                 Text text = tr.GetComponent<Text>();
                 int i = int.Parse(text.text);
-                if (i > 0) {
+                if (i > 0)
+                {
                     collected = true;
                     i--;
                     Debug.Log(i);
-                    text.text = i+"";
+                    text.text = i + "";
                 }
-                
             }
         }
         return collected;
+    }
+
+    private bool checkIfLevelCompleted() {
+        bool completed = true;
+        GameObject objObject = GameObject.FindGameObjectWithTag("Objective");
+
+        if (objObject != null)
+        {
+            //collectedImage = imageObject.GetComponent<Image>();
+            Transform t = objObject.transform;
+            foreach (Transform tr in t)
+            {
+
+                //Check if Active
+                if (tr.gameObject.activeInHierarchy) {
+                    Text ui = tr.gameObject.transform.GetChild(0).GetComponent<Text>();
+                    Debug.Log("UIIIIIIIIIIIIIIIIIIIII");
+                    Debug.Log(tr.tag);
+                    Debug.Log(ui);
+                    int score = int.Parse(ui.text);
+                    if (score > 0)
+                    {
+                        completed = false;
+                        break;
+                    }
+                }
+
+            }
+        }
+
+        return completed;
+
+
     }
 
     private void DestroyObject()
