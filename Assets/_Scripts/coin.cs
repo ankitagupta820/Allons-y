@@ -104,7 +104,7 @@ public class coin : MonoBehaviour
                     // Destroy(gameObject);
                     Invoke("DestroyObject", 3f);
                     break;
-                case "SearchItemRed":
+                case "SearchItemYellow":
                     if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Yellow.ToString() + "EnablerImageUI")
                     {
                         //poojaPlayerScript.setCurrentEnabler("");
@@ -123,8 +123,56 @@ public class coin : MonoBehaviour
                         ScoreManager.Instance.AddScore(0, "Cannot be");
                     }
                     break;
+                case "SearchItemRed":
+                    if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Red.ToString() + "EnablerImageUI")
+                    {
+
+                        ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Red.ToString());
+                        Invoke("DestroyObject", 3f);
+                    }
+                    else
+                    {
+                        ScoreManager.Instance.AddScore(0, "Cannot be");
+                    }
+                    break;
+                case "SearchItemBlue":
+                    if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Blue.ToString() + "EnablerImageUI")
+                    {
+
+                        ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Blue.ToString());
+                        Invoke("DestroyObject", 3f);
+                    }
+                    else
+                    {
+                        ScoreManager.Instance.AddScore(0, "Cannot be");
+                    }
+                    break;
+                case "SearchItemGreen":
+                    if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Green.ToString() + "EnablerImageUI")
+                    {
+
+                        ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Green.ToString());
+                        Invoke("DestroyObject", 3f);
+                    }
+                    else
+                    {
+                        ScoreManager.Instance.AddScore(0, "Cannot be");
+                    }
+                    break;
+                case "SearchItemSky":
+                    if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Sky.ToString() + "EnablerImageUI")
+                    {
+
+                        ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Sky.ToString());
+                        Invoke("DestroyObject", 3f);
+                    }
+                    else
+                    {
+                        ScoreManager.Instance.AddScore(0, "Cannot be");
+                    }
+                    break;
                 default:
-                    ScoreManager.Instance.AddScore(value, "Object Tag " + gameObject.tag);
+                    //ScoreManager.Instance.AddScore(value, "Object Tag " + gameObject.tag);
                     //Destroy(gameObject);
                     break;
 
@@ -189,7 +237,10 @@ public class coin : MonoBehaviour
     // shatter effect
     private void shatter()
     {
-        ParticleSystem fracture = GetComponent<ParticleSystem>();
-        fracture.Play();
+        if (GetComponent<ParticleSystem>() != null) {
+            ParticleSystem fracture = GetComponent<ParticleSystem>();
+            fracture.Play();
+        }
+       
     }
 }

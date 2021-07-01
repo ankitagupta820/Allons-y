@@ -25,6 +25,10 @@ TagManager:
   - Boundary
   - Target
   - PlayerPlane
+  - SearchItemYellow
+  - SearchItemBlue
+  - SearchItemGreen
+  - SearchItemSky
   layers:
   - Default
   - TransparentFX
