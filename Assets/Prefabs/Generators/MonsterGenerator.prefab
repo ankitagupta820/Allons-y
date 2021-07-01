@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7317098028900791331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7317098028900791328}
+  - component: {fileID: 7317098028900791329}
+  m_Layer: 0
+  m_Name: MonsterGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7317098028900791328
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317098028900791331}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.5131984, y: -329.24124, z: -26.656097}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7317098028900791329
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7317098028900791331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b8223c6c593804cbc97c19c283032a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objects:
+  - {fileID: 8646496742698142887, guid: f363d07c35ebb2b469aa4d4ffd7f6d6a, type: 3}
+  player: {fileID: 0}
+  LeftUpper: {fileID: 0}
+  RightUpper: {fileID: 0}
+  LeftLower: {fileID: 0}
+  RightLower: {fileID: 0}
+  locateBasedOnPrevObj: 1
+  interval: 5
+  amount: 1
+  minVerticalDistance: -100
+  maxVerticalDistance: -50
+  minScale: 0.5
+  maxScale: 1
+  rotateX: 0
+  rotateY: 1
+  rotateZ: 0
+  minRotate: 0
+  maxRotate: 360
+  deActivateDistance: 10
+  amountToPool: 5
