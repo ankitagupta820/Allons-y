@@ -20,15 +20,15 @@ public class ScoreManager : MonoBehaviour
     public GameObject Dis;
     public GameObject Speed;
     private float theScore = 0;
-    private float countCollectibles;
+    private int countCollectibles;
 
     public void incrementCountCollectibles() {
         countCollectibles++;
     }
 
-    public void getCountCollectibles(int val)
+    public int getCountCollectibles()
     {
-        countCollectibles = val;
+        return countCollectibles;
     }
 
     // Singleton Pattern
@@ -85,7 +85,7 @@ public class ScoreManager : MonoBehaviour
         incrementCountCollectibles();
 
         //Debug.Log("***************Manish******************");
-        //Debug.Log(countCollectibles);
+        //Debug.Log(getCountCollectibles());
         //Red_Collectible.GetComponent<Text>().text = theScore.ToString("F0");
         //Yellow_collectible.GetComponent<Text>().text = theScore.ToString("F0");
     }
