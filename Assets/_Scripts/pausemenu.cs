@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 
 public class pausemenu : MonoBehaviour
 {
     public static bool GamePaused = false;
     public GameObject pauseMenuUI;
     // Update is called once per frame
+
+    public static int pauseCount = 0;
+    public static int restartCount = 0;
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -35,6 +39,7 @@ public class pausemenu : MonoBehaviour
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;
+        pauseCount += 1;
     }
 
     public void LoadMenu()
@@ -55,10 +60,18 @@ public class pausemenu : MonoBehaviour
         Debug.Log("Quitting....");
         Application.Quit();
     }
+    private void OnDestroy()
+    {
+        /////////
+        Analytics.CustomEvent("MenuStats", new Dictionary<string, object>
+            {
+                {"PauseCount", pauseCount}
+
+            });
+    }
 
 
 
-    
 
 
 

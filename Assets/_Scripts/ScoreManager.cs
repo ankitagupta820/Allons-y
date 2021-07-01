@@ -21,7 +21,11 @@ public class ScoreManager : MonoBehaviour
     public GameObject Speed;
     private float theScore = 0;
     private int countCollectibles;
-
+    public float _scoreF = 0f;
+    public int _dis = 0;
+    public int _speed = 0;
+    public float gameTimer = 0f;
+    public string timerString;
     public void incrementCountCollectibles() {
         countCollectibles++;
     }
@@ -54,17 +58,31 @@ public class ScoreManager : MonoBehaviour
     void Update()
     {
         CalcSpeed();
-        CalcDis();
+        CalcDis(); gameTimer += Time.deltaTime;
+
+        int secs = (int)(gameTimer % 60);
+        int mins = (int)(gameTimer / 60) % 60;
+        int hrs = (int)(gameTimer / 3600) % 24;
+
+        //create a variable "timerString" to return the time in string
+
+        timerString = string.Format("{0:0}:{1:00}:{2:00}", hrs, mins, secs);
+        _scoreF = float.Parse(Score.GetComponent<Text>().text);
+        _dis = int.Parse(Dis.GetComponent<Text>().text);
+        _speed = int.Parse(Speed.GetComponent<Text>().text);
     }
 
-    private void OnDestroy()
+    void OnDestroy()
     {
-        Debug.Log(Analytics.CustomEvent("PlayerStatsDan", new Dictionary<string, object>
-        {
-            {
-                "Score", theScore
-            }
-        }));
+        Analytics.CustomEvent("PlayerStats", new Dictionary<string, object>
+          {
+            { "Score", _scoreF},
+            { "Distance", _dis},
+            { "Speed", _speed},
+            { "Time_Elapsed", timerString},
+            {"Number_of_Collectables", countCollectibles}
+
+          });
     }
 
     private void CalcSpeed()
