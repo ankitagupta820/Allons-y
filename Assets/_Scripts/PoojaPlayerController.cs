@@ -54,11 +54,6 @@ public class PoojaPlayerController : MonoBehaviour
                 rend.sharedMaterial = material[x];
             }
         }
-
-
-        //rend = GetComponent<Renderer>();
-        //rend.enabled = true;
-        //rend.sharedMaterial = material[x];
     }
 
     void Update()
@@ -72,12 +67,6 @@ public class PoojaPlayerController : MonoBehaviour
             if (_moveSpeed != _NormVelocity && Time.time - startTime > 20)
                 _moveSpeed = _NormVelocity;
         }
-
-
-        //transform.position += Time.deltaTime * _moveSpeed * Vector3.down;
-        //transform.position += Time.deltaTime * _moveSpeed * Vector3.forward;
-        //characterBody.AddForce(new Vector3(0, -_moveSpeed * Time.deltaTime , 0)); // Using Gravity
-
         // This would cast rays only against colliders in layer 8 .
         var layerMask8 = 1 << 8;
 
@@ -96,38 +85,17 @@ public class PoojaPlayerController : MonoBehaviour
 
 
         if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) && transform.position.x < 13)
-            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.right;*/
-            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.right);*/
             characterBody.AddForce(new Vector3(_moveSpeed * Time.deltaTime, 0, 0));
 
         if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) && transform.position.x > -3)
-            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.left;*/
-            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.left);*/
             characterBody.AddForce(new Vector3(-_moveSpeed * Time.deltaTime, 0, 0));
 
         if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) && transform.position.z < 2)
-            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.forward;*/
-            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.forward);*/
             characterBody.AddForce(new Vector3(0, 0 ,_moveSpeed * Time.deltaTime));
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) && transform.position.z > -10)
-            /*transform.position += Time.deltaTime * _moveSpeed * Vector3.back;*/
-            /*characterBody.MovePosition(transform.position + Time.deltaTime * _moveSpeed * Vector3.back);*/
             characterBody.AddForce(new Vector3(0, 0 ,-_moveSpeed * Time.deltaTime));
 
-        //if (_moveSpeed > _NormVelocity)
-        //    x = 2;
-        //else if (_moveSpeed < _NormVelocity)
-        //    x = 1;
-        //else
-        //    x = 0;
-
-        //rend.sharedMaterial = material[x];
-
-
-        //if (Input.GetKey(KeyCode.Space))
-        //    transform.position = new Vector3(0, 0.5f, 0);
-        // Material changes based on enabler collections
         if (Input.GetKey(KeyCode.Space))
         {
 

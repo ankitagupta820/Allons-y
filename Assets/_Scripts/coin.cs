@@ -18,7 +18,7 @@ public class coin : MonoBehaviour
             PoojaPlayerController poojaPlayerScript = playerGO.GetComponent<PoojaPlayerController>();
 
             shatter();
-            gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
+            /*gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;*/
 
             switch (gameObject.tag) {
 
