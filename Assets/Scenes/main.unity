@@ -4460,6 +4460,12 @@ PrefabInstance:
       propertyPath: RightUpper
       value: 
       objectReference: {fileID: 8480005470674579881}
+    - target: {fileID: 7317098028900791329, guid: 123776d6bac1d8e4b9d7a6cd262aa651,
+        type: 3}
+      propertyPath: objects.Array.data[0]
+      value: 
+      objectReference: {fileID: 8650214923140180712, guid: 2e83b6cab9feb2644b3b0728ea542f4e,
+        type: 3}
     - target: {fileID: 7317098028900791331, guid: 123776d6bac1d8e4b9d7a6cd262aa651,
         type: 3}
       propertyPath: m_Name
