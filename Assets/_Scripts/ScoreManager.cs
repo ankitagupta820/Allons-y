@@ -20,6 +20,16 @@ public class ScoreManager : MonoBehaviour
     public GameObject Dis;
     public GameObject Speed;
     private float theScore = 0;
+    private float countCollectibles;
+
+    public void incrementCountCollectibles() {
+        countCollectibles++;
+    }
+
+    public void getCountCollectibles(int val)
+    {
+        countCollectibles = val;
+    }
 
     // Singleton Pattern
     private void Awake()
@@ -38,6 +48,7 @@ public class ScoreManager : MonoBehaviour
     {
         playerRB = player.GetComponent<Rigidbody>();
         initialPos = player.transform.position;
+        countCollectibles = 0;
     }
 
     void Update()
@@ -71,6 +82,10 @@ public class ScoreManager : MonoBehaviour
         theScore += score;
         Score.GetComponent<Text>().text = theScore.ToString("F0");
         StartCoroutine(ShowAlert(tagValue));
+        incrementCountCollectibles();
+
+        //Debug.Log("***************Manish******************");
+        //Debug.Log(countCollectibles);
         //Red_Collectible.GetComponent<Text>().text = theScore.ToString("F0");
         //Yellow_collectible.GetComponent<Text>().text = theScore.ToString("F0");
     }
