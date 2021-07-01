@@ -7,7 +7,25 @@ public class coin : MonoBehaviour
 {
     public float turnspeed = 90f;
     public int value = 10;
+    private bool isEnablerCollected;
+    public GameObject tutorialManager;
+    private TutorialManager tm;
     // Start is called before the first frame update
+
+    public bool getEnablerCollecter() {
+        return isEnablerCollected;
+    }
+
+    private void Start()
+    {
+        isEnablerCollected = false;
+        tutorialManager = GameObject.FindGameObjectWithTag("TutorialManager");
+        if (tutorialManager != null) {
+            tm = tutorialManager.GetComponent<TutorialManager>();
+        }
+        
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         GameObject playerGO = other.gameObject;
@@ -24,7 +42,11 @@ public class coin : MonoBehaviour
                     //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Yellow.ToString());
                     //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[2];
                     ScoreManager.Instance.AddScore(value, gameObject.tag);
-
+                    isEnablerCollected = true;
+                    if (tm != null) {
+                        tm.setEnablerCollected(true);
+                    }
+                    
                     //Search for Image in Queue
                     bool alreadyPresent = false;
                     alreadyPresent = findImage("YellowEnablerImageUI", poojaPlayerScript.collectedEnablers);
@@ -43,6 +65,11 @@ public class coin : MonoBehaviour
                     //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Red.ToString());
                     //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
                     ScoreManager.Instance.AddScore(value, gameObject.tag);
+                    isEnablerCollected = true;
+                    if (tm != null)
+                    {
+                        tm.setEnablerCollected(true);
+                    }
                     //Search for Image in Queue
                     alreadyPresent = false;
                     alreadyPresent = findImage("RedEnablerImageUI", poojaPlayerScript.collectedEnablers);
@@ -61,6 +88,11 @@ public class coin : MonoBehaviour
                     //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Blue.ToString());
                     //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
                     ScoreManager.Instance.AddScore(value, gameObject.tag);
+                    isEnablerCollected = true;
+                    if (tm != null)
+                    {
+                        tm.setEnablerCollected(true);
+                    }
                     //Search for Image in Queue
                     alreadyPresent = false;
                     alreadyPresent = findImage("BlueEnablerImageUI", poojaPlayerScript.collectedEnablers);
@@ -79,6 +111,11 @@ public class coin : MonoBehaviour
                     //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Green.ToString());
                     //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
                     ScoreManager.Instance.AddScore(value, gameObject.tag);
+                    isEnablerCollected = true;
+                    if (tm != null)
+                    {
+                        tm.setEnablerCollected(true);
+                    }
                     //Search for Image in Queue
                     alreadyPresent = false;
                     alreadyPresent = findImage("GreenEnablerImageUI", poojaPlayerScript.collectedEnablers);
@@ -97,6 +134,11 @@ public class coin : MonoBehaviour
                     //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Sky.ToString());
                     //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[1];
                     ScoreManager.Instance.AddScore(value, gameObject.tag);
+                    isEnablerCollected = true;
+                    if (tm != null)
+                    {
+                        tm.setEnablerCollected(true);
+                    }
                     //Search for Image in Queue
                     alreadyPresent = false;
                     alreadyPresent = findImage("SkyEnablerImageUI", poojaPlayerScript.collectedEnablers);

@@ -35,6 +35,10 @@ TagManager:
   - SearchObjectiveSky
   - SearchObjectiveBlue
   - Objective
+  - EasyLevelG
+  - BlankG
+  - EnablersOnlyG
+  - TutorialManager
   layers:
   - Default
   - TransparentFX

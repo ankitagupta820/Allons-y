@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject deathMenuUI;
     public GameObject winMenuUI;
     public static bool GamePaused = false;
+    
     // Singleton Pattern
     private void Awake()
     {

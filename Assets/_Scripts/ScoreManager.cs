@@ -81,4 +81,6 @@ public class ScoreManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         Coinalert.GetComponent<Text>().text = "";
     }
+
+    
 }
