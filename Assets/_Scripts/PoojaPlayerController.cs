@@ -96,7 +96,7 @@ public class PoojaPlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) && transform.position.z > -10)
             characterBody.AddForce(new Vector3(0, 0 ,-_moveSpeed * Time.deltaTime));
 
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))
         {
 
             currentEnablerIndex++;
