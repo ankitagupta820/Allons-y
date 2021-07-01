@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class MonsterController : MonoBehaviour
 {
-    public Transform positionToMoveTo;
-    public float lerpDuration = 5f;
+    public Vector3 initialPos;
+    public float travelDistance = 100f;
+    public float lerpDuration = 10f;
     
     void Start()
     {
-        StartCoroutine(LerpPosition(positionToMoveTo.position, lerpDuration));
+        initialPos = transform.position;
+        initialPos.y += travelDistance;
+        StartCoroutine(LerpPosition(initialPos, lerpDuration));
+        
     }
 
     IEnumerator LerpPosition(Vector3 targetPosition, float duration)
@@ -24,6 +28,7 @@ public class MonsterController : MonoBehaviour
             yield return null;
         }
         transform.position = targetPosition;
+        gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)

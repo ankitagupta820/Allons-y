@@ -14,6 +14,9 @@ public class ObjectGenerator : MonoBehaviour
     public GameObject LeftLower;
     public GameObject RightLower;
     [Header("Generation Specs")]
+    [Tooltip("True if you want to make the next generated object locate relative to the previously generated object, instead of the player position")]
+    public bool locateBasedOnPrevObj = false;
+    private GameObject prevGeneratedObj;
     [Tooltip("Time interval  between each generation")]
     public float interval = 3f;
     [Tooltip("Amount of the random objects generated each time")]
@@ -114,12 +117,23 @@ public class ObjectGenerator : MonoBehaviour
             GameObject newObj = GetPooledObject(objType);
             if (newObj != null)
             {
-                // Randomly generate object position
-                Vector3 newObjLoc = new Vector3(Random.Range(LeftUpper.transform.position.x, RightUpper.transform.position.x),
-                Random.Range(minVerticalDistance, maxVerticalDistance) + playerLoc.y,
-                Random.Range(LeftLower.transform.position.z, RightLower.transform.position.z)
-                );
-                newObj.transform.position = newObjLoc;
+                if (locateBasedOnPrevObj && prevGeneratedObj != null)
+                {
+                    // Randomly generate object position
+                    Vector3 newObjLoc = new Vector3(Random.Range(LeftUpper.transform.position.x, RightUpper.transform.position.x),
+                    Random.Range(minVerticalDistance, maxVerticalDistance) + prevGeneratedObj.transform.position.y,
+                    Random.Range(LeftLower.transform.position.z, RightLower.transform.position.z)
+                    );
+                    newObj.transform.position = newObjLoc;
+                } else
+                {
+                    // Randomly generate object position
+                    Vector3 newObjLoc = new Vector3(Random.Range(LeftUpper.transform.position.x, RightUpper.transform.position.x),
+                    Random.Range(minVerticalDistance, maxVerticalDistance) + playerLoc.y,
+                    Random.Range(LeftLower.transform.position.z, RightLower.transform.position.z)
+                    );
+                    newObj.transform.position = newObjLoc;
+                }
 
                 // Randomly generate object scale
                 if (minScale < 0) minScale = 0;
@@ -141,6 +155,7 @@ public class ObjectGenerator : MonoBehaviour
                     deactivateObj.player = player;
                     deactivateObj.deActivateDis = deActivateDistance;
                 }
+                prevGeneratedObj = newObj;
                 
             }
         }
