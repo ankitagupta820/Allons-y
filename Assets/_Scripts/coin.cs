@@ -40,6 +40,7 @@ public class coin : MonoBehaviour
                     shatter();
                     // Destroy(gameObject);
                     Invoke("DestroyObject", 3f);
+                    Invoke("DisableObject", 3f);
                     break;
                 case "RedEnabler":
                     //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Red.ToString());
@@ -57,7 +58,7 @@ public class coin : MonoBehaviour
 
                     shatter();
                     // Destroy(gameObject);
-                    Invoke("DestroyObject", 3f);
+                    Invoke("DisableObject", 3f);
                     break;
                 case "BlueEnabler":
                     //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Blue.ToString());
@@ -75,7 +76,7 @@ public class coin : MonoBehaviour
 
                     shatter();
                     // Destroy(gameObject);
-                    Invoke("DestroyObject", 3f);
+                    Invoke("DisableObject", 3f);
                     break;
                 case "GreenEnabler":
                     //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Green.ToString());
@@ -93,7 +94,7 @@ public class coin : MonoBehaviour
 
                     shatter();
                     // Destroy(gameObject);
-                    Invoke("DestroyObject", 3f);
+                    Invoke("DisableObject", 3f);
                     break;
                 case "SkyEnabler":
                     //poojaPlayerScript.setCurrentEnabler(PoojaPlayerController.Enablers.Sky.ToString());
@@ -111,7 +112,7 @@ public class coin : MonoBehaviour
 
                     shatter();
                     // Destroy(gameObject);
-                    Invoke("DestroyObject", 3f);
+                    Invoke("DisableObject", 3f);
                     break;
                 case "SearchItemYellow":
                     if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Yellow.ToString() + "EnablerImageUI")
@@ -119,7 +120,7 @@ public class coin : MonoBehaviour
                         //poojaPlayerScript.setCurrentEnabler("");
                         //poojaPlayerScript.rend.sharedMaterial = poojaPlayerScript.material[0];
                         //ScoreManager.Instance.AddScore(value, "Search Item "+ gameObject.tag);
-                        ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Yellow.ToString());
+                        
 
 
                         //ScoreManager.Instance.AddScore(value, "Current Value " + poojaPlayerScript.currentEnabler + " To String value " + PoojaPlayerController.Enablers.Yellow.ToString());
@@ -127,7 +128,11 @@ public class coin : MonoBehaviour
 
                         displayCircle(playerGO);
                         // Destroy(gameObject);
-                        Invoke("DestroyObject", 3f);
+                        
+                        if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Yellow.ToString())) {
+                            ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Yellow.ToString());
+                            Invoke("DisableObject", 3f);
+                        }
                     }
                     else {
                         ScoreManager.Instance.AddScore(0, "Cannot be");
@@ -136,11 +141,13 @@ public class coin : MonoBehaviour
                 case "SearchItemRed":
                     if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Red.ToString() + "EnablerImageUI")
                     {
-
-                        ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Red.ToString());
-
-                        displayCircle(playerGO);
-                        Invoke("DestroyObject", 3f);
+                        
+                        if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Red.ToString()))
+                        {
+                            ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Red.ToString());
+                            displayCircle(playerGO);
+                            Invoke("DisableObject", 3f);
+                        }
                     }
                     else
                     {
@@ -149,12 +156,13 @@ public class coin : MonoBehaviour
                     break;
                 case "SearchItemBlue":
                     if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Blue.ToString() + "EnablerImageUI")
-                    {
-
-                        ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Blue.ToString());
-
-                        displayCircle(playerGO);
-                        Invoke("DestroyObject", 3f);
+                    {               
+                        if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Blue.ToString()))
+                        {
+                            ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Blue.ToString());
+                            displayCircle(playerGO);
+                            Invoke("DisableObject", 3f);
+                        }
                     }
                     else
                     {
@@ -164,11 +172,13 @@ public class coin : MonoBehaviour
                 case "SearchItemGreen":
                     if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Green.ToString() + "EnablerImageUI")
                     {
-
-                        ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Green.ToString());
-
-                        displayCircle(playerGO);
-                        Invoke("DestroyObject", 3f);
+                        
+                        if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Green.ToString()))
+                        {
+                            ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Green.ToString());
+                            displayCircle(playerGO);
+                            Invoke("DisableObject", 3f);
+                        }
                     }
                     else
                     {
@@ -177,12 +187,13 @@ public class coin : MonoBehaviour
                     break;
                 case "SearchItemSky":
                     if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Sky.ToString() + "EnablerImageUI")
-                    {
-
-                        ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Sky.ToString());
-
-                        displayCircle(playerGO);
-                        Invoke("DestroyObject", 3f);
+                    {            
+                        if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Sky.ToString()))
+                        {
+                            ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Sky.ToString());
+                            displayCircle(playerGO);
+                            Invoke("DisableObject", 3f);
+                        }
                     }
                     else
                     {
@@ -246,11 +257,44 @@ public class coin : MonoBehaviour
 
     }
 
+    private bool collectSearchObject(string tagName)
+    {
+        //Image collectedImage;
+        bool collected = false;
+        GameObject imageObject = GameObject.FindGameObjectWithTag(tagName);
+
+        if (imageObject != null)
+        {
+            //collectedImage = imageObject.GetComponent<Image>();
+
+            Transform t = imageObject.transform;
+            foreach (Transform tr in t)
+            {
+
+                //Text text = tr.transform.GetChild(0).gameObject.GetComponent<Text>();
+                Text text = tr.GetComponent<Text>();
+                int i = int.Parse(text.text);
+                if (i > 0) {
+                    collected = true;
+                    i--;
+                    Debug.Log(i);
+                    text.text = i+"";
+                }
+                
+            }
+        }
+        return collected;
+    }
+
     private void DestroyObject()
     {
         Destroy(gameObject);
     }
 
+    private void DisableObject()
+    {
+        gameObject.SetActive(false);
+    }
 
     // shatter effect
     private void shatter()

@@ -29,6 +29,11 @@ TagManager:
   - SearchItemBlue
   - SearchItemGreen
   - SearchItemSky
+  - SearchObjectiveYellow
+  - SearchObjectiveRed
+  - SearchObjectiveGreen
+  - SearchObjectiveSky
+  - SearchObjectiveBlue
   layers:
   - Default
   - TransparentFX

@@ -50,7 +50,7 @@ public class PoojaPlayerController : MonoBehaviour
 
                 //rend = tr.GetComponent<Renderer>();
                 rend = tr.transform.GetChild(0).gameObject.GetComponent<Renderer>();
-                rend.enabled = true;
+                rend.enabled = false;
                 rend.sharedMaterial = material[x];
             }
         }
@@ -117,18 +117,23 @@ public class PoojaPlayerController : MonoBehaviour
             switch (currentEnabler)
             {
                 case "RedEnablerImageUI":
+                    rend.enabled = true;
                     rend.sharedMaterial = material[1];
                     break;
                 case "YellowEnablerImageUI":
+                    rend.enabled = true;
                     rend.sharedMaterial = material[2];
                     break;
                 case "BlueEnablerImageUI":
+                    rend.enabled = true;
                     rend.sharedMaterial = material[3];
                     break;
                 case "GreenEnablerImageUI":
+                    rend.enabled = true;
                     rend.sharedMaterial = material[4];
                     break;
                 case "SkyEnablerImageUI":
+                    rend.enabled = true;
                     rend.sharedMaterial = material[5];
                     break;
                 default:
