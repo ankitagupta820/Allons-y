@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
         GamePaused = true;
         _deathCount += 1;
         ScoreManager.Instance.SendAnalytics();
-        LevelGenerator.Instance.SendEAnalytics();
+        /*LevelGenerator.Instance.SendEAnalytics();*/
     }
 
     public void PlayerWin() {
@@ -52,7 +52,7 @@ public class GameManager : MonoBehaviour
         GamePaused = true;
         _winCount += 1;
         ScoreManager.Instance.SendAnalytics();
-        LevelGenerator.Instance.SendEAnalytics();
+        /*LevelGenerator.Instance.SendEAnalytics();*/
     }
 
     public void Resume()

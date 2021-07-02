@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollectableDeAccelerate : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+   /* private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
@@ -13,5 +13,5 @@ public class CollectableDeAccelerate : MonoBehaviour
             pScript.setSpeedForDeAccelerate();
 
         }
-    }
+    }*/
 }

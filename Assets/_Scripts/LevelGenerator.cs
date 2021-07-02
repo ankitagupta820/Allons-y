@@ -55,7 +55,7 @@ public class LevelGenerator : MonoBehaviour
     //for analytics
     private static int _numOfLevelGenerated = 0;
 
-    #region SingletonPattern
+/*    #region SingletonPattern
     private static LevelGenerator _instance;
     public static LevelGenerator Instance { get { return _instance; } }
     private void Awake()
@@ -69,7 +69,7 @@ public class LevelGenerator : MonoBehaviour
             _instance = this;
         }
     }
-    #endregion
+    #endregion*/
     private void Reset()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -234,12 +234,12 @@ public class LevelGenerator : MonoBehaviour
         return null;
     }
 
-    public void SendEAnalytics()
+/*    public void SendEAnalytics()
     {
         // number of enabler generated
         Debug.Log(Analytics.CustomEvent("LevelStats", new Dictionary<string, object>
             {
                 {"Level_Generated_Before_Death", _numOfLevelGenerated}
             }));
-    }
+    }*/
 }
