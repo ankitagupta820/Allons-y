@@ -52,24 +52,24 @@ public class LevelGenerator : MonoBehaviour
     private IEnumerator coroutine;
     private List<List<GameObject>> pooledObjectsHash;
 
-    //for analytics
-    private static int _numOfLevelGenerated = 0;
+    ////for analytics
+    //private static int _numOfLevelGenerated = 0;
 
-    #region SingletonPattern
-    private static LevelGenerator _instance;
-    public static LevelGenerator Instance { get { return _instance; } }
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
-    }
-    #endregion
+    //#region SingletonPattern
+    //private static LevelGenerator _instance;
+    //public static LevelGenerator Instance { get { return _instance; } }
+    //private void Awake()
+    //{
+    //    if (_instance != null && _instance != this)
+    //    {
+    //        Destroy(this.gameObject);
+    //    }
+    //    else
+    //    {
+    //        _instance = this;
+    //    }
+    //}
+    //#endregion
     private void Reset()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -206,7 +206,7 @@ public class LevelGenerator : MonoBehaviour
                     //deactivateObj.setDeActivateDis(deActivateDistance);
                 }
                 prevGeneratedObj = newObj;
-                _numOfLevelGenerated += 1;
+                //_numOfLevelGenerated += 1;
             }
         }
     }
@@ -234,12 +234,12 @@ public class LevelGenerator : MonoBehaviour
         return null;
     }
 
-    public void SendEAnalytics()
-    {
-        // number of enabler generated
-        Debug.Log(Analytics.CustomEvent("LevelStats", new Dictionary<string, object>
-            {
-                {"Level_Generated_Before_Death", _numOfLevelGenerated}
-            }));
-    }
+    //public void SendEAnalytics()
+    //{
+    //    // number of enabler generated
+    //    Debug.Log(Analytics.CustomEvent("LevelStats", new Dictionary<string, object>
+    //        {
+    //            {"Level_Generated_Before_Death", _numOfLevelGenerated}
+    //        }));
+    //}
 }
