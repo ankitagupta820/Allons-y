@@ -70,6 +70,7 @@ public class LevelGenerator : MonoBehaviour
         }
     }
     #endregion*/
+
     private void Reset()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -206,7 +207,7 @@ public class LevelGenerator : MonoBehaviour
                     //deactivateObj.setDeActivateDis(deActivateDistance);
                 }
                 prevGeneratedObj = newObj;
-                _numOfLevelGenerated += 1;
+                //_numOfLevelGenerated += 1;
             }
         }
     }

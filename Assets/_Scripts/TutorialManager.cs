@@ -84,7 +84,7 @@ public class TutorialManager : MonoBehaviour
             if (!inst3shown)
             {
                 inst3shown = true;
-                ShowInst("Colors stacked are shown on the left corner of screen. Press Space to change color.", 12f);
+                ShowInst("Colors stacked are shown on the right corner of screen. Press Space to change color.", 12f);
                 
                 enablersOnlyG.SetActive(false);
                 easyLevelG.SetActive(true);
