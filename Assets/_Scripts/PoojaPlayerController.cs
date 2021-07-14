@@ -100,7 +100,7 @@ public class PoojaPlayerController : MonoBehaviour
         {
 
             currentEnablerIndex++;
-            if (currentEnablerIndex > collectedEnablers.Count)
+            if (currentEnablerIndex >= collectedEnablers.Count)
             {
                 currentEnablerIndex = 0;
             }
