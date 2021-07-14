@@ -192,11 +192,13 @@ public class LevelGenerator : MonoBehaviour
                 //    System.Convert.ToSingle(rotateZ));
                 //newObj.transform.Rotate(rotateAxis, Random.Range(minRotate, maxRotate), Space.World);
                 newObj.SetActive(true); //need to be set inactive once not in use
-/*                Debug.Log("Player Y " + playerLoc.y);
-                Debug.Log("Object Y " + temp);
-                Debug.Log("Range Value " + rangeVal);
-                Debug.Log("minVerticalDistance " + minVerticalDistance);
-                Debug.Log("maxVerticalDistance " + maxVerticalDistance);*/
+                newObj.GetComponentInChildren<MeshRenderer>().enabled = true;
+
+                /*                Debug.Log("Player Y " + playerLoc.y);
+                                Debug.Log("Object Y " + temp);
+                                Debug.Log("Range Value " + rangeVal);
+                                Debug.Log("minVerticalDistance " + minVerticalDistance);
+                                Debug.Log("maxVerticalDistance " + maxVerticalDistance);*/
 
                 // Set deactivate distance for the object, so object automatically deactivate after certain distance from player
                 if (newObj.GetComponent<DeactivateLevel>() == null)
