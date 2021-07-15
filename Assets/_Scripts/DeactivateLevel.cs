@@ -5,7 +5,7 @@ using UnityEngine;
 public class DeactivateLevel : MonoBehaviour
 {
     public GameObject player;
-    private float deActivateDis = 10f;
+    private float deActivateDis = 20f;
 
     public void setDeActivateDis(float dis) {
         deActivateDis = dis;
