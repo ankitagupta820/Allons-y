@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &2876469442872430108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3971612531698790062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &7931188908826704187
 GameObject:
   m_ObjectHideFlags: 0
@@ -41,10 +59,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 663086248691002955}
     m_Modifications:
+    - target: {fileID: 209272464332638825, guid: 55da1658cfb1a45ab86284d0c153df41,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a87b23377ce216b4da48a64ec70d43c3, type: 2}
     - target: {fileID: 209272464334902441, guid: 55da1658cfb1a45ab86284d0c153df41,
         type: 3}
       propertyPath: m_Name
       value: RG_Cloud-02-Bouncy
+      objectReference: {fileID: 0}
+    - target: {fileID: 209272464334902441, guid: 55da1658cfb1a45ab86284d0c153df41,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 209272464334932105, guid: 55da1658cfb1a45ab86284d0c153df41,
         type: 3}
@@ -108,6 +136,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 55da1658cfb1a45ab86284d0c153df41, type: 3}
+--- !u!1 &3971612531698790062 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 209272464334902441, guid: 55da1658cfb1a45ab86284d0c153df41,
+    type: 3}
+  m_PrefabInstance: {fileID: 3889276902398409223}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3971612531698627214 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 209272464334932105, guid: 55da1658cfb1a45ab86284d0c153df41,
@@ -121,10 +155,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 663086248691002955}
     m_Modifications:
+    - target: {fileID: 299010028177827923, guid: 6a06d36d9d13a4c6e96fb42ec571a6b2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a87b23377ce216b4da48a64ec70d43c3, type: 2}
     - target: {fileID: 299010028180027027, guid: 6a06d36d9d13a4c6e96fb42ec571a6b2,
         type: 3}
       propertyPath: m_Name
       value: RG_Cloud-04-Bouncy
+      objectReference: {fileID: 0}
+    - target: {fileID: 299010028180027027, guid: 6a06d36d9d13a4c6e96fb42ec571a6b2,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 299010028180122291, guid: 6a06d36d9d13a4c6e96fb42ec571a6b2,
         type: 3}
@@ -201,10 +245,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 663086248691002955}
     m_Modifications:
+    - target: {fileID: 9002690830628235057, guid: 8568b7db6430e4dd884dd72434d63861,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a87b23377ce216b4da48a64ec70d43c3, type: 2}
     - target: {fileID: 9002690830630238705, guid: 8568b7db6430e4dd884dd72434d63861,
         type: 3}
       propertyPath: m_Name
       value: RG_Cloud-01-Bouncy
+      objectReference: {fileID: 0}
+    - target: {fileID: 9002690830630238705, guid: 8568b7db6430e4dd884dd72434d63861,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9002690830630528465, guid: 8568b7db6430e4dd884dd72434d63861,
         type: 3}
@@ -281,10 +335,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 663086248691002955}
     m_Modifications:
+    - target: {fileID: 2967853152550487749, guid: 0ee172e15a10348a3bd337a3dbf14fe7,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a87b23377ce216b4da48a64ec70d43c3, type: 2}
     - target: {fileID: 2967853152552425477, guid: 0ee172e15a10348a3bd337a3dbf14fe7,
         type: 3}
       propertyPath: m_Name
       value: RG_Cloud-03-Bouncy
+      objectReference: {fileID: 0}
+    - target: {fileID: 2967853152552425477, guid: 0ee172e15a10348a3bd337a3dbf14fe7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2967853152552780837, guid: 0ee172e15a10348a3bd337a3dbf14fe7,
         type: 3}
