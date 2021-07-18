@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 222605676766894294}
   m_Layer: 0
-  m_Name: EasyLevel
+  m_Name: MediumLevel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -750,17 +750,17 @@ PrefabInstance:
     - target: {fileID: 1029675146331684608, guid: b1a179fde05a4403881085f630d2c6bf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1029675146331684608, guid: b1a179fde05a4403881085f630d2c6bf,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1029675146331684608, guid: b1a179fde05a4403881085f630d2c6bf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: -7
       objectReference: {fileID: 0}
     - target: {fileID: 1029675146331684608, guid: b1a179fde05a4403881085f630d2c6bf,
         type: 3}
@@ -995,7 +995,7 @@ PrefabInstance:
     - target: {fileID: 1029675146331684608, guid: 2c7434279634444bc87437cb34b62f50,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -80
+      value: -40
       objectReference: {fileID: 0}
     - target: {fileID: 1029675146331684608, guid: 2c7434279634444bc87437cb34b62f50,
         type: 3}
@@ -1165,7 +1165,7 @@ PrefabInstance:
     - target: {fileID: 1029675146331684608, guid: e1d1b8fe10e0040d1ae1c72b3df3c6e4,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -110
+      value: -85
       objectReference: {fileID: 0}
     - target: {fileID: 1029675146331684608, guid: e1d1b8fe10e0040d1ae1c72b3df3c6e4,
         type: 3}

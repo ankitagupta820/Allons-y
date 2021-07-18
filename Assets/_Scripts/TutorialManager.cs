@@ -12,7 +12,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject easyLevelG;
     public GameObject coinAlertForTut;
     public GameObject coinObject;
-    public GameObject objective;
+    //public GameObject objective;
 
     private float nextActionTime = 0.0f;
     public float period = 0.1f;
@@ -28,7 +28,7 @@ public class TutorialManager : MonoBehaviour
         blankG.SetActive(true);
         enablersOnlyG.SetActive(false);
         easyLevelG.SetActive(false);
-        objective.SetActive(false);
+        //objective.SetActive(false);
         instructionIndex = 0;
         inst1shown = false;
         inst2shown = false;
@@ -68,7 +68,7 @@ public class TutorialManager : MonoBehaviour
 
             //Keep checking to see if enabler is collected
             coin coinScript = coinObject.GetComponent<coin>();
-            Debug.Log("Checking");
+            //Debug.Log("Checking");
             //if (Time.time > nextActionTime)
             //{
             //    Debug.Log("Checking");
@@ -102,7 +102,7 @@ public class TutorialManager : MonoBehaviour
         }
 
         if (instructionIndex == 6) {
-            objective.SetActive(true);
+            //objective.SetActive(true);
             gameObject.SetActive(false);
         }
 

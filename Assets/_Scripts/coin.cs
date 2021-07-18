@@ -201,10 +201,13 @@ public class coin : MonoBehaviour
                     }
                     break;
                 case "SearchItemBlue":
+                    Debug.Log("SearchItemBlue");
+                    Debug.Log("Current Enabler "+ poojaPlayerScript.getCurrentEnabler());
+                    Debug.Log("Blue Enabler String "+ PoojaPlayerController.Enablers.Blue.ToString() + "EnablerImageUI");
                     if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Blue.ToString() + "EnablerImageUI")
                     {               
-                        if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Blue.ToString()))
-                        {
+                        //if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Blue.ToString()))
+                        //{
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Blue.ToString());
                             enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
@@ -212,7 +215,7 @@ public class coin : MonoBehaviour
                             {
                                 GameManager.Instance.PlayerWin();
                             }
-                        }
+                        //}
                     }
                     else
                     {
@@ -223,8 +226,8 @@ public class coin : MonoBehaviour
                     if (poojaPlayerScript.getCurrentEnabler() == PoojaPlayerController.Enablers.Green.ToString() + "EnablerImageUI")
                     {
                         
-                        if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Green.ToString()))
-                        {
+                        //if (collectSearchObject("SearchObjective" + PoojaPlayerController.Enablers.Green.ToString()))
+                        //{
                             ScoreManager.Instance.AddScore(value, "Search Item " + PoojaPlayerController.Enablers.Green.ToString());
                             enableSpecialEffect(playerGO);
                             Invoke("DisableObject", 3f);
@@ -232,7 +235,7 @@ public class coin : MonoBehaviour
                             {
                                 GameManager.Instance.PlayerWin();
                             }
-                        }
+                        //}
                     }
                     else
                     {
@@ -420,6 +423,7 @@ public class coin : MonoBehaviour
 
     private void makeInvisible()
     {
+        //gameObject.SetActive(false);
         gameObject.GetComponentInChildren<MeshRenderer>().enabled = false;
     }
 

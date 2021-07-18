@@ -57,9 +57,9 @@ public class LevelGenerator : MonoBehaviour
         {
             GameObject objectToPool = molecules[objIndex];
             int objectToPoolSize = moleculeLengths[objIndex];
-            Debug.Log("******************************************************");
-            Debug.Log(objIndex + " is " + objectToPool.tag);
-            Debug.Log("******************************************************");
+            //Debug.Log("******************************************************");
+            //Debug.Log(objIndex + " is " + objectToPool.tag);
+            //Debug.Log("******************************************************");
             for (int i = 0; i < amountToPool; i++)
             {
                 atomicObject = Instantiate(objectToPool);
@@ -158,7 +158,7 @@ public class LevelGenerator : MonoBehaviour
         for (int i = 0; i < amountToPool; i++)
         {
             List<Tuple<GameObject,int>> pooledObjects = pooledObjectsHash[objType];
-            Debug.Log(pooledObjects.Count);
+            //Debug.Log(pooledObjects.Count);
             Tuple<GameObject, int> tupleObject = pooledObjects[i];
             if (tupleObject == null && tupleObject.Item1 != null)
             {

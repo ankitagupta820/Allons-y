@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1029675146331684608}
   - component: {fileID: 2454590227153916254}
   - component: {fileID: -3766953296682037772}
-  - component: {fileID: -5753266618122750460}
   - component: {fileID: 1223582848218845826}
   - component: {fileID: 6652516402655620236}
   - component: {fileID: 6744935167257422482}
+  - component: {fileID: 6728829584262060345}
   m_Layer: 0
   m_Name: Enabler5
   m_TagString: SkyEnabler
@@ -62,20 +62,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-5753266618122750460
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029675146331684622}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcba9fedd89f9436aa60ef4c46949873, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  turnspeed: 90
-  value: 30
 --- !u!199 &1223582848218845826
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -5004,6 +4990,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6728829584262060345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1029675146331684622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb21de1a7341d410bb1800b941dbd776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  turnspeed: 90
+  tutorialManager: {fileID: 141170187538629318, guid: 8b954ff4bb1a44413a642c7ef2144afd,
+    type: 3}
 --- !u!1 &7866602639603350146
 GameObject:
   m_ObjectHideFlags: 0
