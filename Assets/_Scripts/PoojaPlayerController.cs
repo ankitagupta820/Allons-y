@@ -24,6 +24,9 @@ public class PoojaPlayerController : MonoBehaviour
     public Material[] material;
     public int x;
     public Renderer rend;
+    public MeshFilter boundsMeshFilter;
+    private Mesh boundsMesh;
+    private Vector3[] boundsVertices;
 
     public string currentEnabler = "Pooja";
     public enum Enablers { Red,  Yellow, Blue, Green, Sky};
@@ -49,19 +52,25 @@ public class PoojaPlayerController : MonoBehaviour
         rend = tr.transform.GetChild(0).gameObject.GetComponent<Renderer>();
         rend.enabled = false;
         rend.sharedMaterial = material[x];
- /*       foreach (Transform tr in t)
-        {
-            if (tr.tag == "Balloon")
-            {
+        /*       foreach (Transform tr in t)
+               {
+                   if (tr.tag == "Balloon")
+                   {
 
-                
-            }
-        }*/
+
+                   }
+               }*/
+        boundsMesh = boundsMeshFilter.mesh;
+        boundsVertices = boundsMesh.vertices;
     }
 
     void Update()
     {
       
+        if (!PlayerOnScreen())
+        {
+            characterBody.AddForce(-characterBody.velocity);
+        }
         if (_AccSpeed != 0.0 && _moveSpeed <= _MaxVelocity && _moveSpeed >= _MinVelocity)
             _moveSpeed = _moveSpeed + _AccSpeed * Time.deltaTime;
         else
@@ -87,16 +96,16 @@ public class PoojaPlayerController : MonoBehaviour
         }
         //////////////////////////////////////////////////////////////////////////////////////
       
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) && transform.position.x < 13)
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
             characterBody.AddForce(new Vector3(_moveSpeed * Time.deltaTime, 0, 0));
 
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) && transform.position.x > -3)
+        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
             characterBody.AddForce(new Vector3(-_moveSpeed * Time.deltaTime, 0, 0));
 
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) && transform.position.z < 2)
+        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
             characterBody.AddForce(new Vector3(0, 0 ,_moveSpeed * Time.deltaTime));
 
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) && transform.position.z > -10)
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             characterBody.AddForce(new Vector3(0, 0 ,-_moveSpeed * Time.deltaTime));
 
         if (Input.GetKeyDown(KeyCode.Space))
@@ -171,8 +180,19 @@ public class PoojaPlayerController : MonoBehaviour
 
     private bool PlayerOnScreen()
     {
-        Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
-        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
-        return onScreen;
+        boundsVertices = boundsMesh.vertices;
+        foreach (var vertex in boundsVertices)
+        {
+            Vector3 screenPoint = Camera.main.WorldToViewportPoint(vertex);
+            bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+            if (!onScreen)
+            {
+                Debug.Log("disappears!");
+                return false;
+            }
+            
+        }
+        return true;
+        
     }
 }
