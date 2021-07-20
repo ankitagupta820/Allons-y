@@ -10,19 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b3d386ba5cd94485973aee1479b272e, type: 3}
-  m_Name: NewRenderObjects
+  m_Name: Halftone Renderer
   m_EditorClassIdentifier: 
-  m_Active: 0
+  m_Active: 1
   settings:
-    passTag: NewRenderObjects
-    Event: 450
+    passTag: Halftone Renderer
+    Event: 1000
     filterSettings:
       RenderQueueType: 0
       LayerMask:
         serializedVersion: 2
-        m_Bits: 512
+        m_Bits: 1024
       PassNames: []
-    overrideMaterial: {fileID: 2100000, guid: 6b787e7255a61434387e4bf00d518c0e, type: 2}
+    overrideMaterial: {fileID: 2100000, guid: 275fbf213d4d78941b1d3f3d10dca538, type: 2}
     overrideMaterialPassIndex: 0
     overrideDepthState: 0
     depthCompareFunction: 4

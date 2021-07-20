@@ -43,17 +43,20 @@ public class PoojaPlayerController : MonoBehaviour
         // Material changes based on enabler collections
         x = 0;
         Transform t = this.transform;
-        foreach (Transform tr in t)
+        Transform tr = GameObject.FindGameObjectWithTag("Balloon").transform;
+
+        //rend = tr.GetComponent<Renderer>();
+        rend = tr.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+        rend.enabled = false;
+        rend.sharedMaterial = material[x];
+ /*       foreach (Transform tr in t)
         {
             if (tr.tag == "Balloon")
             {
 
-                //rend = tr.GetComponent<Renderer>();
-                rend = tr.transform.GetChild(0).gameObject.GetComponent<Renderer>();
-                rend.enabled = false;
-                rend.sharedMaterial = material[x];
+                
             }
-        }
+        }*/
     }
 
     void Update()
