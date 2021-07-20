@@ -24,9 +24,9 @@ public class PoojaPlayerController : MonoBehaviour
     public Material[] material;
     public int x;
     public Renderer rend;
-    public MeshFilter boundsMeshFilter;
-    private Mesh boundsMesh;
-    private Vector3[] boundsVertices;
+    /*public MeshFilter boundsMeshFilter;*/
+   /* private Mesh boundsMesh;
+    private Vector3[] boundsVertices;*/
 
     public string currentEnabler = "Pooja";
     public enum Enablers { Red,  Yellow, Blue, Green, Sky};
@@ -60,17 +60,17 @@ public class PoojaPlayerController : MonoBehaviour
 
                    }
                }*/
-        boundsMesh = boundsMeshFilter.mesh;
-        boundsVertices = boundsMesh.vertices;
+        /*boundsMesh = boundsMeshFilter.mesh;
+        boundsVertices = boundsMesh.vertices;*/
     }
 
     void Update()
     {
       
-        if (!PlayerOnScreen())
+        /*if (!PlayerOnScreen())
         {
             characterBody.AddForce(-characterBody.velocity);
-        }
+        }*/
         if (_AccSpeed != 0.0 && _moveSpeed <= _MaxVelocity && _moveSpeed >= _MinVelocity)
             _moveSpeed = _moveSpeed + _AccSpeed * Time.deltaTime;
         else
@@ -178,7 +178,7 @@ public class PoojaPlayerController : MonoBehaviour
         }
     }
 
-    private bool PlayerOnScreen()
+/*    private bool PlayerOnScreen()
     {
         boundsVertices = boundsMesh.vertices;
         foreach (var vertex in boundsVertices)
@@ -194,5 +194,5 @@ public class PoojaPlayerController : MonoBehaviour
         }
         return true;
         
-    }
+    }*/
 }
