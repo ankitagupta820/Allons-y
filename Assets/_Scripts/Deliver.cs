@@ -7,11 +7,14 @@ public class Deliver : MonoBehaviour
 
     public List<GameObject> planetsList;
     public float verticalDistanceThreshold;
+    public TimeManager timeManager;
 
     public GameObject itemPrefab;
-
+    
 
     Queue<GameObject> planetsQueue;
+    // public LineRenderer roadPrefab;
+
 
 
     void Start()
@@ -30,9 +33,13 @@ public class Deliver : MonoBehaviour
         if (toDeliver())
         {
             GameObject item = Instantiate(itemPrefab) as GameObject;
-            item.transform.position = gameObject.transform.position;
 
+            item.transform.position = gameObject.transform.position;
             item.GetComponent<BeingDelivered>().targetPlanet = planetsQueue.Dequeue();
+
+            generateRoad();
+
+            // timeManager.DoSlowMotion();
         }
     }
 
@@ -46,6 +53,11 @@ public class Deliver : MonoBehaviour
         GameObject closestPlanet = planetsQueue.Peek();
         return gameObject.transform.position.y - closestPlanet.transform.position.y < verticalDistanceThreshold;
         
+    }
+
+    private void generateRoad()
+    {
+        // LineRenderer road = Instantiate(roadPrefab) as LineRenderer;
     }
 
     

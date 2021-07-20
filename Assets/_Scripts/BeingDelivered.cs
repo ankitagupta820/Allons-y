@@ -9,17 +9,24 @@ public class BeingDelivered : MonoBehaviour
     public float t;
     public float speed;
 
+    public TimeManager timeManager;
+
     Vector3 targetPosition;
 
     
     void Start()
     {
         targetPosition = targetPlanet.transform.position;
+
+        var roadShape = GetComponent<ParticleSystem>().shape;
+        Quaternion q = Quaternion.FromToRotation(Vector3.forward, targetPosition - gameObject.transform.position);
+        roadShape.rotation = q.eulerAngles;
     }
 
-
-    void FixedUpdate()
+    // void FixedUpdate()
+    void Update()  // Update() or fixedUpdate()
     {
+        
         Vector3 currentPosition = gameObject.transform.position;
         Vector3 lerpTargetPosition = Vector3.Lerp(currentPosition, targetPosition, t);
 
@@ -27,6 +34,8 @@ public class BeingDelivered : MonoBehaviour
                 currentPosition,
                 lerpTargetPosition,
                 speed);
+
+        // timeManager.DoSlowMotion();
 
         Invoke("DestroyItem", 3f);
         
