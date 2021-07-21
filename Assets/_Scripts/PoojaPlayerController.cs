@@ -15,9 +15,7 @@ public class PoojaPlayerController : MonoBehaviour
   
     [SerializeField] private float startTime; //To Keep track of time for which acceleration keeps
 
-    [SerializeField] public Queue<Image> collectedEnablers = new Queue<Image>();
-    [SerializeField] public int currentEnablerIndex = -1;
-
+    
     public float glideTolerance = .5f; // amount of time during which player can press glide
 
     private Rigidbody characterBody;
@@ -27,17 +25,8 @@ public class PoojaPlayerController : MonoBehaviour
     Plane[] planes;
     public Collider anchor;
     public Transform boundsCenter;
-    public string currentEnabler = "Pooja";
-    public enum Enablers { Red,  Yellow, Blue, Green, Sky};
+    private ScoreManager scoreManager;
 
-    public void setCurrentEnabler(string value) {
-        this.currentEnabler = value;
-    }
-
-    public string getCurrentEnabler()
-    {
-        return this.currentEnabler;
-    }
 
     void Start()
     {
@@ -48,18 +37,13 @@ public class PoojaPlayerController : MonoBehaviour
         Transform tr = GameObject.FindGameObjectWithTag("Balloon").transform;
 
         //rend = tr.GetComponent<Renderer>();
-        rend = tr.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+        //rend = tr.transform.GetChild(0).gameObject.GetComponent<Renderer>();
+        rend = tr.GetChild(0).gameObject.GetComponent<Renderer>();
         rend.enabled = false;
         rend.sharedMaterial = material[x];
-        /*       foreach (Transform tr in t)
-               {
-                   if (tr.tag == "Balloon")
-                   {
-
-
-                   }
-               }*/
         planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+        scoreManager = ScoreManager.Instance;
+        
     }
 
     void Update()
@@ -108,50 +92,74 @@ public class PoojaPlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             characterBody.AddForce(new Vector3(0, 0 ,-_moveSpeed * Time.deltaTime));
+
+
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            //Debug.Log("Enter Pressed");
+            if (ScoreManager.getCurrentPlanetTag() != null && ScoreManager.getCurrentCollectibleTag() != null) {
+                scoreManager.deliver(ScoreManager.getCollectibleBalloonSpriteTagList()[ScoreManager.getCurrentCollectibleinBalloonIndex()]);
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            int currentCollectibleinBalloonIndex = ScoreManager.getCurrentCollectibleinBalloonIndex();
+            if (currentCollectibleinBalloonIndex != -1)
+            {
+                ScoreManager.getCBllnSprtTgs2cBllnSprtsMap()[ScoreManager.getCollectibleBalloonSpriteTagList()[currentCollectibleinBalloonIndex]].SetActive(false);
+            }
+            currentCollectibleinBalloonIndex++;
+            if (currentCollectibleinBalloonIndex >= ScoreManager.getCollectibleBalloonSpriteTagList().Count)
+            {
+                currentCollectibleinBalloonIndex = 0;
+            }
 
-            currentEnablerIndex++;
-            if (currentEnablerIndex >= collectedEnablers.Count)
-            {
-                currentEnablerIndex = 0;
-            }
-            int count = -1;
-            foreach (Image value in collectedEnablers)
-            {
-                count++;
-                if (count == currentEnablerIndex)
-                {
-                    currentEnabler = value.tag;
-                    break;
-                }
-            }
-            switch (currentEnabler)
-            {
-                case "RedEnablerImageUI":
-                    rend.enabled = true;
-                    rend.sharedMaterial = material[1];
-                    break;
-                case "YellowEnablerImageUI":
-                    rend.enabled = true;
-                    rend.sharedMaterial = material[2];
-                    break;
-                case "BlueEnablerImageUI":
-                    rend.enabled = true;
-                    rend.sharedMaterial = material[3];
-                    break;
-                case "GreenEnablerImageUI":
-                    rend.enabled = true;
-                    rend.sharedMaterial = material[4];
-                    break;
-                case "SkyEnablerImageUI":
-                    rend.enabled = true;
-                    rend.sharedMaterial = material[5];
-                    break;
-                default:
-                    break;
+            ScoreManager.setCurrentCollectibleinBalloonIndex(currentCollectibleinBalloonIndex);
+            ScoreManager.getCBllnSprtTgs2cBllnSprtsMap()[ScoreManager.getCollectibleBalloonSpriteTagList()[currentCollectibleinBalloonIndex]].SetActive(true);
+            //rend.enabled = true;
+            //rend.sharedMaterial = material[1];
 
-            }
+            //currentEnablerIndex++;
+            //if (currentEnablerIndex >= collectedEnablers.Count)
+            //{
+            //    currentEnablerIndex = 0;
+            //}
+            //int count = -1;
+            //foreach (Image value in collectedEnablers)
+            //{
+            //    count++;
+            //    if (count == currentEnablerIndex)
+            //    {
+            //        currentEnabler = value.tag;
+            //        break;
+            //    }
+            //}
+            //switch (currentEnabler)
+            //{
+            //    case "RedEnablerImageUI":
+            //        rend.enabled = true;
+            //        rend.sharedMaterial = material[1];
+            //        break;
+            //    case "YellowEnablerImageUI":
+            //        rend.enabled = true;
+            //        rend.sharedMaterial = material[2];
+            //        break;
+            //    case "BlueEnablerImageUI":
+            //        rend.enabled = true;
+            //        rend.sharedMaterial = material[3];
+            //        break;
+            //    case "GreenEnablerImageUI":
+            //        rend.enabled = true;
+            //        rend.sharedMaterial = material[4];
+            //        break;
+            //    case "SkyEnablerImageUI":
+            //        rend.enabled = true;
+            //        rend.sharedMaterial = material[5];
+            //        break;
+            //    default:
+            //        break;
+
+            //}
 
         }
 
@@ -191,10 +199,6 @@ public class PoojaPlayerController : MonoBehaviour
         return true;*/
         planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
         return GeometryUtility.TestPlanesAABB(planes, anchor.bounds);
-
-
-
-
 
     }
 }

@@ -9,9 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9183027082943250244}
+  - component: {fileID: 2174191672383767875}
   m_Layer: 0
   m_Name: Planet-Cat
-  m_TagString: Untagged
+  m_TagString: SearchObjectiveRed
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,6 +33,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2174191672383767875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2426926164298657015}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38967f7cfb85a4070905fdc67213cfa7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorialManager: {fileID: 141170187538629318, guid: 8b954ff4bb1a44413a642c7ef2144afd,
+    type: 3}
 --- !u!95 &4233096802626384259
 Animator:
   serializedVersion: 3

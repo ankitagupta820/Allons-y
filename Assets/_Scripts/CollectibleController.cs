@@ -32,7 +32,6 @@ public class CollectibleController : MonoBehaviour
         GameObject playerGO = other.gameObject;
         if (playerGO.tag == "Player")
         {
-            Debug.Log(gameObject.tag);
             if (scoreManager.collect(gameObject.tag))
             {
                 scoreManager.displayMessage(gameObject.tag + " is collected!");

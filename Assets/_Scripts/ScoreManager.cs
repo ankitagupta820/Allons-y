@@ -17,6 +17,12 @@ public class ScoreManager : MonoBehaviour
     public GameObject Score;
     public GameObject Dis;
     public GameObject Speed;
+    public GameObject type1PlanetAlertGO;
+    public GameObject type2PlanetAlertGO;
+    public GameObject type3PlanetAlertGO;
+    public GameObject type1CollectibleBalloonSprite;
+    public GameObject type2CollectibleBalloonSprite;
+    public GameObject type3CollectibleBalloonSprite;
 
     public float _scoreF = 0f;
     public int _dis = 0;
@@ -32,16 +38,43 @@ public class ScoreManager : MonoBehaviour
     private string type4CollectibleTagName;
     private string type5CollectibleTagName;
 
+    private string type1PlanetTagName;
+    private string type2PlanetTagName;
+    private string type3PlanetTagName;
+
+    private string type1PlanetAlertTagName;
+    private string type2PlanetAlertTagName;
+    private string type3PlanetAlertTagName;
+
+    private string type1CollectibleBalloonSpriteTag;
+    private string type2CollectibleBalloonSpriteTag;
+    private string type3CollectibleBalloonSpriteTag;
+
+    private int alertVerticalDistanceThreshold;
+    private int deliveryVerticalDistanceThreshold;
+
     public GameObject alertDisplay;
     public GameObject capacityDisplay;
     private Dictionary<string, int> collectibleVolumeMap = new Dictionary<string, int>();
     private Dictionary<string, int> collectibleScoreMap = new Dictionary<string, int>();
     private Dictionary<string, string> collectibleUITagMap = new Dictionary<string, string>();
+    private static Dictionary<string, string> planetUITagMap = new Dictionary<string, string>();
+    private static Dictionary<string, string> planetTagCollectibleTagMap = new Dictionary<string, string>();
+    private static Dictionary<string, GameObject> planetAlertTagPlanetAlertGOMap = new Dictionary<string, GameObject>();
+    private static Dictionary<string, List<string>> planetTagAlertMessageListMap = new Dictionary<string, List<string>>();
+    private static Dictionary<string, List<string>> planetTagDeliveryMessageListMap = new Dictionary<string, List<string>>();
+    private static Dictionary<string, List<string>> planetTagSuccessMessageListMap = new Dictionary<string, List<string>>();
+    private Dictionary<string, string> balloonSpriteTagCollectibleTagMap = new Dictionary<string, string>();
+    private static List<string> collectibleBalloonSpriteTagList = new List<string>();
+    private static Dictionary<string, GameObject> cBllnSprtTgs2cBllnSprtsMap = new Dictionary<string, GameObject>();
 
     [SerializeField] private static int bagTotalCapacity;
     [SerializeField] private static int bagRemainingCapacity;
     [SerializeField] private static Dictionary<string, int> collectibleCollectedMap = new Dictionary<string, int>();
-
+    [SerializeField] private static string currentCollectibleTag;
+    [SerializeField] private static string currentPlanetTag;
+    [SerializeField] private static bool isSuccess;
+    [SerializeField] private static int currentCollectibleinBalloonIndex = -1;
 
     // Singleton Pattern
     private void Awake()
@@ -63,6 +96,15 @@ public class ScoreManager : MonoBehaviour
         type3CollectibleTagName = "BlueEnabler";
         type4CollectibleTagName = "GreenEnabler";
         type5CollectibleTagName = "SkyEnabler";
+        type1PlanetTagName = "SearchObjectiveRed";
+        type2PlanetTagName = "SearchObjectiveYellow";
+        type3PlanetTagName = "SearchObjectiveBlue";
+        type1PlanetAlertTagName = "Type1PlanetDisplay";
+        type2PlanetAlertTagName = "Type2PlanetDisplay";
+        type3PlanetAlertTagName = "Type3PlanetDisplay";
+        type1CollectibleBalloonSpriteTag = "RedEnablerImageUI";
+        type2CollectibleBalloonSpriteTag = "YellowEnablerImageUI";
+        type3CollectibleBalloonSpriteTag = "BlueEnablerImageUI";
         playerRB = player.GetComponent<Rigidbody>();
         initialPos = player.transform.position;
         countCollectibles = 0;
@@ -70,8 +112,23 @@ public class ScoreManager : MonoBehaviour
         defineCollectibleScoreMap();
         defineCollectibleCollectedMap();
         defineCollectibleUITagMap();
+        definePlanetUITagMap();
+        definePlanetTagCollectibleTagMap();
+        definePlanetAlertTagPlanetAlertGOMap();
+        definePlanetTagAlertMessageListMap();
+        definePlanetTagDeliveryMessageListMap();
+        definePlanetTagSuccessMessageListMap();
+        defineBalloonSpriteTagCollectibleTagMap();
+        defineCollectibleBalloonSpriteTagList();
+        defineCBllnSprtTgs2cBllnSprtsMap();
         bagTotalCapacity = int.Parse(capacityDisplay.GetComponent<Text>().text);
         bagRemainingCapacity = int.Parse(capacityDisplay.GetComponent<Text>().text);
+        currentCollectibleTag = null;
+        currentPlanetTag = null;
+        alertVerticalDistanceThreshold = 100;
+        deliveryVerticalDistanceThreshold = 50;
+        isSuccess = false;
+        currentCollectibleinBalloonIndex = -1;
     }
 
     void Update()
@@ -130,6 +187,60 @@ public class ScoreManager : MonoBehaviour
         collectibleUITagMap[type5CollectibleTagName] = "SkyEnablerImageUI";
     }
 
+    private void definePlanetUITagMap()
+    {
+        planetUITagMap[type1PlanetTagName] = type1PlanetAlertTagName;
+        planetUITagMap[type2PlanetTagName] = type2PlanetAlertTagName;
+        planetUITagMap[type3PlanetTagName] = type3PlanetAlertTagName;
+    }
+
+    private void definePlanetTagCollectibleTagMap()
+    {
+        planetTagCollectibleTagMap[type1PlanetTagName] = "RedEnabler";
+        planetTagCollectibleTagMap[type2PlanetTagName] = "YellowEnabler";
+        planetTagCollectibleTagMap[type3PlanetTagName] = "BlueEnabler";
+    }
+
+    private void definePlanetAlertTagPlanetAlertGOMap() {
+        planetAlertTagPlanetAlertGOMap[type1PlanetAlertTagName] = type1PlanetAlertGO;
+        planetAlertTagPlanetAlertGOMap[type2PlanetAlertTagName] = type2PlanetAlertGO;
+        planetAlertTagPlanetAlertGOMap[type3PlanetAlertTagName] = type3PlanetAlertGO;
+    }
+
+    private void definePlanetTagAlertMessageListMap() {
+        planetTagAlertMessageListMap[type1PlanetAlertTagName] = new List<string> { "Planet Type1 is Approaching!!!!", "Be ready to deliver type1!!"};
+        planetTagAlertMessageListMap[type2PlanetAlertTagName] = new List<string> { "Planet Type2 is Approaching!!!!", "Be ready to deliver type2!!" };
+        planetTagAlertMessageListMap[type3PlanetAlertTagName] = new List<string> { "Planet Type3 is Approaching!!!!", "Be ready to deliver type3!!" };
+    }
+
+    private void definePlanetTagDeliveryMessageListMap() {
+        planetTagDeliveryMessageListMap[type1PlanetAlertTagName] = new List<string> { "Deliver Now to Type1 Planet", "Press Enter to deliver" };
+        planetTagDeliveryMessageListMap[type2PlanetAlertTagName] = new List<string> { "Deliver Now to Type2 Planet", "Press Enter to deliver" };
+        planetTagDeliveryMessageListMap[type3PlanetAlertTagName] = new List<string> { "Deliver Now to Type3 Planet", "Press Enter to deliver" };
+    }
+
+    private void definePlanetTagSuccessMessageListMap() {
+        planetTagSuccessMessageListMap[type1PlanetAlertTagName] = new List<string> { "Delivery is a Success!!", "Thank you for the delivery!" };
+        planetTagSuccessMessageListMap[type2PlanetAlertTagName] = new List<string> { "Delivery is a Success!!", "Thank you for the delivery!" };
+        planetTagSuccessMessageListMap[type3PlanetAlertTagName] = new List<string> { "Delivery is a Success!!", "Thank you for the delivery!" };
+    }
+
+    private void defineBalloonSpriteTagCollectibleTagMap() {
+        balloonSpriteTagCollectibleTagMap[type1CollectibleBalloonSpriteTag] = type1CollectibleTagName;
+        balloonSpriteTagCollectibleTagMap[type2CollectibleBalloonSpriteTag] = type2CollectibleTagName;
+        balloonSpriteTagCollectibleTagMap[type3CollectibleBalloonSpriteTag] = type3CollectibleTagName;
+    }
+
+    private void defineCollectibleBalloonSpriteTagList() {
+        collectibleBalloonSpriteTagList = new List<string> { type1CollectibleBalloonSpriteTag, type2CollectibleBalloonSpriteTag, type3CollectibleBalloonSpriteTag };
+    }
+
+    private void defineCBllnSprtTgs2cBllnSprtsMap() {
+        cBllnSprtTgs2cBllnSprtsMap[type1CollectibleBalloonSpriteTag] = type1CollectibleBalloonSprite;
+        cBllnSprtTgs2cBllnSprtsMap[type2CollectibleBalloonSpriteTag] = type2CollectibleBalloonSprite;
+        cBllnSprtTgs2cBllnSprtsMap[type3CollectibleBalloonSpriteTag] = type3CollectibleBalloonSprite;
+    }
+
     private void CalcSpeed()
     {
         Speed.GetComponent<Text>().text = playerRB.velocity.magnitude.ToString("F0");
@@ -174,8 +285,6 @@ public class ScoreManager : MonoBehaviour
     public bool collect(string collectibleTagName)
     {
         bool collectedVar = false;
-        Debug.Log(collectibleTagName);
-        Debug.Log(collectibleVolumeMap[collectibleTagName]);
         int requiredCapacity = collectibleVolumeMap[collectibleTagName];
         if (hasCapacity(requiredCapacity))
         {
@@ -261,6 +370,71 @@ public class ScoreManager : MonoBehaviour
         return emptiedVar;
     }
 
+    public bool isWithinRangeForAlert(GameObject planetObject) {
+        bool isWithinRangeForAlertVar = false;
+        if (player.transform.position.y - planetObject.transform.position.y < alertVerticalDistanceThreshold && player.transform.position.y - planetObject.transform.position.y >= 0) {
+            isWithinRangeForAlertVar = true;
+        }
+        return isWithinRangeForAlertVar;
+    }
+
+    public bool isOutOfRangeForAlert(GameObject planetObject)
+    {
+        //Debug.Log("Outta Range Called "+ planetObject.tag);
+        //Debug.Log(planetObject.tag + "  Player " + player.transform.position.y + " Planet " + planetObject.transform.position.y);
+        bool isOutOfRangeForAlertVar = false;
+        if (player.transform.position.y - planetObject.transform.position.y < 0)
+        {
+            //Debug.Log("Outta Range True "+ planetObject.tag);
+            isOutOfRangeForAlertVar = true;
+        }
+        return isOutOfRangeForAlertVar;
+    }
+
+    public bool isWithinRangeForDelivery(GameObject planetObject)
+    {
+        bool isWithinRangeForDeliveryVar = false;
+        if (player.transform.position.y - planetObject.transform.position.y < deliveryVerticalDistanceThreshold && player.transform.position.y - planetObject.transform.position.y >= 0)
+        {
+            isWithinRangeForDeliveryVar = true;
+        }
+        return isWithinRangeForDeliveryVar;
+    }
+
+    public bool deliver(string balloonSpriteTag) {
+        bool isDelivered = false;
+        if (currentCollectibleTag != null && currentPlanetTag != null) {
+         
+            bool canDeliveryBasedOnBP = false;
+            //check if can deliver based on backpack
+            if (currentCollectibleTag == balloonSpriteTagCollectibleTagMap[balloonSpriteTag]) {
+                canDeliveryBasedOnBP = true;
+            }
+            if (canDeliveryBasedOnBP)
+            {
+                //Update Score
+                //Empty Bag
+                if (popOutAllCollectiblesForDelivery(currentCollectibleTag, 100))
+                {
+                    //Add Yuantao's Animation
+
+                    //Show Success Message
+                    isSuccess = true;
+                    //ScoreManager.startDisplayPlanetDeliverySuccessAlert(currentPlanetTag);
+                }
+                else {
+                    displayMessage("You have not collected enough items in your bag to deliver");
+                }
+            }
+            else {
+                displayMessage("Please hold the item at the top of your bag! Press space to bring bag items to top");
+            }
+        }
+
+
+        return isDelivered;
+    }
+
     public void displayMessage(string message) {
         StartCoroutine(displayAlertFor3Seconds(message));
     }
@@ -271,6 +445,41 @@ public class ScoreManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         alertDisplay.transform.GetChild(0).gameObject.GetComponent<Text>().text = "";
         alertDisplay.SetActive(false);
+    }
+
+    public static void startDisplayPlanetAlert(string planetTag)
+    {
+        //Debug.Log("Alert " + planetTag);
+        string planetAlertTag = planetUITagMap[planetTag];
+        startDisplayPlanetAlertCommon(planetAlertTag, planetTagAlertMessageListMap[planetAlertTag][0], planetTagAlertMessageListMap[planetAlertTag][1], true);
+    }
+
+    public static void startDisplayPlanetDeliveryAlert(string planetTag)
+    {
+        //Debug.Log("Delivery " + planetTag);
+        string planetAlertTag = planetUITagMap[planetTag];
+        startDisplayPlanetAlertCommon(planetAlertTag, planetTagDeliveryMessageListMap[planetAlertTag][0], planetTagDeliveryMessageListMap[planetAlertTag][1], true);
+    }
+
+    public static void startDisplayPlanetDeliverySuccessAlert(string planetTag)
+    {
+        string planetAlertTag = planetUITagMap[planetTag];
+        Debug.Log("Delivery Success " + planetAlertTag + " "+ planetTagSuccessMessageListMap[planetAlertTag][0] + " " + planetTagSuccessMessageListMap[planetAlertTag][1]);
+        startDisplayPlanetAlertCommon(planetAlertTag, planetTagSuccessMessageListMap[planetAlertTag][0], planetTagSuccessMessageListMap[planetAlertTag][1], true);
+        //startDisplayPlanetAlertCommon(planetAlertTag, planetTagAlertMessageListMap[planetAlertTag][0], planetTagAlertMessageListMap[planetAlertTag][1], true);
+    }
+
+    public static void stopDisplayPlanetAlert(string planetTag)
+    {
+        string planetAlertTag = planetUITagMap[planetTag];
+        startDisplayPlanetAlertCommon(planetAlertTag, "", "", false);
+    }
+
+    private static void startDisplayPlanetAlertCommon(string planetAlertTag, string message1, string message2, bool isActive) { 
+            GameObject planetAlertDisplay = planetAlertTagPlanetAlertGOMap[planetAlertTag];
+            planetAlertDisplay.SetActive(isActive);
+            planetAlertDisplay.transform.GetChild(0).gameObject.GetComponent<Text>().text = message1;
+            planetAlertDisplay.transform.GetChild(2).gameObject.GetComponent<Text>().text = message2;
     }
 
     public void SendAnalytics()
@@ -314,6 +523,10 @@ public class ScoreManager : MonoBehaviour
         bagRemainingCapacity = newBagRemainingCapacity;
     }
 
+    public Dictionary<string, string> getPlanetTagCollectibleTagMap() {
+        return planetTagCollectibleTagMap;
+    }
+
     public static int getCollectibleCollectedNumber(string collectibleTag) {
         return collectibleCollectedMap[collectibleTag];
     }
@@ -323,4 +536,44 @@ public class ScoreManager : MonoBehaviour
         collectibleCollectedMap[collectibleTag] = value;
     }
 
+    public static string getCurrentCollectibleTag() {
+        return currentCollectibleTag;
+    }
+
+    public static void setCurrentCollectibleTag(string currentCollectibleTagVar)
+    {
+        currentCollectibleTag = currentCollectibleTagVar;
+    }
+
+    public static string getCurrentPlanetTag() {
+        return currentPlanetTag;
+    }
+
+    public static void setCurrentPlanetTag(string currentPlanetTagVar) {
+        currentPlanetTag = currentPlanetTagVar;
+    }
+
+    public static bool getIsSuccess() {
+        return isSuccess;
+    }
+
+    public static void setIsSuccess(bool isSuccessVar) {
+        isSuccess = isSuccessVar;
+    }
+
+    public static int getCurrentCollectibleinBalloonIndex() {
+        return currentCollectibleinBalloonIndex;
+    }
+
+    public static void setCurrentCollectibleinBalloonIndex(int currentCollectibleinBalloonIndexVar) {
+        currentCollectibleinBalloonIndex = currentCollectibleinBalloonIndexVar;
+    }
+
+    public static List<string> getCollectibleBalloonSpriteTagList() {
+        return collectibleBalloonSpriteTagList;
+    }
+
+    public static Dictionary<string, GameObject> getCBllnSprtTgs2cBllnSprtsMap() {
+        return cBllnSprtTgs2cBllnSprtsMap;
+    }
 }

@@ -112,7 +112,6 @@ public class LevelGenerator : MonoBehaviour
                 if (prevGeneratedObj != null)
                 {
                     float temp = (prevGeneratedObj.transform.position.y* -1) + prevGeneratedObjSize + (newObj.transform.position.y * -1) + 30;
-
                     // Randomly generate object position
                     Vector3 newObjLoc = new Vector3(newObj.transform.position.x,
                     (temp * -1),
@@ -125,7 +124,6 @@ public class LevelGenerator : MonoBehaviour
                 else
                 {
                     float temp = (playerLoc.y*-1) + (newObj.transform.position.y * -1) + 30;
-                
                     // Randomly generate object position
                     Vector3 newObjLoc = new Vector3(newObj.transform.position.x,
                     (temp*-1),
@@ -137,7 +135,7 @@ public class LevelGenerator : MonoBehaviour
                 }
 
                 newObj.SetActive(true); //need to be set inactive once not in use
-                newObj.GetComponentInChildren<MeshRenderer>().enabled = true; 
+                //newObj.GetComponentInChildren<MeshRenderer>().enabled = true; 
 
                 // Set deactivate distance for the object, so object automatically deactivate after certain distance from player
                 if (newObj.GetComponent<DeactivateLevel>() == null)

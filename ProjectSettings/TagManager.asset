@@ -39,6 +39,18 @@ TagManager:
   - BlankG
   - EnablersOnlyG
   - TutorialManager
+  - Type1PlanetDisplay
+  - Type2PlanetDisplay
+  - Type3PlanetDisplay
+  - Type4PlanetDisplay
+  - Type5PlanetDisplay
+  - Type1PlanetDeliveryDisplay
+  - Type2PlanetDeliveryDisplay
+  - Type3PlanetDeliveryDisplay
+  - Type4PlanetDeliveryDisplay
+  - Type5PlanetDeliveryDisplay
+  - PlanetDisplayText1
+  - PlanetDisplayText2
   layers:
   - Default
   - TransparentFX
