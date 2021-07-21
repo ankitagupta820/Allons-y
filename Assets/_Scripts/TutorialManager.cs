@@ -68,6 +68,7 @@ public class TutorialManager : MonoBehaviour
 
             //Keep checking to see if enabler is collected
             coin coinScript = coinObject.GetComponent<coin>();
+
             //Debug.Log("Checking");
             //if (Time.time > nextActionTime)
             //{

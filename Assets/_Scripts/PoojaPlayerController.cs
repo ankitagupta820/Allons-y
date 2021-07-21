@@ -24,10 +24,9 @@ public class PoojaPlayerController : MonoBehaviour
     public Material[] material;
     public int x;
     public Renderer rend;
-    /*public MeshFilter boundsMeshFilter;*/
-   /* private Mesh boundsMesh;
-    private Vector3[] boundsVertices;*/
-
+    Plane[] planes;
+    public Collider anchor;
+    public Transform boundsCenter;
     public string currentEnabler = "Pooja";
     public enum Enablers { Red,  Yellow, Blue, Green, Sky};
 
@@ -60,17 +59,19 @@ public class PoojaPlayerController : MonoBehaviour
 
                    }
                }*/
-        /*boundsMesh = boundsMeshFilter.mesh;
-        boundsVertices = boundsMesh.vertices;*/
+        planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
     }
 
     void Update()
     {
-      
-        /*if (!PlayerOnScreen())
+        if (!PlayerOnScreen())
         {
-            characterBody.AddForce(-characterBody.velocity);
-        }*/
+            Debug.Log("disappears!");
+            characterBody.AddForce(new Vector3(boundsCenter.position.x - transform.position.x,
+                0,
+                boundsCenter.position.z - transform.position.z)*Time.deltaTime, ForceMode.Impulse);
+
+        }
         if (_AccSpeed != 0.0 && _moveSpeed <= _MaxVelocity && _moveSpeed >= _MinVelocity)
             _moveSpeed = _moveSpeed + _AccSpeed * Time.deltaTime;
         else
@@ -107,7 +108,6 @@ public class PoojaPlayerController : MonoBehaviour
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
             characterBody.AddForce(new Vector3(0, 0 ,-_moveSpeed * Time.deltaTime));
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
 
@@ -178,21 +178,23 @@ public class PoojaPlayerController : MonoBehaviour
         }
     }
 
-/*    private bool PlayerOnScreen()
+    private bool PlayerOnScreen()
     {
-        boundsVertices = boundsMesh.vertices;
-        foreach (var vertex in boundsVertices)
+
+        /*Vector3 screenPoint = Camera.main.WorldToViewportPoint(transform.position);
+        bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
+        if (!onScreen)
         {
-            Vector3 screenPoint = Camera.main.WorldToViewportPoint(vertex);
-            bool onScreen = screenPoint.z > 0 && screenPoint.x > 0 && screenPoint.x < 1 && screenPoint.y > 0 && screenPoint.y < 1;
-            if (!onScreen)
-            {
-                Debug.Log("disappears!");
-                return false;
-            }
-            
+            Debug.Log("disappears!");
+            return false;
         }
-        return true;
-        
-    }*/
+        return true;*/
+        planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
+        return GeometryUtility.TestPlanesAABB(planes, anchor.bounds);
+
+
+
+
+
+    }
 }
