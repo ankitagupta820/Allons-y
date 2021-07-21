@@ -119,9 +119,9 @@ MonoBehaviour:
   flipY: 0
   constantWidth: 1
   subMeshMask: -1
-  overlay: 0
-  overlayColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-  overlayAnimationSpeed: 1
+  overlay: 1
+  overlayColor: {r: 0, g: 0.48795986, b: 1, a: 1}
+  overlayAnimationSpeed: 0
   overlayMinIntensity: 0.5
   overlayBlending: 1
   outline: 1
