@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7480645686914966392}
   - component: {fileID: 7480645686913835448}
   - component: {fileID: 7480645686915873238}
+  - component: {fileID: 2723655293545750324}
   m_Layer: 0
   m_Name: Asteroid_Green
   m_TagString: Untagged
@@ -95,3 +96,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collectableLabel: GreenEnabler
+--- !u!65 &2723655293545750324
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7480645686915776376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.9500002, y: 2.8309999, z: 1.4130001}
+  m_Center: {x: 0.017387154, y: -0.024134636, z: -0.00037223133}
