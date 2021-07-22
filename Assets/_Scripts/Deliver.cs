@@ -32,6 +32,8 @@ public class Deliver : MonoBehaviour
 
         if (toDeliver())
         {
+            displayFlare();
+
             GameObject item = Instantiate(itemPrefab) as GameObject;
 
             item.transform.position = gameObject.transform.position;
@@ -39,7 +41,7 @@ public class Deliver : MonoBehaviour
 
             generateRoad();
 
-            // timeManager.DoSlowMotion();
+            timeManager.DoSlowMotion();
         }
     }
 
@@ -53,6 +55,15 @@ public class Deliver : MonoBehaviour
         GameObject closestPlanet = planetsQueue.Peek();
         return gameObject.transform.position.y - closestPlanet.transform.position.y < verticalDistanceThreshold;
         
+    }
+
+    private void displayFlare()
+    {
+        ParticleSystem[] particles = GetComponentsInChildren<ParticleSystem>();
+        if (particles.Length > 1)
+        {
+            particles[2].Play();
+        }
     }
 
     private void generateRoad()

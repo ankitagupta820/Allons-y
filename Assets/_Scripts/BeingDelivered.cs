@@ -35,9 +35,8 @@ public class BeingDelivered : MonoBehaviour
                 lerpTargetPosition,
                 speed);
 
-        // timeManager.DoSlowMotion();
 
-        Invoke("DestroyItem", 3f);
+        Invoke("DestroyItem", 5f);
         
     }
 

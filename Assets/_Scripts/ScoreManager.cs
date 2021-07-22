@@ -9,6 +9,7 @@ public class ScoreManager : MonoBehaviour
     private static ScoreManager _instance;
 
     public static ScoreManager Instance { get { return _instance; } }
+    public TimeManager timeManager;  // TODO: change to singleton above
 
     public GameObject player;
     private Vector3 initialPos;
@@ -23,6 +24,9 @@ public class ScoreManager : MonoBehaviour
     public GameObject type1CollectibleBalloonSprite;
     public GameObject type2CollectibleBalloonSprite;
     public GameObject type3CollectibleBalloonSprite;
+    public GameObject type1Enabler;
+    public GameObject type2Enabler;
+    public GameObject type3Enabler;
 
     public float _scoreF = 0f;
     public int _dis = 0;
@@ -442,16 +446,18 @@ public class ScoreManager : MonoBehaviour
                 if (popOutAllCollectiblesForDelivery(currentCollectibleTag, 20))
                 {
                     //Add Yuantao's Animation
-                    //TODO Instatiate the object with tag currentCollectibleTag
+                    //Instantiate a corresponding item (letter OR case OR crate)
+                    GameObject itemPrefab = getItemPrefab(currentCollectibleTag);
+                    GameObject item = Instantiate(itemPrefab) as GameObject;
 
-                    GameObject item = null;
-                    //item = Instantiate(itemPrefab) as GameObject;
-
+                    //Send the item to the target planet
                     item.transform.position = player.transform.position;
                     GameObject currentPlanet = GameObject.FindGameObjectWithTag(currentPlanetTag);
                     item.GetComponent<BeingDelivered>().targetPlanet = currentPlanet;
 
-                    
+                    // bullet time
+                    timeManager.DoSlowMotion();
+
                     //Show Success Message
                     isSuccess = true;
                     //ScoreManager.startDisplayPlanetDeliverySuccessAlert(currentPlanetTag);
@@ -472,6 +478,25 @@ public class ScoreManager : MonoBehaviour
     public void displayMessage(string message) {
         StartCoroutine(displayAlertFor3Seconds(message));
     }
+
+    private GameObject getItemPrefab(string collectibleTagName)
+    {
+        
+        if (collectibleTagName.Equals(type1CollectibleTagName))
+        {
+            return type1Enabler;
+        }
+        else if (collectibleTagName.Equals(type2CollectibleTagName))
+        {
+            return type2Enabler;
+        }
+        else if (collectibleTagName.Equals(type3CollectibleTagName))
+        {
+            return type3Enabler;
+        }
+        return null;
+    }
+
 
     private IEnumerator displayAlertFor3Seconds(string message) {
         alertDisplay.SetActive(true);
@@ -498,7 +523,7 @@ public class ScoreManager : MonoBehaviour
     public static void startDisplayPlanetDeliverySuccessAlert(string planetTag)
     {
         string planetAlertTag = planetUITagMap[planetTag];
-        Debug.Log("Delivery Success " + planetAlertTag + " "+ planetTagSuccessMessageListMap[planetAlertTag][0] + " " + planetTagSuccessMessageListMap[planetAlertTag][1]);
+        // Debug.Log("Delivery Success " + planetAlertTag + " "+ planetTagSuccessMessageListMap[planetAlertTag][0] + " " + planetTagSuccessMessageListMap[planetAlertTag][1]);
         startDisplayPlanetAlertCommon(planetAlertTag, planetTagSuccessMessageListMap[planetAlertTag][0], planetTagSuccessMessageListMap[planetAlertTag][1], true);
         //startDisplayPlanetAlertCommon(planetAlertTag, planetTagAlertMessageListMap[planetAlertTag][0], planetTagAlertMessageListMap[planetAlertTag][1], true);
     }

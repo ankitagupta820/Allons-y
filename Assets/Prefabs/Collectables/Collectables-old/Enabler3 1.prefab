@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2283855469902672057}
   - component: {fileID: 1793893969326595863}
   m_Layer: 0
-  m_Name: Enabler3
+  m_Name: Enabler3 1
   m_TagString: BlueEnabler
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
