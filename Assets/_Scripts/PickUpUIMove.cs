@@ -18,6 +18,7 @@ public class PickUpUIMove : MonoBehaviour
 	private RectTransform objTrans;
 	private float distanceToTarget;
 
+	public string collectibleType;
 
 	void Start ()
 	{
@@ -28,7 +29,16 @@ public class PickUpUIMove : MonoBehaviour
 		currentPosition = objTrans.anchoredPosition;
 
 		//Get a reference to where we want it to go
-		targetPosition = new Vector2(TargetPositionLeft, TargetPositionTop);
+		GameObject collectibleItemIconInBag = GameObject.FindGameObjectWithTag(collectibleType);
+		if (collectibleItemIconInBag != null)
+        {
+			targetPosition = collectibleItemIconInBag.GetComponent<RectTransform>().position;
+		}
+		else
+        {
+			targetPosition = new Vector2(TargetPositionLeft, TargetPositionTop);
+		}
+		
 
 		//Run the UpdateTotal, which updates the UI Text for the number of this resource
 		// UpdateTotal ();

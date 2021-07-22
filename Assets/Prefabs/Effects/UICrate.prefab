@@ -92,3 +92,4 @@ MonoBehaviour:
   TargetPositionTop: 472
   Speed: 1
   closeEnough: 10
+  collectibleType: UICrate
