@@ -72,6 +72,7 @@ public class ScoreManager : MonoBehaviour
     private static List<string> collectibleBalloonSpriteTagList = new List<string>();
     private static Dictionary<string, GameObject> cBllnSprtTgs2cBllnSprtsMap = new Dictionary<string, GameObject>();
     private Dictionary<string, string> collectibleTagCollectibleName = new Dictionary<string, string>();
+    private Dictionary<string, string> planetTagPlanetName = new Dictionary<string, string>();
 
     [SerializeField] private static int bagTotalCapacity;
     [SerializeField] private static int bagRemainingCapacity;
@@ -127,6 +128,7 @@ public class ScoreManager : MonoBehaviour
         defineCollectibleBalloonSpriteTagList();
         defineCBllnSprtTgs2cBllnSprtsMap();
         defineCollectibleTagCollectibleName();
+        definePlanetTagPlanetName();
         bagTotalCapacity = int.Parse(capacityDisplay.GetComponent<Text>().text);
         bagRemainingCapacity = int.Parse(capacityDisplay.GetComponent<Text>().text);
         currentCollectibleTag = null;
@@ -214,15 +216,15 @@ public class ScoreManager : MonoBehaviour
     }
 
     private void definePlanetTagAlertMessageListMap() {
-        planetTagAlertMessageListMap[type1PlanetAlertTagName] = new List<string> { "Planet Type1 is Approaching!!!!", "Be ready to deliver type1!!"};
-        planetTagAlertMessageListMap[type2PlanetAlertTagName] = new List<string> { "Planet Type2 is Approaching!!!!", "Be ready to deliver type2!!" };
-        planetTagAlertMessageListMap[type3PlanetAlertTagName] = new List<string> { "Planet Type3 is Approaching!!!!", "Be ready to deliver type3!!" };
+        planetTagAlertMessageListMap[type1PlanetAlertTagName] = new List<string> { "Planet 'Letter' is Approaching!!!!", "Be ready to deliver 'Letter'!!"};
+        planetTagAlertMessageListMap[type2PlanetAlertTagName] = new List<string> { "Planet 'Case' is Approaching!!!!", "Be ready to deliver 'Case'!!" };
+        planetTagAlertMessageListMap[type3PlanetAlertTagName] = new List<string> { "Planet 'Crate' is Approaching!!!!", "Be ready to deliver 'Crate'!!" };
     }
 
     private void definePlanetTagDeliveryMessageListMap() {
-        planetTagDeliveryMessageListMap[type1PlanetAlertTagName] = new List<string> { "Deliver Now to Type1 Planet", "Press Enter to deliver" };
-        planetTagDeliveryMessageListMap[type2PlanetAlertTagName] = new List<string> { "Deliver Now to Type2 Planet", "Press Enter to deliver" };
-        planetTagDeliveryMessageListMap[type3PlanetAlertTagName] = new List<string> { "Deliver Now to Type3 Planet", "Press Enter to deliver" };
+        planetTagDeliveryMessageListMap[type1PlanetAlertTagName] = new List<string> { "Deliver Now to 'Letter' Planet", "Press Enter to deliver" };
+        planetTagDeliveryMessageListMap[type2PlanetAlertTagName] = new List<string> { "Deliver Now to 'Case' Planet", "Press Enter to deliver" };
+        planetTagDeliveryMessageListMap[type3PlanetAlertTagName] = new List<string> { "Deliver Now to 'Crate' Planet", "Press Enter to deliver" };
     }
 
     private void definePlanetTagSuccessMessageListMap() {
@@ -251,6 +253,12 @@ public class ScoreManager : MonoBehaviour
         collectibleTagCollectibleName[type1CollectibleTagName] = "Letter";
         collectibleTagCollectibleName[type2CollectibleTagName] = "Case";
         collectibleTagCollectibleName[type3CollectibleTagName] = "Crate";
+    }
+
+    private void definePlanetTagPlanetName() {
+        planetTagPlanetName[type1PlanetTagName] = "Letter";
+        planetTagPlanetName[type1PlanetTagName] = "Case";
+        planetTagPlanetName[type1PlanetTagName] = "Crate";
     }
 
     private void CalcSpeed()
@@ -655,5 +663,13 @@ public class ScoreManager : MonoBehaviour
 
     public static Dictionary<string, GameObject> getCBllnSprtTgs2cBllnSprtsMap() {
         return cBllnSprtTgs2cBllnSprtsMap;
+    }
+
+    public Dictionary<string, string> getCollectibleTagCollectibleName() {
+        return collectibleTagCollectibleName;
+    }
+
+    public Dictionary<string, string> getPlanetTagPlanetName() {
+        return planetTagPlanetName;
     }
 }

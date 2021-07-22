@@ -50,7 +50,7 @@ public class TutorialManager : MonoBehaviour
         //objective.SetActive(false);
         instructionIndex = 0;
         instructionsShownList = new List<bool> { false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false };
-        instructionsShowTimeList = new List<float> { 5f, 0f, 15f, 10f, 5f, 5f, 15f, 5f, 8f, 5f, 8f, 5f, 15f, 5f, 21f, 5f, 5f };
+        instructionsShowTimeList = new List<float> { 5f, 0f, 15f, 10f, 5f, 5f, 15f, 5f, 8f, 5f, 12f, 5f, 16f, 5f, 21f, 5f, 5f };
         instructionsList = new List<string> { "Welcome to the Outer Space!!!", "", "Use Arrow or WASD to move. Dodge Red Eyed Monsters!!!", "", "", "You are a Space Postman!! COLLECT the GREEN letters, BLUE cases and RED crates in your bag as you run through them in Space", "", "Press 'Space' Key to bring items to the top of the bag on your back.", "", "Your bag can hold limited items!! Capacity of bag is shown on the inventory box at the top", "", "When a planet is approaching, alert will appear on top right corner. Press 'Space' key to keep the item of the Planet on the top of your bag!!", "", "On 'Deliver Now!' alert, press 'Enter' key to deliver the items", "", "Your Objective is to make as many Deliveries as possible by the end of your Space Run!!! Enjoy!!!", "" };
         enablerCollected = false;
         isWaiting = true;

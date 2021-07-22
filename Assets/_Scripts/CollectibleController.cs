@@ -34,7 +34,7 @@ public class CollectibleController : MonoBehaviour
         {
             if (scoreManager.collect(gameObject.tag))
             {
-                scoreManager.displayMessage(gameObject.tag + " is collected!");
+                scoreManager.displayMessage(scoreManager.getCollectibleTagCollectibleName()[gameObject.tag] + " is collected!");
                 enableSpecialEffect();
                 Invoke("DisableObject", 3f);
                 if(!isEnablerCollected && tm != null)
