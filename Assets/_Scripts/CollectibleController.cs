@@ -11,7 +11,8 @@ public class CollectibleController : MonoBehaviour
     private TutorialManager tm;
 
     private ScoreManager scoreManager;
-    // Start is called before the first frame update
+
+    public GameObject collectibleIcon;
 
     public bool getEnablerCollecter() {
         return isEnablerCollected;
@@ -69,7 +70,22 @@ public class CollectibleController : MonoBehaviour
     {
         makeInvisible();
         playSound();
-        shatter();
+        // shatter();
+        moveToBag();
+    }
+
+    private void moveToBag()
+    {
+        
+        //Get the point on the screen that relates to the point in the world that we picked this up
+        GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+        Vector2 WorldToScreen = cam.GetComponent<Camera>().WorldToScreenPoint(gameObject.transform.position);
+
+        GameObject canvas = GameObject.FindGameObjectWithTag("UI");
+
+        GameObject newCollectionUIImage = Instantiate(collectibleIcon, canvas.transform);
+
+        newCollectionUIImage.GetComponent<RectTransform>().position = WorldToScreen;
     }
 
     private void enableSpecialEffect(GameObject playerGO)

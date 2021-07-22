@@ -52,6 +52,7 @@ TagManager:
   - PlanetDisplayText1
   - PlanetDisplayText2
   - LearnAsYouPlayCanvas
+  - UI
   layers:
   - Default
   - TransparentFX
