@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8331827029980345947}
   - component: {fileID: 1870124449490407730}
   - component: {fileID: 746441282375617413}
+  - component: {fileID: 795572169}
   m_Layer: 0
   m_Name: Asteroid_Blue
   m_TagString: Untagged
@@ -219,3 +220,16 @@ MonoBehaviour:
   hitFxMode: 0
   hitFxFadeOutDuration: 0.25
   hitFxColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!65 &795572169
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6222174165203944335}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.9, y: 1.6, z: 0.98}
+  m_Center: {x: 0.010762486, y: -0.030055046, z: -0.0059359237}

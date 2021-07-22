@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4115632716628176037}
   - component: {fileID: 1342863166172360577}
   - component: {fileID: 882851516870978748}
+  - component: {fileID: 1496539935}
   m_Layer: 0
   m_Name: Asteroid_Red
   m_TagString: Untagged
@@ -236,3 +237,16 @@ MonoBehaviour:
   hitFxMode: 0
   hitFxFadeOutDuration: 0.25
   hitFxColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!65 &1496539935
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115632716628142594}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.72, y: 0.85, z: 0.73}
+  m_Center: {x: 0.0018343475, y: -0.030993894, z: -0.017543942}
