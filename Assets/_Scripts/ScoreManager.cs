@@ -59,6 +59,7 @@ public class ScoreManager : MonoBehaviour
 
     public GameObject alertDisplay;
     public GameObject capacityDisplay;
+    public Slider capacitySlider;
     private Dictionary<string, int> collectibleVolumeMap = new Dictionary<string, int>();
     private Dictionary<string, int> collectibleScoreMap = new Dictionary<string, int>();
     private Dictionary<string, string> collectibleUITagMap = new Dictionary<string, string>();
@@ -74,8 +75,8 @@ public class ScoreManager : MonoBehaviour
     private Dictionary<string, string> collectibleTagCollectibleName = new Dictionary<string, string>();
     private Dictionary<string, string> planetTagPlanetName = new Dictionary<string, string>();
 
-    [SerializeField] private static int bagTotalCapacity;
-    [SerializeField] private static int bagRemainingCapacity;
+    [SerializeField] private  int bagTotalCapacity;
+    [SerializeField] private  int bagRemainingCapacity;
     [SerializeField] private static Dictionary<string, int> collectibleCollectedMap = new Dictionary<string, int>();
     [SerializeField] private static string currentCollectibleTag;
     [SerializeField] private static string currentPlanetTag;
@@ -343,6 +344,7 @@ public class ScoreManager : MonoBehaviour
             //Reduced the bag capacity
             bagRemainingCapacity = bagRemainingCapacity - requiredCapacity;
             capacityDisplay.GetComponent<Text>().text = bagRemainingCapacity.ToString("F0");
+            setCapactiySlider();
 
             //Update Collectible Number Display
             int collectiblesCollected = getCollectibleCollectedNumber(collectibleTagName);
@@ -377,6 +379,7 @@ public class ScoreManager : MonoBehaviour
             int consumedCapacity = singleCollectibleCapacity * number;
             bagRemainingCapacity = bagRemainingCapacity + consumedCapacity;
             capacityDisplay.GetComponent<Text>().text = bagRemainingCapacity.ToString("F0");
+            setCapactiySlider();
 
             //Update Collectible Number Display
             collectiblesCollected = collectiblesCollected - number;
@@ -410,6 +413,7 @@ public class ScoreManager : MonoBehaviour
             int consumedCapacity = singleCollectibleCapacity * collectiblesCollected;
             bagRemainingCapacity = bagRemainingCapacity + consumedCapacity;
             capacityDisplay.GetComponent<Text>().text = bagRemainingCapacity.ToString("F0");
+            setCapactiySlider();
 
             //Update Collectible Number Display
             collectiblesCollected = 0;
@@ -672,5 +676,17 @@ public class ScoreManager : MonoBehaviour
 
     public Dictionary<string, string> getPlanetTagPlanetName() {
         return planetTagPlanetName;
+    }
+
+    public void setCapactiySlider()
+    {
+        if (bagRemainingCapacity == 0)
+        {
+            capacitySlider.value = 0;
+        } else
+        {
+            capacitySlider.value = (float)bagRemainingCapacity / (float)bagTotalCapacity;
+        }
+        return;
     }
 }
