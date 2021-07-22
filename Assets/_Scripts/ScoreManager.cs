@@ -342,15 +342,19 @@ public class ScoreManager : MonoBehaviour
     public bool popOutCollectibles(string collectibleTagName, int number)
     {
         bool emptiedVar = false;
+        Debug.Log(collectibleTagName);
+        Debug.Log(number);
 
         int collectiblesCollected = getCollectibleCollectedNumber(collectibleTagName);
+        Debug.Log(collectiblesCollected);
         //Check if number of collectibles to be poped out is more than or equal to what we have collected
         if (collectiblesCollected - number >= 0)
         {
-            
+
             //Update Capacity Display
-            //Increase the bag capacity
+            //Increase the bag capacity]
             int singleCollectibleCapacity = collectibleVolumeMap[collectibleTagName];
+            
             int consumedCapacity = singleCollectibleCapacity * number;
             bagRemainingCapacity = bagRemainingCapacity + consumedCapacity;
             capacityDisplay.GetComponent<Text>().text = bagRemainingCapacity.ToString("F0");
@@ -361,6 +365,8 @@ public class ScoreManager : MonoBehaviour
             string UIScoreComponentDisplayTag = collectibleUITagMap[collectibleTagName];
             GameObject UIScoreComponentDisplay = GameObject.FindGameObjectWithTag(UIScoreComponentDisplayTag);
             UIScoreComponentDisplay.GetComponent<Text>().text = collectiblesCollected.ToString("F0");
+
+            displayMessage("Oops!! The Asteroid has removed some items from your bag!!");
 
             emptiedVar = true;
         }
