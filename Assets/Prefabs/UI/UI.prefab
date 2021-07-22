@@ -732,7 +732,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 13, y: 206}
+  m_AnchoredPosition: {x: -8, y: 329}
   m_SizeDelta: {x: -1121.0804, y: -973.07}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4364140391712886858
@@ -927,7 +927,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Be ready to deliver type1!! '
+  m_Text: 'Be ready to deliver ''Letter''!! '
 --- !u!1 &2034999425691547025
 GameObject:
   m_ObjectHideFlags: 0
@@ -1218,7 +1218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -237, y: -243}
+  m_AnchoredPosition: {x: -241, y: -312}
   m_SizeDelta: {x: 436.072, y: 334.8965}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1364384133540359102
@@ -1739,7 +1739,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Be ready to deliver type2!! '
+  m_Text: 'Be ready to deliver ''Case''!! '
 --- !u!1 &3968064489396001609
 GameObject:
   m_ObjectHideFlags: 0
@@ -2078,7 +2078,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Planet Type1 is Approaching!!!!
+  m_Text: Planet 'Letter' is Approaching!!!!
 --- !u!1 &4283200387958103092
 GameObject:
   m_ObjectHideFlags: 0
@@ -2234,7 +2234,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Be ready to deliver type3!! '
+  m_Text: 'Be ready to deliver ''Crate''!! '
 --- !u!1 &4640722067554197848
 GameObject:
   m_ObjectHideFlags: 0
@@ -2994,7 +2994,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Planet Type2 is Approaching!!!!
+  m_Text: Planet 'Case' is Approaching!!!!
 --- !u!1 &5976133426636887924
 GameObject:
   m_ObjectHideFlags: 0
@@ -4430,7 +4430,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Planet Type3 is Approaching!!!!
+  m_Text: Planet 'Crate' is Approaching!!!!
 --- !u!1 &8883967828581400899
 GameObject:
   m_ObjectHideFlags: 0

@@ -51,6 +51,7 @@ TagManager:
   - Type5PlanetDeliveryDisplay
   - PlanetDisplayText1
   - PlanetDisplayText2
+  - LearnAsYouPlayCanvas
   layers:
   - Default
   - TransparentFX

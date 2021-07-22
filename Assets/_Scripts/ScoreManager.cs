@@ -71,6 +71,7 @@ public class ScoreManager : MonoBehaviour
     private Dictionary<string, string> balloonSpriteTagCollectibleTagMap = new Dictionary<string, string>();
     private static List<string> collectibleBalloonSpriteTagList = new List<string>();
     private static Dictionary<string, GameObject> cBllnSprtTgs2cBllnSprtsMap = new Dictionary<string, GameObject>();
+    private Dictionary<string, string> collectibleTagCollectibleName = new Dictionary<string, string>();
 
     [SerializeField] private static int bagTotalCapacity;
     [SerializeField] private static int bagRemainingCapacity;
@@ -125,11 +126,12 @@ public class ScoreManager : MonoBehaviour
         defineBalloonSpriteTagCollectibleTagMap();
         defineCollectibleBalloonSpriteTagList();
         defineCBllnSprtTgs2cBllnSprtsMap();
+        defineCollectibleTagCollectibleName();
         bagTotalCapacity = int.Parse(capacityDisplay.GetComponent<Text>().text);
         bagRemainingCapacity = int.Parse(capacityDisplay.GetComponent<Text>().text);
         currentCollectibleTag = null;
         currentPlanetTag = null;
-        alertVerticalDistanceThreshold = 100;
+        alertVerticalDistanceThreshold = 200;
         deliveryVerticalDistanceThreshold = 50;
         isSuccess = false;
         currentCollectibleinBalloonIndex = -1;
@@ -245,6 +247,12 @@ public class ScoreManager : MonoBehaviour
         cBllnSprtTgs2cBllnSprtsMap[type3CollectibleBalloonSpriteTag] = type3CollectibleBalloonSprite;
     }
 
+    private void defineCollectibleTagCollectibleName() {
+        collectibleTagCollectibleName[type1CollectibleTagName] = "Letter";
+        collectibleTagCollectibleName[type2CollectibleTagName] = "Case";
+        collectibleTagCollectibleName[type3CollectibleTagName] = "Crate";
+    }
+
     private void CalcSpeed()
     {
         Speed.GetComponent<Text>().text = playerRB.velocity.magnitude.ToString("F0");
@@ -258,7 +266,7 @@ public class ScoreManager : MonoBehaviour
     private IEnumerator ShowAlert(string tagValue)
     {
         alertDisplay.SetActive(true);
-        alertDisplay.transform.GetChild(0).gameObject.GetComponent<Text>().text = tagValue + " COLLECTED!";
+        alertDisplay.transform.GetChild(0).gameObject.GetComponent<Text>().text = collectibleTagCollectibleName[tagValue] + " COLLECTED!";
         //Coinalert.GetComponent<Text>().text = tagValue + " COLLECTED!";
         yield return new WaitForSeconds(3f);
         alertDisplay.transform.GetChild(0).gameObject.GetComponent<Text>().text = "";
