@@ -261,11 +261,36 @@ public class ScoreManager : MonoBehaviour
         alertDisplay.SetActive(false);
     }
 
+    private IEnumerator ShowAlertSuccess(string message)
+    {
+        alertDisplay.SetActive(true);
+        alertDisplay.transform.GetChild(0).gameObject.GetComponent<Text>().text = message;
+        //Coinalert.GetComponent<Text>().text = tagValue + " COLLECTED!";
+        yield return new WaitForSeconds(3f);
+        alertDisplay.transform.GetChild(0).gameObject.GetComponent<Text>().text = "";
+        alertDisplay.SetActive(false);
+    }
+
+
+
     public void AddScore(int score, string tagValue)
     {
         theScore += score;
         Score.GetComponent<Text>().text = theScore.ToString("F0");
         StartCoroutine(ShowAlert(tagValue));
+        incrementCountCollectibles();
+
+        //Debug.Log("***************Manish******************");
+        //Debug.Log(getCountCollectibles());
+        //Red_Collectible.GetComponent<Text>().text = theScore.ToString("F0");
+        //Yellow_collectible.GetComponent<Text>().text = theScore.ToString("F0");
+    }
+
+    public void AddScoreDelivery(int score, string tagValue)
+    {
+        theScore += score;
+        Score.GetComponent<Text>().text = theScore.ToString("F0");
+        StartCoroutine(ShowAlertSuccess("Delivery Successful!!"));
         incrementCountCollectibles();
 
         //Debug.Log("***************Manish******************");
@@ -348,7 +373,7 @@ public class ScoreManager : MonoBehaviour
         if (collectiblesCollected > 0)
         {
             //Add Score
-            AddScore(collectibleScoreMap[collectibleTagName]* collectiblesCollected * deliveryScore, collectibleTagName);
+            AddScoreDelivery(collectibleScoreMap[collectibleTagName]* collectiblesCollected * deliveryScore, collectibleTagName);
 
             //Update Capacity Display
             //Increase the bag capacity
@@ -414,7 +439,7 @@ public class ScoreManager : MonoBehaviour
             {
                 //Update Score
                 //Empty Bag
-                if (popOutAllCollectiblesForDelivery(currentCollectibleTag, 100))
+                if (popOutAllCollectiblesForDelivery(currentCollectibleTag, 20))
                 {
                     //Add Yuantao's Animation
 
