@@ -274,9 +274,9 @@ public class ScoreManager : MonoBehaviour
     private IEnumerator ShowAlert(string tagValue)
     {
         alertDisplay.SetActive(true);
-        Debug.Log("Alert");
-        Debug.Log(tagValue);
-        Debug.Log(collectibleTagCollectibleName[tagValue]);
+        //Debug.Log("Alert");
+        //Debug.Log(tagValue);
+        //Debug.Log(collectibleTagCollectibleName[tagValue]);
         alertDisplay.transform.GetChild(0).gameObject.GetComponent<Text>().text = collectibleTagCollectibleName[tagValue] + " COLLECTED!";
         //Coinalert.GetComponent<Text>().text = tagValue + " COLLECTED!";
         yield return new WaitForSeconds(3f);

@@ -32,7 +32,7 @@ public class PlanetController : MonoBehaviour
         {
             if (scoreManager.isWithinRangeForDelivery(gameObject))
             {
-                Debug.Log("Is Within Range");
+                //Debug.Log("Is Within Range");
                 if (ScoreManager.getIsSuccess())
                 {
                     ScoreManager.setCurrentPlanetTag(null);

@@ -15,7 +15,12 @@ public class PoojaPlayerController : MonoBehaviour
   
     [SerializeField] private float startTime; //To Keep track of time for which acceleration keeps
 
-    
+    [SerializeField] private static float endPostion;
+
+    public static void setEndPostion(float endPos) {
+        endPostion = endPos;
+    }
+
     public float glideTolerance = .5f; // amount of time during which player can press glide
 
     private Rigidbody characterBody;
@@ -26,6 +31,8 @@ public class PoojaPlayerController : MonoBehaviour
     public Collider anchor;
     public Transform boundsCenter;
     private ScoreManager scoreManager;
+
+    public GameObject pauseMenu;
 
 
     void Start()
@@ -43,11 +50,18 @@ public class PoojaPlayerController : MonoBehaviour
         rend.sharedMaterial = material[x];
         planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);
         scoreManager = ScoreManager.Instance;
-        
+        endPostion = -1;
     }
 
     void Update()
     {
+        if (endPostion != -1 && gameObject.transform.position.y <= endPostion) {
+            //AudioListener.pause = true;
+            Time.timeScale = 0f;
+            pauseMenu.SetActive(true);
+            //Debug.Log("Player Wins!!!");
+        }
+
         if (!PlayerOnScreen())
         {
             Debug.Log("disappears!");

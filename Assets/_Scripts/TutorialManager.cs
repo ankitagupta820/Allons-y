@@ -61,10 +61,10 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(instructionIndex);
+        //Debug.Log(instructionIndex);
         switch (instructionIndex) {
             case 0:
-                Debug.Log("Case 0");
+                //Debug.Log("Case 0");
                 if (!instructionsShownList[instructionIndex]) {
                     instructionsShownList[instructionIndex] = true;
                     pauseTheGame();
@@ -73,8 +73,8 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case 1:
-                Debug.Log("Case 1");
-                Debug.Log(isWaiting);
+                //Debug.Log("Case 1");
+                //Debug.Log(isWaiting);
                 
                 if (!instructionsShownList[instructionIndex])
                 {
@@ -82,16 +82,16 @@ public class TutorialManager : MonoBehaviour
                     isWaiting = true;
                     waitOnInstructions(instructionsShowTimeList[instructionIndex]);
                 }
-                Debug.Log(isWaiting);
+                //Debug.Log(isWaiting);
                 if (!isWaiting)
                 {
-                    Debug.Log("Waiting done");
+                    //Debug.Log("Waiting done");
                     isWaiting = true;
                     nextInstructionsWithOutResume();
                 }
                 break;
             case 2:
-                Debug.Log("Case 2");
+                //Debug.Log("Case 2");
                 if (!instructionsShownList[instructionIndex])
                 {
                     instructionsShownList[instructionIndex] = true;
@@ -102,7 +102,7 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case 3:
-                Debug.Log("Case 3");
+                //Debug.Log("Case 3");
                 if (!instructionsShownList[instructionIndex])
                 {
                     instructionsShownList[instructionIndex] = true;
@@ -118,8 +118,8 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case 4:
-                Debug.Log("Case 4");
-                Debug.Log(isWaiting);
+                //Debug.Log("Case 4");
+                //Debug.Log(isWaiting);
 
                 if (!instructionsShownList[instructionIndex])
                 {
@@ -127,16 +127,16 @@ public class TutorialManager : MonoBehaviour
                     isWaiting = true;
                     waitOnInstructions(instructionsShowTimeList[instructionIndex]);
                 }
-                Debug.Log(isWaiting);
+                //Debug.Log(isWaiting);
                 if (!isWaiting)
                 {
-                    Debug.Log("Waiting done");
+                    //Debug.Log("Waiting done");
                     isWaiting = true;
                     nextInstructionsWithOutResume();
                 }
                 break;
             case 5:
-                Debug.Log("Case 5");
+                //Debug.Log("Case 5");
                 if (!instructionsShownList[instructionIndex])
                 {
                     instructionsShownList[instructionIndex] = true;
@@ -147,8 +147,8 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case 6:
-                Debug.Log("Case 6");
-                Debug.Log(isWaiting);
+                //Debug.Log("Case 6");
+                //Debug.Log(isWaiting);
 
                 if (!instructionsShownList[instructionIndex])
                 {
@@ -156,16 +156,16 @@ public class TutorialManager : MonoBehaviour
                     isWaiting = true;
                     waitOnInstructions(instructionsShowTimeList[instructionIndex]);
                 }
-                Debug.Log(isWaiting);
+                //Debug.Log(isWaiting);
                 if (!isWaiting)
                 {
-                    Debug.Log("Waiting done");
+                    //Debug.Log("Waiting done");
                     isWaiting = true;
                     nextInstructionsWithOutResume();
                 }
                 break;
             case 7:
-                Debug.Log("Case 7");
+                //Debug.Log("Case 7");
                 if (!instructionsShownList[instructionIndex])
                 {
                     instructionsShownList[instructionIndex] = true;
@@ -176,8 +176,8 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case 8:
-                Debug.Log("Case 8");
-                Debug.Log(isWaiting);
+                //Debug.Log("Case 8");
+                //Debug.Log(isWaiting);
 
                 if (!instructionsShownList[instructionIndex])
                 {
@@ -188,16 +188,16 @@ public class TutorialManager : MonoBehaviour
                     //easyLevelG.SetActive(true);
                     waitOnInstructions(instructionsShowTimeList[instructionIndex]);
                 }
-                Debug.Log(isWaiting);
+                //Debug.Log(isWaiting);
                 if (!isWaiting)
                 {
-                    Debug.Log("Waiting done");
+                    //Debug.Log("Waiting done");
                     isWaiting = true;
                     nextInstructionsWithOutResume();
                 }
                 break;
             case 9:
-                Debug.Log("Case 9");
+                //Debug.Log("Case 9");
                 if (!instructionsShownList[instructionIndex])
                 {
                     instructionsShownList[instructionIndex] = true;
@@ -208,8 +208,8 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case 10:
-                Debug.Log("Case 10");
-                Debug.Log(isWaiting);
+                //Debug.Log("Case 10");
+                //Debug.Log(isWaiting);
 
                 if (!instructionsShownList[instructionIndex])
                 {
@@ -217,16 +217,16 @@ public class TutorialManager : MonoBehaviour
                     isWaiting = true;
                     waitOnInstructions(instructionsShowTimeList[instructionIndex]);
                 }
-                Debug.Log(isWaiting);
+                //Debug.Log(isWaiting);
                 if (!isWaiting)
                 {
-                    Debug.Log("Waiting done");
+                    //Debug.Log("Waiting done");
                     isWaiting = true;
                     nextInstructionsWithOutResume();
                 }
                 break;
             case 11:
-                Debug.Log("Case 11");
+                //Debug.Log("Case 11");
                 if (!instructionsShownList[instructionIndex])
                 {
                     instructionsShownList[instructionIndex] = true;
@@ -237,8 +237,8 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case 12:
-                Debug.Log("Case 12");
-                Debug.Log(isWaiting);
+                //Debug.Log("Case 12");
+                //Debug.Log(isWaiting);
 
                 if (!instructionsShownList[instructionIndex])
                 {
@@ -246,16 +246,16 @@ public class TutorialManager : MonoBehaviour
                     isWaiting = true;
                     waitOnInstructions(instructionsShowTimeList[instructionIndex]);
                 }
-                Debug.Log(isWaiting);
+                //Debug.Log(isWaiting);
                 if (!isWaiting)
                 {
-                    Debug.Log("Waiting done");
+                    //Debug.Log("Waiting done");
                     isWaiting = true;
                     nextInstructionsWithOutResume();
                 }
                 break;
             case 13:
-                Debug.Log("Case 13");
+                //Debug.Log("Case 13");
                 if (!instructionsShownList[instructionIndex])
                 {
                     instructionsShownList[instructionIndex] = true;
@@ -266,8 +266,8 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case 14:
-                Debug.Log("Case 14");
-                Debug.Log(isWaiting);
+                //Debug.Log("Case 14");
+                //Debug.Log(isWaiting);
 
                 if (!instructionsShownList[instructionIndex])
                 {
@@ -275,16 +275,16 @@ public class TutorialManager : MonoBehaviour
                     isWaiting = true;
                     waitOnInstructions(instructionsShowTimeList[instructionIndex]);
                 }
-                Debug.Log(isWaiting);
+                //Debug.Log(isWaiting);
                 if (!isWaiting)
                 {
-                    Debug.Log("Waiting done");
+                    //Debug.Log("Waiting done");
                     isWaiting = true;
                     nextInstructionsWithOutResume();
                 }
                 break;
             case 15:
-                Debug.Log("Case 15");
+                //Debug.Log("Case 15");
                 if (!instructionsShownList[instructionIndex])
                 {
                     instructionsShownList[instructionIndex] = true;
@@ -295,8 +295,8 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             case 16:
-                Debug.Log("Case 16");
-                Debug.Log(isWaiting);
+                //Debug.Log("Case 16");
+                //Debug.Log(isWaiting);
 
                 if (!instructionsShownList[instructionIndex])
                 {
@@ -304,7 +304,7 @@ public class TutorialManager : MonoBehaviour
                     isWaiting = true;
                     waitOnInstructions(instructionsShowTimeList[instructionIndex]);
                 }
-                Debug.Log(isWaiting);
+                //Debug.Log(isWaiting);
                 if (!isWaiting)
                 {
                     isWaiting = true;
@@ -315,8 +315,8 @@ public class TutorialManager : MonoBehaviour
                 }
                 break;
             default:
-                Debug.Log("Case 16");
-                Debug.Log(isWaiting);
+                //Debug.Log("Case 16");
+                //Debug.Log(isWaiting);
 
                 if (!instructionsShownList[instructionIndex])
                 {
@@ -324,7 +324,7 @@ public class TutorialManager : MonoBehaviour
                     isWaiting = true;
                     waitOnInstructions(instructionsShowTimeList[instructionIndex]);
                 }
-                Debug.Log(isWaiting);
+                //Debug.Log(isWaiting);
                 if (!isWaiting)
                 {
                     isWaiting = true;
