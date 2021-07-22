@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class PoojaPlayerController : MonoBehaviour
 {
 
-    [SerializeField] private float _moveSpeed = 10f; //current speed
+    //[SerializeField] private float _moveSpeed = 10f; //current speed
+    public float _moveSpeed = 10f; //current speed
 
     [SerializeField] public float _MaxVelocity = 18.0f;   // Maxima Velocity
     [SerializeField] public float _MinVelocity = 5.0f;   // Maxima Velocity
@@ -20,7 +21,9 @@ public class PoojaPlayerController : MonoBehaviour
 
     public float glideTolerance = .5f; // amount of time during which player can press glide
 
-    private Rigidbody characterBody;
+    // private Rigidbody characterBody;
+    public Rigidbody characterBody;
+
     public Material[] material;
     public int x;
     public Renderer rend;

@@ -34,8 +34,14 @@ public class MonsterController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.transform.gameObject.name);
-        if (other.transform.gameObject.tag == "Player")
+        if (other.transform.gameObject.tag == "Player" && !GameManager.Instance.isImmune)
         {
+            /// changes made in the immunity
+            Debug.Log("player collided with monster but immune!!");
+            MeshRenderer render = gameObject.GetComponent<MeshRenderer>();
+            render.enabled = false;
+
+
             AudioSource deathSound = GetComponent<AudioSource>();
             if (deathSound != null)
             {

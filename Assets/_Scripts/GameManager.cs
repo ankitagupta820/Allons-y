@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public static int _deathCount = 0;
     public static int _winCount = 0;
 
+    public bool isImmune = false;
+
     // Singleton Pattern
     private void Awake()
     {
