@@ -442,7 +442,16 @@ public class ScoreManager : MonoBehaviour
                 if (popOutAllCollectiblesForDelivery(currentCollectibleTag, 20))
                 {
                     //Add Yuantao's Animation
+                    //TODO Instatiate the object with tag currentCollectibleTag
 
+                    GameObject item = null;
+                    //item = Instantiate(itemPrefab) as GameObject;
+
+                    item.transform.position = player.transform.position;
+                    GameObject currentPlanet = GameObject.FindGameObjectWithTag(currentPlanetTag);
+                    item.GetComponent<BeingDelivered>().targetPlanet = currentPlanet;
+
+                    
                     //Show Success Message
                     isSuccess = true;
                     //ScoreManager.startDisplayPlanetDeliverySuccessAlert(currentPlanetTag);
