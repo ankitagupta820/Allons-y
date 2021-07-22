@@ -71,6 +71,8 @@ public class ScoreManager : MonoBehaviour
     private Dictionary<string, string> balloonSpriteTagCollectibleTagMap = new Dictionary<string, string>();
     private static List<string> collectibleBalloonSpriteTagList = new List<string>();
     private static Dictionary<string, GameObject> cBllnSprtTgs2cBllnSprtsMap = new Dictionary<string, GameObject>();
+    private Dictionary<string, string> collectibleTagCollectibleName = new Dictionary<string, string>();
+    private Dictionary<string, string> planetTagPlanetName = new Dictionary<string, string>();
 
     [SerializeField] private static int bagTotalCapacity;
     [SerializeField] private static int bagRemainingCapacity;
@@ -125,11 +127,13 @@ public class ScoreManager : MonoBehaviour
         defineBalloonSpriteTagCollectibleTagMap();
         defineCollectibleBalloonSpriteTagList();
         defineCBllnSprtTgs2cBllnSprtsMap();
+        defineCollectibleTagCollectibleName();
+        definePlanetTagPlanetName();
         bagTotalCapacity = int.Parse(capacityDisplay.GetComponent<Text>().text);
         bagRemainingCapacity = int.Parse(capacityDisplay.GetComponent<Text>().text);
         currentCollectibleTag = null;
         currentPlanetTag = null;
-        alertVerticalDistanceThreshold = 100;
+        alertVerticalDistanceThreshold = 200;
         deliveryVerticalDistanceThreshold = 50;
         isSuccess = false;
         currentCollectibleinBalloonIndex = -1;
@@ -212,15 +216,15 @@ public class ScoreManager : MonoBehaviour
     }
 
     private void definePlanetTagAlertMessageListMap() {
-        planetTagAlertMessageListMap[type1PlanetAlertTagName] = new List<string> { "Planet Type1 is Approaching!!!!", "Be ready to deliver type1!!"};
-        planetTagAlertMessageListMap[type2PlanetAlertTagName] = new List<string> { "Planet Type2 is Approaching!!!!", "Be ready to deliver type2!!" };
-        planetTagAlertMessageListMap[type3PlanetAlertTagName] = new List<string> { "Planet Type3 is Approaching!!!!", "Be ready to deliver type3!!" };
+        planetTagAlertMessageListMap[type1PlanetAlertTagName] = new List<string> { "Planet 'Letter' is Approaching!!!!", "Be ready to deliver 'Letter'!!"};
+        planetTagAlertMessageListMap[type2PlanetAlertTagName] = new List<string> { "Planet 'Case' is Approaching!!!!", "Be ready to deliver 'Case'!!" };
+        planetTagAlertMessageListMap[type3PlanetAlertTagName] = new List<string> { "Planet 'Crate' is Approaching!!!!", "Be ready to deliver 'Crate'!!" };
     }
 
     private void definePlanetTagDeliveryMessageListMap() {
-        planetTagDeliveryMessageListMap[type1PlanetAlertTagName] = new List<string> { "Deliver Now to Type1 Planet", "Press Enter to deliver" };
-        planetTagDeliveryMessageListMap[type2PlanetAlertTagName] = new List<string> { "Deliver Now to Type2 Planet", "Press Enter to deliver" };
-        planetTagDeliveryMessageListMap[type3PlanetAlertTagName] = new List<string> { "Deliver Now to Type3 Planet", "Press Enter to deliver" };
+        planetTagDeliveryMessageListMap[type1PlanetAlertTagName] = new List<string> { "Deliver Now to 'Letter' Planet", "Press Enter to deliver" };
+        planetTagDeliveryMessageListMap[type2PlanetAlertTagName] = new List<string> { "Deliver Now to 'Case' Planet", "Press Enter to deliver" };
+        planetTagDeliveryMessageListMap[type3PlanetAlertTagName] = new List<string> { "Deliver Now to 'Crate' Planet", "Press Enter to deliver" };
     }
 
     private void definePlanetTagSuccessMessageListMap() {
@@ -245,6 +249,18 @@ public class ScoreManager : MonoBehaviour
         cBllnSprtTgs2cBllnSprtsMap[type3CollectibleBalloonSpriteTag] = type3CollectibleBalloonSprite;
     }
 
+    private void defineCollectibleTagCollectibleName() {
+        collectibleTagCollectibleName[type1CollectibleTagName] = "Letter";
+        collectibleTagCollectibleName[type2CollectibleTagName] = "Case";
+        collectibleTagCollectibleName[type3CollectibleTagName] = "Crate";
+    }
+
+    private void definePlanetTagPlanetName() {
+        planetTagPlanetName[type1PlanetTagName] = "Letter";
+        planetTagPlanetName[type1PlanetTagName] = "Case";
+        planetTagPlanetName[type1PlanetTagName] = "Crate";
+    }
+
     private void CalcSpeed()
     {
         Speed.GetComponent<Text>().text = playerRB.velocity.magnitude.ToString("F0");
@@ -258,7 +274,10 @@ public class ScoreManager : MonoBehaviour
     private IEnumerator ShowAlert(string tagValue)
     {
         alertDisplay.SetActive(true);
-        alertDisplay.transform.GetChild(0).gameObject.GetComponent<Text>().text = tagValue + " COLLECTED!";
+        Debug.Log("Alert");
+        Debug.Log(tagValue);
+        Debug.Log(collectibleTagCollectibleName[tagValue]);
+        alertDisplay.transform.GetChild(0).gameObject.GetComponent<Text>().text = collectibleTagCollectibleName[tagValue] + " COLLECTED!";
         //Coinalert.GetComponent<Text>().text = tagValue + " COLLECTED!";
         yield return new WaitForSeconds(3f);
         alertDisplay.transform.GetChild(0).gameObject.GetComponent<Text>().text = "";
@@ -644,5 +663,13 @@ public class ScoreManager : MonoBehaviour
 
     public static Dictionary<string, GameObject> getCBllnSprtTgs2cBllnSprtsMap() {
         return cBllnSprtTgs2cBllnSprtsMap;
+    }
+
+    public Dictionary<string, string> getCollectibleTagCollectibleName() {
+        return collectibleTagCollectibleName;
+    }
+
+    public Dictionary<string, string> getPlanetTagPlanetName() {
+        return planetTagPlanetName;
     }
 }
