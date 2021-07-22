@@ -34,7 +34,7 @@ public class MonsterController : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log(other.transform.gameObject.name);
-        /*if (other.transform.gameObject.tag == "Player")
+        if (other.transform.gameObject.tag == "Player")
         {
             AudioSource deathSound = GetComponent<AudioSource>();
             if (deathSound != null)
@@ -42,7 +42,7 @@ public class MonsterController : MonoBehaviour
                 deathSound.Play();
             }
             GameManager.Instance.PlayerDeath();
-        }*/
+        }
     }
 
 }
