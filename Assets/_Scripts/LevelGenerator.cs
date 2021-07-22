@@ -9,6 +9,9 @@ public class LevelGenerator : MonoBehaviour
     public int[] moleculeLengths;
     public GameObject[] molecules;
     public GameObject player;
+    public GameObject spaceStation;
+    [SerializeField] private static int maxNumberOfObjects;
+    [SerializeField] private static int currentNumberOfObjects;
     [SerializeField] private static GameObject prevGeneratedObj;
     [SerializeField] private static int prevGeneratedObjSize;
 
@@ -21,7 +24,7 @@ public class LevelGenerator : MonoBehaviour
     //object pooling to optimize runtime smoothness
     [Header("Object Pooling Setting")]
     [Tooltip("How many instance of each prefab to pre-initiate, choose between 0 to inf")]
-    private int amountToPool = 10;
+    private int amountToPool = 1;
     private IEnumerator coroutine;
     private List<List<Tuple<GameObject,int>>> pooledObjectsHash;
 
@@ -48,7 +51,8 @@ public class LevelGenerator : MonoBehaviour
     {
         // pre-instantiate object pool
         pooledObjectsHash = new List<List<Tuple<GameObject, int>>>();
-
+        maxNumberOfObjects = 1;
+        currentNumberOfObjects = 0;
         GameObject atomicObject;
         int atomicObjectSize;
         Tuple<GameObject, int> tupleObj;
@@ -76,6 +80,7 @@ public class LevelGenerator : MonoBehaviour
         // start generating object once game starts
         coroutine = GeneratorRoutine(interval);
         StartCoroutine(coroutine);
+        
     }
 
     void Update()
@@ -84,13 +89,29 @@ public class LevelGenerator : MonoBehaviour
 
     private IEnumerator GeneratorRoutine(float waitTime)
     {
-        while (true)
+        while (currentNumberOfObjects < maxNumberOfObjects)
         {
             yield return new WaitForSeconds(waitTime);
+            Debug.Log(maxNumberOfObjects);
+            Debug.Log(currentNumberOfObjects);
             GenerateObj(amount);
         }
+        Debug.Log("End of Level!!!");
+        GenerateEndOfLevel();
     }
 
+    private void GenerateEndOfLevel() {
+        float temp = (prevGeneratedObj.transform.position.y * -1) + prevGeneratedObjSize + (spaceStation.transform.position.y * -1) + 130;
+        // Randomly generate object position
+        Vector3 newObjLoc = new Vector3(spaceStation.transform.position.x,
+        (temp * -1),
+        spaceStation.transform.position.z
+        );
+        spaceStation.transform.position = newObjLoc;
+        spaceStation.SetActive(true);
+        PoojaPlayerController.setEndPostion((temp - 20)*-1);
+
+    }
 
     private void GenerateObj(int quantity)
     {
@@ -165,6 +186,7 @@ public class LevelGenerator : MonoBehaviour
             else {
                 if (!tupleObject.Item1.activeInHierarchy)
                 {
+                    currentNumberOfObjects++;
                     return tupleObject;
                 }
             }
