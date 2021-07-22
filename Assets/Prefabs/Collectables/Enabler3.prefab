@@ -5005,6 +5005,8 @@ MonoBehaviour:
   turnspeed: 90
   tutorialManager: {fileID: 141170187538629318, guid: 8b954ff4bb1a44413a642c7ef2144afd,
     type: 3}
+  collectibleIcon: {fileID: 2529473783412086142, guid: 2ff7d360c5b80471695114928546c951,
+    type: 3}
 --- !u!1 &7866602639603350146
 GameObject:
   m_ObjectHideFlags: 0
