@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 597a86f9fe5284c61a88bd30f7cfdcf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectableLabel: GreenEnabler
+  collectableLabel: YellowEnabler
 --- !u!65 &2723655293545750324
 BoxCollider:
   m_ObjectHideFlags: 0

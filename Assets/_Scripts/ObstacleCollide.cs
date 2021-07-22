@@ -21,12 +21,10 @@ public class ObstacleCollide : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other);
         GameObject playerGO = other.gameObject;
         if (playerGO.tag == "Player")
         {
             int collectedObjects = ScoreManager.getCollectibleCollectedNumber(collectableLabel);
-            Debug.Log(collectedObjects);
             scoreManager.popOutCollectibles(collectableLabel, collectedObjects);
         }
     }
