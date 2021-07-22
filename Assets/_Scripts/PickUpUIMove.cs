@@ -30,15 +30,18 @@ public class PickUpUIMove : MonoBehaviour
 
 		//Get a reference to where we want it to go
 		GameObject collectibleItemIconInBag = GameObject.FindGameObjectWithTag(collectibleType);
+		
 		if (collectibleItemIconInBag != null)
         {
-			targetPosition = collectibleItemIconInBag.GetComponent<RectTransform>().position;
+			GameObject canvas = GameObject.FindGameObjectWithTag("UI");
+			Vector2 offset = new Vector2(0, - canvas.transform.position.y);
+
+			targetPosition = (Vector2) collectibleItemIconInBag.GetComponent<RectTransform>().position + offset;
 		}
 		else
         {
 			targetPosition = new Vector2(TargetPositionLeft, TargetPositionTop);
 		}
-		
 
 		//Run the UpdateTotal, which updates the UI Text for the number of this resource
 		// UpdateTotal ();
