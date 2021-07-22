@@ -91,4 +91,5 @@ MonoBehaviour:
   TargetPositionLeft: 882
   TargetPositionTop: 472
   Speed: 1
-  closeEnough: 20
+  closeEnough: 10
+  collectibleType: UICase
