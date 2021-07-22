@@ -9,4 +9,9 @@ public class AudioManager : MonoBehaviour
         gameObject.GetComponentInChildren<AudioSource>().Play();
 
     }
+
+    public void playMusic() {
+        gameObject.GetComponentInChildren<AudioSource>().Play();
+    }
+
 }

@@ -14,6 +14,7 @@ public class TutorialManager : MonoBehaviour
     public GameObject instructionDisplayBox;
     public GameObject coinObject;
     public GameObject learnAsYouPlayCanvas;
+    public GameObject audioManager;
     //public GameObject objective;
 
     private float nextActionTime = 0.0f;
@@ -479,7 +480,7 @@ public class TutorialManager : MonoBehaviour
     }
 
     private void pauseTheGame() {
-        AudioListener.pause = true;
+        //AudioListener.pause = true;
         Time.timeScale = 0f;
         isGamePaused = true;
     }
@@ -488,6 +489,8 @@ public class TutorialManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         isGamePaused = false;
+        //AudioManager am = audioManager.GetComponent<AudioManager>();
+        //am.playMusic();
     }
 
     public void skipInstructions() {
