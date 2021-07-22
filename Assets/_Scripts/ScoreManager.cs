@@ -461,6 +461,10 @@ public class ScoreManager : MonoBehaviour
                     GameObject currentPlanet = GameObject.FindGameObjectWithTag(currentPlanetTag);
                     item.GetComponent<BeingDelivered>().targetPlanet = currentPlanet;
 
+                    // Explosion effect
+                    ParticleSystem[] particleSystems = player.GetComponentsInChildren<ParticleSystem>();
+                    particleSystems[2].Play();
+
                     // bullet time
                     timeManager.DoSlowMotion();
 
