@@ -2058,6 +2058,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7643929038502796587, guid: e31fcdd82b8224a43961e5479b784ffd,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.80715847
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643929038502796587, guid: e31fcdd82b8224a43961e5479b784ffd,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.80715847
+      objectReference: {fileID: 0}
+    - target: {fileID: 7643929038502796587, guid: e31fcdd82b8224a43961e5479b784ffd,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.80715847
+      objectReference: {fileID: 0}
     - target: {fileID: 7775746957947649854, guid: e31fcdd82b8224a43961e5479b784ffd,
         type: 3}
       propertyPath: m_AnchoredPosition.x
