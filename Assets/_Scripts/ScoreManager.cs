@@ -494,9 +494,10 @@ public class ScoreManager : MonoBehaviour
                 else {
                     displayMessage("You have not collected enough items in your bag to deliver");
                 }
+                displayMessage("Delivery completed!");
             }
             else {
-                displayMessage("Please hold the item at the top of your bag! Press space to bring bag items to top");
+                displayMessage("Delivery rejected! Change delivering item by pressing SPACE.");
             }
         }
 
