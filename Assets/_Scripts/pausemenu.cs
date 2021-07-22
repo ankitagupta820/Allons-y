@@ -14,7 +14,10 @@ public class pausemenu : MonoBehaviour
     public static int restartCount = 0;
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        Debug.Log("Game is resumed!!");
+        Debug.Log(Time.timeScale);
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if(GamePaused)
             {
@@ -28,6 +31,7 @@ public class pausemenu : MonoBehaviour
 
     public void Resume()
     {
+        Debug.Log("Game is resumed!!");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GamePaused = false;
@@ -36,6 +40,7 @@ public class pausemenu : MonoBehaviour
 
     void Pause()
     {
+        Debug.Log("Game is paused!!");
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GamePaused = true;
