@@ -1189,6 +1189,10 @@ MonoBehaviour:
   rend: {fileID: 0}
   anchor: {fileID: 1780109625}
   boundsCenter: {fileID: 0}
+  pauseMenu: {fileID: 0}
+  scoreDisplay: {fileID: 0}
+  distanceDisplay: {fileID: 0}
+  speedDisplay: {fileID: 0}
 --- !u!114 &906468218764100640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1646,7 +1650,7 @@ MonoBehaviour:
   outlineDownsampling: 2
   outlineVisibility: 0
   outlineBlitDebug: 0
-  outlineIndependent: 0
+  outlineIndependent: 1
   glow: 0
   glowWidth: 0.4
   glowQuality: 3
@@ -1755,7 +1759,7 @@ MonoBehaviour:
   outlineDownsampling: 2
   outlineVisibility: 0
   outlineBlitDebug: 0
-  outlineIndependent: 0
+  outlineIndependent: 1
   glow: 0
   glowWidth: 0.4
   glowQuality: 3
@@ -1876,7 +1880,7 @@ MonoBehaviour:
   outlineDownsampling: 2
   outlineVisibility: 0
   outlineBlitDebug: 0
-  outlineIndependent: 0
+  outlineIndependent: 1
   glow: 0
   glowWidth: 0.4
   glowQuality: 3
