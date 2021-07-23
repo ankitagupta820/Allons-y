@@ -74,6 +74,24 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void EasyLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("main");
+    }
+
+    public void MediumLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("level2");
+    }
+
+    public void DifficultLevel()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("level3");
+    }
+
     public void QuitGame()
     {
         Debug.Log("Quitting....");

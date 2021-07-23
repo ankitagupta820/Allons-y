@@ -10,7 +10,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject[] molecules;
     public GameObject player;
     public GameObject spaceStation;
-    [SerializeField] private static int maxNumberOfObjects;
+    public int maxNumberOfObjects;
     [SerializeField] private static int currentNumberOfObjects;
     [SerializeField] private static GameObject prevGeneratedObj;
     [SerializeField] private static int prevGeneratedObjSize;
@@ -49,9 +49,9 @@ public class LevelGenerator : MonoBehaviour
     
     private void Start()
     {
+        Time.timeScale = 1f;
         // pre-instantiate object pool
         pooledObjectsHash = new List<List<Tuple<GameObject, int>>>();
-        maxNumberOfObjects = 1;
         currentNumberOfObjects = 0;
         GameObject atomicObject;
         int atomicObjectSize;

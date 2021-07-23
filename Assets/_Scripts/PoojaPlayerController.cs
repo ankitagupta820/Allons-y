@@ -33,6 +33,9 @@ public class PoojaPlayerController : MonoBehaviour
     private ScoreManager scoreManager;
 
     public GameObject pauseMenu;
+    public GameObject scoreDisplay;
+    public GameObject distanceDisplay;
+    public GameObject speedDisplay;
 
 
     void Start()
@@ -58,6 +61,11 @@ public class PoojaPlayerController : MonoBehaviour
         if (endPostion != -1 && gameObject.transform.position.y <= endPostion) {
             //AudioListener.pause = true;
             Time.timeScale = 0f;
+            speedDisplay.GetComponent<Text>().text = scoreManager.getSpeed().ToString("F0");
+            distanceDisplay.GetComponent<Text>().text = scoreManager.getDis().ToString("F0");
+            scoreDisplay.GetComponent<Text>().text = scoreManager.getScore().ToString("F0");
+            //scoreManager._dis;
+            //scoreManager._scoreF
             pauseMenu.SetActive(true);
             //Debug.Log("Player Wins!!!");
         }
@@ -111,7 +119,9 @@ public class PoojaPlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return)) {
             //Debug.Log("Enter Pressed");
             if (ScoreManager.getCurrentPlanetTag() != null && ScoreManager.getCurrentCollectibleTag() != null) {
-                scoreManager.deliver(ScoreManager.getCollectibleBalloonSpriteTagList()[ScoreManager.getCurrentCollectibleinBalloonIndex()]);
+                if (ScoreManager.getCurrentCollectibleinBalloonIndex() != -1) {
+                    scoreManager.deliver(ScoreManager.getCollectibleBalloonSpriteTagList()[ScoreManager.getCurrentCollectibleinBalloonIndex()]);
+                }
             }
         }
 
