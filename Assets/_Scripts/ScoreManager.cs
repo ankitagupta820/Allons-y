@@ -36,6 +36,19 @@ public class ScoreManager : MonoBehaviour
     private float theScore = 0;
     private int countCollectibles;
 
+    public int getSpeed() {
+        return _speed;
+    }
+
+    public int getDis()
+    {
+        return _dis;
+    }
+
+    public float getScore()
+    {
+        return _scoreF;
+    }
     private string type1CollectibleTagName;
     private string type2CollectibleTagName;
     private string type3CollectibleTagName;
